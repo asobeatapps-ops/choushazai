@@ -1,9 +1,10 @@
 {
-  "passed": 29,
-  "total": 29,
+  "passed": 35,
+  "total": 35,
+  "errors": [],
   "checks": [
     {
-      "name": "title",
+      "name": "title screen",
       "passed": true
     },
     {
@@ -35,93 +36,112 @@
       "passed": true
     },
     {
-      "name": "perfect energy > no apologies",
+      "name": "perfect narrow",
       "passed": true
     },
     {
-      "name": "super-perfect reaches Neptune",
+      "name": "energy higher for perfect",
       "passed": true
     },
     {
-      "name": "NO apology does not destroy Mercury",
+      "name": "perfect breaks Neptune",
       "passed": true
     },
     {
-      "name": "nonincreasing planet stages",
+      "name": "poor play cannot break Mercury",
       "passed": true
     },
     {
-      "name": "first timing",
+      "name": "planet stage monotonic",
       "passed": true
     },
     {
-      "name": "tap registered",
+      "name": "deterministic scoring",
       "passed": true
     },
     {
-      "name": "double tap blocked",
+      "name": "precision changes J",
       "passed": true
     },
     {
-      "name": "bow",
+      "name": "stage active",
       "passed": true
     },
     {
-      "name": "destruction camera state",
+      "name": "target drifts",
       "passed": true
     },
     {
-      "name": "camera world x > 0",
+      "name": "needle moves",
       "passed": true
     },
     {
-      "name": "result panel",
+      "name": "visible target animated",
       "passed": true
     },
     {
-      "name": "energy unchanged by skip",
+      "name": "tap registers",
       "passed": true
     },
     {
-      "name": "8 planet results",
+      "name": "no double tap",
       "passed": true
     },
     {
-      "name": "local rank",
+      "name": "bow state",
       "passed": true
     },
     {
-      "name": "png card",
+      "name": "chase state",
       "passed": true
     },
     {
-      "name": "share has brand + score",
+      "name": "camera moved",
       "passed": true
     },
     {
-      "name": "today ranking",
+      "name": "result",
       "passed": true
     },
     {
-      "name": "retry resets result",
+      "name": "energy preserved",
       "passed": true
     },
     {
-      "name": "small phone horizontal overflow",
+      "name": "all 8 planets",
       "passed": true
     },
     {
-      "name": "landscape overflow",
+      "name": "PNG output",
       "passed": true
     },
     {
-      "name": "no JS errors",
+      "name": "X share",
+      "passed": true
+    },
+    {
+      "name": "ranking real",
+      "passed": true
+    },
+    {
+      "name": "retry",
+      "passed": true
+    },
+    {
+      "name": "replay variation",
+      "passed": true
+    },
+    {
+      "name": "small phone width",
+      "passed": true
+    },
+    {
+      "name": "landscape width",
+      "passed": true
+    },
+    {
+      "name": "no runtime errors",
       "passed": true
     }
-  ],
-  "errors": [],
-  "limitations": [
-    "Chromium emulation only; iPhone Safari device not tested",
-    "Online leaderboard not connected"
   ]
 }
