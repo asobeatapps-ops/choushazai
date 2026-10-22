@@ -1,0 +1,127 @@
+{
+  "passed": 29,
+  "total": 29,
+  "checks": [
+    {
+      "name": "title",
+      "passed": true
+    },
+    {
+      "name": "grade パーフェクト謝罪",
+      "passed": true
+    },
+    {
+      "name": "grade 超Good謝罪",
+      "passed": true
+    },
+    {
+      "name": "grade Good謝罪",
+      "passed": true
+    },
+    {
+      "name": "grade なかなか謝罪",
+      "passed": true
+    },
+    {
+      "name": "grade まあまあ謝罪",
+      "passed": true
+    },
+    {
+      "name": "grade ちょっと謝罪",
+      "passed": true
+    },
+    {
+      "name": "grade NO謝罪",
+      "passed": true
+    },
+    {
+      "name": "perfect energy > no apologies",
+      "passed": true
+    },
+    {
+      "name": "super-perfect reaches Neptune",
+      "passed": true
+    },
+    {
+      "name": "NO apology does not destroy Mercury",
+      "passed": true
+    },
+    {
+      "name": "nonincreasing planet stages",
+      "passed": true
+    },
+    {
+      "name": "first timing",
+      "passed": true
+    },
+    {
+      "name": "tap registered",
+      "passed": true
+    },
+    {
+      "name": "double tap blocked",
+      "passed": true
+    },
+    {
+      "name": "bow",
+      "passed": true
+    },
+    {
+      "name": "destruction camera state",
+      "passed": true
+    },
+    {
+      "name": "camera world x > 0",
+      "passed": true
+    },
+    {
+      "name": "result panel",
+      "passed": true
+    },
+    {
+      "name": "energy unchanged by skip",
+      "passed": true
+    },
+    {
+      "name": "8 planet results",
+      "passed": true
+    },
+    {
+      "name": "local rank",
+      "passed": true
+    },
+    {
+      "name": "png card",
+      "passed": true
+    },
+    {
+      "name": "share has brand + score",
+      "passed": true
+    },
+    {
+      "name": "today ranking",
+      "passed": true
+    },
+    {
+      "name": "retry resets result",
+      "passed": true
+    },
+    {
+      "name": "small phone horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "landscape overflow",
+      "passed": true
+    },
+    {
+      "name": "no JS errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Chromium emulation only; iPhone Safari device not tested",
+    "Online leaderboard not connected"
+  ]
+}
