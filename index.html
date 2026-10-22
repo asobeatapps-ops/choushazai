@@ -2,7 +2,7 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#080d25"><meta name="description" content="水星で3回謝罪したら太陽系が崩壊!? ASOBEATの無料2Dバカゲー『超謝罪会見』。">
-<title>超謝罪会見 Ver.1.2 | ASOBEAT</title>
+<title>超謝罪会見 Ver.1.3 | ASOBEAT</title>
 <style>:root{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;color:#fff;--yellow:#ffdd70;--bright:#65e8ff;--coral:#ff657f;--text:#f5f7ff;--muted:#a5b4d6;touch-action:manipulation;color-scheme:dark}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#030719}body{display:flex;align-items:center;justify-content:center}button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:3px solid #7dd9ff;outline-offset:3px}
 #app{position:relative;width:min(100vw,520px);height:100dvh;max-height:980px;overflow:hidden;touch-action:none;isolation:isolate;background:#06102c;box-shadow:0 0 70px #000c}#world{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}#grain{position:absolute;inset:0;z-index:1;opacity:.09;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.16' d='M0 0h160v160H0z'/%3E%3C/svg%3E")}#flash{position:absolute;inset:0;z-index:8;pointer-events:none;opacity:0;background:#ffe9c2}.flash{animation:flash .25s ease-out}@keyframes flash{0%{opacity:.48}100%{opacity:0}}
@@ -98,16 +98,30 @@ function drawExplosionCore(i,x,y,r,impact){const p=safe((impact-.47)/.53,0,1);if
  ctx.globalAlpha=(1-p)*(.45+rand(j+45)*.43);ctx.lineWidth=1.2+rand(j+8)*3;
  ctx.beginPath();ctx.moveTo(x+Math.cos(a)*inner,y+Math.sin(a)*inner);ctx.lineTo(x+Math.cos(a)*outer,y+Math.sin(a)*outer);ctx.stroke();}
  ctx.restore();}
-function drawShards(i,x,y,r,progress){const p=clamp(progress);if(p<=0)return;ctx.save();ctx.translate(x,y);
-const count=i===5?52:47;const palette=[colors[i],'#b7795c','#493f54','#f1b76d','#f3d29b'];
-for(let k=0;k<count;k++){const seed=k*17+i*319,ang=k*2.399963+i*.21,spd=.28+rand(seed+7)*1.62;
-const dist=r*(.10+p*spd*1.31),sx=Math.cos(ang)*dist,sy=Math.sin(ang)*dist+Math.sin(p*5+k)*r*.025;
-const size=r*(.019+rand(seed+2)*.064)*(1-rand(seed+24)*p*.19);
-ctx.save();ctx.translate(sx,sy);ctx.rotate(ang+p*(1.6+rand(seed+12)*7.2)*(k%2?-1:1));ctx.globalAlpha=(1-p*.29)*(.68+rand(seed+14)*.32);
-// Irregular angular rocks with chipped edges, directional shading and molten seams.
-ctx.beginPath();for(let n=0;n<7;n++){const a=n*2*Math.PI/7,ir=size*(.54+rand(seed+n*29)*.80);const px=Math.cos(a)*ir,py=Math.sin(a)*ir*.79;n?ctx.lineTo(px,py):ctx.moveTo(px,py)}ctx.closePath();ctx.fillStyle=palette[k%5];ctx.fill();ctx.strokeStyle='#1c1b34';ctx.lineWidth=1.1;ctx.stroke();
-ctx.globalAlpha*=.55;ctx.beginPath();ctx.moveTo(-size*.37,-size*.22);ctx.lineTo(size*.18,-size*.45);ctx.lineTo(size*.35,size*.12);ctx.strokeStyle=k%3===0?'#ffecc0':'#ffd281';ctx.lineWidth=1.1;ctx.stroke();ctx.restore();
-if(k%3===0){const trailing=r*p*(.09+rand(seed+19)*.22);ctx.globalAlpha=(1-p)*.45;line([[sx-Math.cos(ang)*trailing,sy-Math.sin(ang)*trailing],[sx,sy]],k%2?'#ffbe6e':'#94c9fa',.5+rand(seed+20)*1.1)}}ctx.restore()}
+function drawShards(i,x,y,r,progress){
+ const p=clamp(progress);if(p<=0)return;
+ ctx.save();ctx.translate(x,y);
+ // Big tectonic slabs: angular, colored from the original planet surface, with a hot broken edge.
+ for(let k=0;k<13;k++){
+   const seed=i*37+k*79,a=k*Math.PI*2/13+.33*Math.sin(k*5.3),v=.42+rand(seed+2)*.83;
+   const distance=r*(.05+p*(.42+v*.93)),px=Math.cos(a)*distance,py=Math.sin(a)*distance;
+   const size=r*(.16+rand(seed+8)*.11)*(1-p*.11);
+   ctx.save();ctx.translate(px,py);ctx.rotate(a*.32+p*(k%2?-1:1)*(1.3+rand(seed+12)*2.1));
+   ctx.globalAlpha=(1-p*.16);ctx.shadowColor='#ff6f34';ctx.shadowBlur=(1-p)*9;
+   ctx.beginPath();for(let n=0;n<6;n++){const ang=2*Math.PI*n/6,sz=size*(.67+rand(seed+n*11)*.6);n?ctx.lineTo(Math.cos(ang)*sz,Math.sin(ang)*sz):ctx.moveTo(Math.cos(ang)*sz,Math.sin(ang)*sz)}ctx.closePath();
+   const g=ctx.createLinearGradient(-size,-size,size,size);g.addColorStop(0,k%3===0?'#8a3636':colors[i]);g.addColorStop(.45,k%3===0?'#c87153':colors[i]);g.addColorStop(1,'#1b1c32');ctx.fillStyle=g;ctx.fill();ctx.lineWidth=2.8;ctx.strokeStyle='#241d2f';ctx.stroke();
+   ctx.shadowBlur=0;ctx.lineWidth=2.2;ctx.strokeStyle=k%3?'#ffc261':'#fff3b0';ctx.beginPath();ctx.moveTo(-size*.64,size*.10);ctx.lineTo(-size*.25,-size*.35);ctx.lineTo(size*.44,-size*.43);ctx.stroke();
+   // A hot underside gives the rock volume.
+   ctx.globalAlpha=(1-p*.22)*.67;ctx.beginPath();ctx.moveTo(-size*.47,size*.43);ctx.lineTo(size*.45,size*.29);ctx.lineTo(size*.10,size*.68);ctx.closePath();ctx.fillStyle='#fc7535';ctx.fill();ctx.restore();
+ }
+ // Smaller grit trails behind the heavy pieces.
+ for(let k=0;k<96;k++){
+   const seed=k*23+i*53,a=k*2.399963+i*.23,travel=r*p*(.48+rand(seed+5)*2.12),px=Math.cos(a)*travel,py=Math.sin(a)*travel;
+   const size=r*(.008+rand(seed+6)*.022);ctx.save();ctx.translate(px,py);ctx.rotate(a+p*k*.22);ctx.globalAlpha=(1-p*.45)*(.4+rand(seed+8)*.6);
+   ctx.fillStyle=k%4===0?'#ffbc67':k%3===0?'#ffe6ad':colors[i];ctx.beginPath();ctx.moveTo(-size,-size*.55);ctx.lineTo(size*.75,-size*.16);ctx.lineTo(size*.12,size);ctx.closePath();ctx.fill();ctx.restore();
+ }
+ ctx.restore();
+}
 function drawEnergyRings(x,y,r,time,planetId){const tt=safe(time,0,1);if(tt<=0)return;for(let j=0;j<3;j++){const p=safe((tt-j*.18)/(.83-j*.08),0,1);if(p<=0||p>=1)continue;ctx.save();ctx.globalAlpha=(1-p)*.7;ctx.beginPath();ctx.arc(x,y,r*(.4+p*3),0,Math.PI*2);ctx.lineWidth=5*(1-p)+1;ctx.strokeStyle=j===0?'#fff5c0':j===1?'#a2eeff':'#ed83ff';ctx.shadowBlur=21;ctx.shadowColor='#c8faff';ctx.stroke();ctx.restore();}}
 
 
@@ -160,7 +174,16 @@ class AudioFx{constructor(){this.ctx=null;this.next=0;this.beat=0}
  tone(f,d=.13,type='sine',vol=.03,end=0){if(!this.ctx||!soundOn||this.ctx.state!=='running')return;try{const t=this.ctx.currentTime,o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type=type;o.frequency.setValueAtTime(Math.max(f,25),t);if(end)o.frequency.exponentialRampToValueAtTime(Math.max(25,end),t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(this.ctx.destination);o.start(t);o.stop(t+d+.02)}catch(_){}}
  noise(d=.18,v=.065){if(!this.ctx||!soundOn)return;try{const a=this.ctx,b=a.createBuffer(1,Math.ceil(a.sampleRate*d),a.sampleRate),p=b.getChannelData(0);for(let j=0;j<p.length;j++)p[j]=(Math.random()*2-1)*Math.pow(1-j/p.length,1.8);const src=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();src.buffer=b;f.type='lowpass';f.frequency.value=1600;g.gain.value=v;src.connect(f);f.connect(g);g.connect(a.destination);src.start()}catch(_){}}
  hit(g){const n=GRADES.findIndex(v=>v.name===g.name);this.tone([1450,1120,780,540,390,280,170][n]||240,.22,'triangle',n<2?.075:.034,n<2?1950:420);if(n<2)this.tone(1750,.15,'sine',.035,2000)}
- smash(i,full){this.tone(120+i*15,.45,'sawtooth',full?.08:.04,35);this.noise(full?.52:.22,full?.13:.055);if(full)this.tone(780+i*25,.18,'triangle',.027,200)}
+ smash(i,full){
+   this.tone(1750+i*23,.105,'square',full?.052:.024,340);this.tone(210+i*13,.36,'sawtooth',full?.077:.035,37);
+   this.noise(full?.45:.19,full?.09:.042);
+   if(full){this.tone(82,.68,'triangle',.105,32);this.tone(620+i*31,.31,'sawtooth',.034,100);
+     // Distinct second wave of collapsing rocks, after the primary impact.
+     if(this.ctx&&this.ctx.state==='running')try{const ac=this.ctx,t=ac.currentTime+.13;
+       const buffer=ac.createBuffer(1,Math.ceil(ac.sampleRate*.42),ac.sampleRate),data=buffer.getChannelData(0);for(let j=0;j<data.length;j++)data[j]=(Math.random()*2-1)*Math.pow(1-j/data.length,1.5);
+       const src=ac.createBufferSource(),lp=ac.createBiquadFilter(),gain=ac.createGain();src.buffer=buffer;lp.type='bandpass';lp.frequency.value=530+i*43;lp.Q.value=.6;gain.gain.setValueAtTime(.0001,t);gain.gain.linearRampToValueAtTime(.11,t+.025);gain.gain.exponentialRampToValueAtTime(.0001,t+.42);src.connect(lp);lp.connect(gain);gain.connect(ac.destination);src.start(t);src.stop(t+.43)}catch(_){}
+   }
+ }
  swoosh(){this.tone(440,.28,'sawtooth',.024,1150)}
  bg(){if(!this.ctx||!soundOn||state==='result'||elapsed<this.next)return;const fast=state==='destroy'||state==='bow';this.next=elapsed+(fast?.26:.42);const tune=[0,4,7,12,7,4,9,5];const root=fast?130:112;this.tone(root*Math.pow(2,tune[this.beat%8]/12),.105,'triangle',.0075);if(this.beat%4===0)this.tone(72,.14,'sine',.014,55);this.beat++}}
 const audio=new AudioFx();
@@ -197,10 +220,10 @@ function updateBlast(dt){if(state==='bow'){
  const {i,phase}=stageInfo(sceneTime);const lastStage=Math.min(7,outcome.lastReached+1);if(i>lastStage){finishResult();return}
  if(i!==stageAnnounced){stageAnnounced=i;updateTrack(i);audio.swoosh();$('phaseLabel').textContent=`${names[i]}へ、衝撃波接近！`;$('commentary').textContent='カメラが衝撃波を追跡中'}
  if(phase>=TRAVEL&&phase-dt<TRAVEL){$('phaseLabel').textContent='惑星、急速赤熱中…';$('commentary').textContent=`${names[i]}の表面温度が急上昇！ 耐えられるのか!?`}
- if(phase>=TRAVEL+JUDGE&&phase-dt<TRAVEL+JUDGE){const level=outcome.statuses[i];audio.smash(i,level===4);if(level===4){flash();particles(W*.5,H*.47,reduceMotion?30:80,[colors[i],'#fff2c9','#ffe080'],2)}$('phaseLabel').textContent=level===4?`${names[i]}、完全崩壊!!`:level===3?`${names[i]}、半壊！`:level===2?`${names[i]}、一部破壊！`:level===1?`${names[i]}、亀裂！`:`${names[i]}、耐えた！`;$('commentary').textContent=level===4?'実況「謝罪が重すぎるぅぅ!!」':level===0?'実況「衝撃波が消えたぁぁ!!」':'実況「まだ耐えているぞ!!」';if(i===7&&level===4&&!finaleMarked){finaleMarked=true;$('commentary').textContent='太陽系、謝罪に耐えられず。伝説の謝罪！';}}
+ if(phase>=TRAVEL+JUDGE&&phase-dt<TRAVEL+JUDGE){const level=outcome.statuses[i];audio.smash(i,level===4);if(level===4){flash();particles(W*.5,H*.47,reduceMotion?30:80,[colors[i],'#fff2c9','#ffe080'],2)}$('phaseLabel').textContent=level===4?`${names[i]}、完全崩壊!!`:level===3?`${names[i]}、半壊！`:level===2?`${names[i]}、一部破壊！`:level===1?`${names[i]}、亀裂！`:`${names[i]}、耐えた！`;$('commentary').textContent=level===4?(i>=1?`🔥 ${i+1}連続粉砕 COMBO!! 実況「謝罪が重すぎるぅぅ!!」`:'実況「謝罪が重すぎるぅぅ!!」'):level===0?'実況「衝撃波が消えたぁぁ!!」':'実況「まだ耐えているぞ!!」';if(i===7&&level===4&&!finaleMarked){finaleMarked=true;$('commentary').textContent='太陽系、謝罪に耐えられず。伝説の謝罪！';}}
  }}
 function finishResult(){if(!outcome||state==='result')return;setState('result');particleList.length=0;saveCurrentResult();showResult()}
-function showResult(){const o=outcome;$('rankTitle').textContent=o.title;resizeText();$('precisionBreakdown').textContent=o.grades.map((v,i)=>`${i+1}声目：${(v.dist*100).toFixed(2)}%`).join('  ｜  ');let reach='宇宙、無傷で済んだ…';if(o.lastReached>=0){const last=o.lastReached;reach=o.statuses[last]===4?`${names[last]}まで完全破壊！`:`${names[last]}、${STATUS[o.statuses[last]]}！`;if(o.lastFull>=0&&o.lastFull<last)reach=`${names[o.lastFull]}まで完全破壊・${names[last]}に到達`;}if(o.statuses[7]===4)reach='太陽系、謝罪に耐えられず！';$('resultReached').textContent=reach;
+function showResult(){const o=outcome;$('rankTitle').textContent=o.title;resizeText();$('precisionBreakdown').textContent=o.grades.map((v,i)=>`${i+1}声目：${(v.dist*100).toFixed(2)}%${v.dist>.018?'（要改善）':''}`).join('  ｜  ');let reach='宇宙、無傷で済んだ…';if(o.lastReached>=0){const last=o.lastReached;reach=o.statuses[last]===4?`${names[last]}まで完全破壊！`:`${names[last]}、${STATUS[o.statuses[last]]}！`;if(o.lastFull>=0&&o.lastFull<last)reach=`${names[o.lastFull]}まで完全破壊・${names[last]}に到達`;}if(o.statuses[7]===4)reach='太陽系、謝罪に耐えられず！';$('resultReached').textContent=reach;
  const root=$('planetResults');root.replaceChildren();names.forEach((n,i)=>{const cell=document.createElement('div');cell.className='planetCell';cell.style.setProperty('--planet',colors[i]);const orb=document.createElement('span');orb.className='orb';const text=document.createElement('span');text.className='ptext';const nm=document.createElement('strong');nm.textContent=n;const s=document.createElement('small');s.textContent=STATUS[o.statuses[i]];s.className=o.statuses[i]===4?'full':o.statuses[i]>=2?'partial':'';text.append(nm,s);cell.append(orb,text);root.appendChild(cell)});
  boardView='all';renderBoard()}
 $('startBtn').onclick=beginGame;$('retryBtn').onclick=beginGame;$('skipBtn').onclick=()=>{if(state==='bow'||state==='destroy')finishResult()};
@@ -246,18 +269,36 @@ const glow=ctx.createRadialGradient(x-r*.24,y-r*.21,1,x-r*.12,y,r*1.4);glow.addC
 for(let k=0;k<75;k++){const px=x+(rand(k*13+i*131)-.5)*r*2,py=y+(rand(k*19+i*89)-.5)*r*2;const strength=clamp((front-px+r*.04)/(r*.42));if(strength<=0)continue;const len=r*(.018+rand(k*3+i)*.046);ctx.globalAlpha=heat*strength*(.25+rand(k+i)*.48);ctx.fillStyle=k%3?'#ff592a':'#ffd274';ctx.beginPath();ctx.ellipse(px,py,len,len*(.32+rand(k+9)*.23),k*.46,0,2*Math.PI);ctx.fill()}
 ctx.globalAlpha=1;drawCracks(x,y,r,i,clamp((heat-.31)*1.42)*(damage/4));ctx.restore();drawCorona(x,y,r,heat*.8,i)}
 // A broad gaseous explosion rather than a central flat disc: luminous ejecta + dark smoke + debris.
-function drawPlanetCataclysm(i,x,y,r,progress){const p=clamp(progress);if(p<=0)return;ctx.save();const shock=ease(clamp(p/.72));const radius=r*(.55+shock*2.22);
-const halo=ctx.createRadialGradient(x,y,r*.10,x,y,radius);halo.addColorStop(0,`rgba(255,254,225,${.62*(1-p*.35)})`);halo.addColorStop(.17,`rgba(255,186,63,${.68*(1-p*.33)})`);halo.addColorStop(.38,`rgba(255,77,25,${.62*(1-p*.6)})`);halo.addColorStop(.66,`rgba(123,38,60,${.35*(1-p*.65)})`);halo.addColorStop(1,'rgba(20,19,49,0)');ctx.fillStyle=halo;ctx.fillRect(x-radius,y-radius,radius*2,radius*2);
-// Evolving lobes of hot plasma with smoke on outer edges; no random flicker.
-for(let k=0;k<16;k++){const a=k*2.399963+i*.4;const spread=r*(.16+p*(.50+rand(k*9+i)*.7));const px=x+Math.cos(a)*spread,py=y+Math.sin(a)*spread;const scale=r*(.17+.21*rand(k+10)+p*.17),g=ctx.createRadialGradient(px,py,0,px,py,scale);
-g.addColorStop(0,k%4===0?`rgba(255,237,157,${.57*(1-p*.4)})`:`rgba(255,118,39,${.62*(1-p*.28)})`);g.addColorStop(.50,`rgba(112,52,62,${.32*(1-p*.22)})`);g.addColorStop(1,'rgba(13,18,38,0)');ctx.fillStyle=g;ctx.fillRect(px-scale,py-scale,scale*2,scale*2)}
-// Core turns from white-hot to dark ash, highlighting true rupture and mass.
-const coreR=r*(.25+p*.5),core=ctx.createRadialGradient(x,y,0,x,y,coreR);core.addColorStop(0,p<.38?'#fff6bf':'#3b2435');core.addColorStop(.55,p<.38?'#ffb451':'#a4483c');core.addColorStop(1,'#4c1f3600');ctx.globalAlpha=.88*(1-p*.25);ctx.fillStyle=core;ctx.fillRect(x-coreR,y-coreR,coreR*2,coreR*2);ctx.globalAlpha=1;
-// Expanding matter shock rings and wispy radial rays.
-for(let k=0;k<3;k++){const q=clamp((p-k*.15)/(.78-k*.06));if(q===0||q>=1)continue;ctx.globalAlpha=(1-q)*(.62-k*.13);ctx.strokeStyle=k===0?'#ffe2a7':k===1?'#f87f65':'#74caf5';ctx.lineWidth=Math.max(.6,5*(1-q));ctx.shadowBlur=16;ctx.shadowColor='#ffa15b';ctx.beginPath();ctx.arc(x,y,r*(.34+q*2.68),0,Math.PI*2);ctx.stroke();ctx.shadowBlur=0}
-ctx.globalAlpha=1;
-for(let k=0;k<54;k++){const a=k*2.39996+i*.73,v=.23+rand(k+i*5)*1.42;const inner=r*(.23+p*.47),outer=r*(.25+p*(.62+v));const px=x+Math.cos(a)*outer,py=y+Math.sin(a)*outer;ctx.globalAlpha=(1-p*.55)*(.26+rand(k+i)*.65);ctx.strokeStyle=k%6===0?'#fff7c9':k%3===0?'#ff9f4c':colors[i];ctx.lineWidth=.65+rand(k*11)*3.1;ctx.beginPath();ctx.moveTo(x+Math.cos(a)*inner,y+Math.sin(a)*inner);ctx.lineTo(px,py);ctx.stroke()}
-ctx.globalAlpha=1;drawShards(i,x,y,r,p);ctx.restore()}
+function drawPlanetCataclysm(i,x,y,r,progress){
+ const p=clamp(progress);if(p<=0)return;
+ const burst=ease(clamp(p/.39)),smoke=ease(clamp((p-.12)/.8));
+ ctx.save();ctx.globalCompositeOperation='screen';
+ // Off-axis plumes break the perfect-circle look.
+ for(let k=0;k<21;k++){
+   const seed=i*51+k*29,a=k*2.399963+i*.49,travel=r*(.14+p*(.44+rand(seed+7)*1.25)),px=x+Math.cos(a)*travel,py=y+Math.sin(a)*travel;
+   const radius=r*(.20+rand(seed+11)*.20+p*.39);const grad=ctx.createRadialGradient(px,py,0,px,py,radius);
+   const opacity=(1-p*.62)*(.43+rand(seed+4)*.34);
+   grad.addColorStop(0,k%4===0?`rgba(255,244,171,${opacity})`:`rgba(255,128,49,${opacity})`);grad.addColorStop(.36,`rgba(247,75,37,${opacity*.75})`);grad.addColorStop(.75,`rgba(134,55,64,${opacity*.42})`);grad.addColorStop(1,'rgba(30,25,52,0)');ctx.fillStyle=grad;ctx.fillRect(px-radius,py-radius,2*radius,2*radius);
+ }
+ const rr=r*(.16+burst*1.17),white=ctx.createRadialGradient(x,y,0,x,y,rr);white.addColorStop(0,`rgba(255,255,225,${(1-p)*.98})`);white.addColorStop(.26,`rgba(255,201,103,${(1-p)*.78})`);white.addColorStop(1,'rgba(255,87,36,0)');ctx.fillStyle=white;ctx.fillRect(x-rr,y-rr,rr*2,rr*2);
+ ctx.globalCompositeOperation='source-over';
+ // Irregular cool smoke blooms on the OUTER EDGE behind the ejecta.
+ for(let k=0;k<12;k++){
+   const a=k*2.4+i*.3,outer=r*(.57+smoke*(.65+rand(k*9+i)*.72)),px=x+Math.cos(a)*outer,py=y+Math.sin(a)*outer;
+   const radius=r*(.22+smoke*.4),g=ctx.createRadialGradient(px,py,radius*.1,px,py,radius);
+   g.addColorStop(0,`rgba(39,33,52,${smoke*.52*(1-p*.43)})`);g.addColorStop(.66,`rgba(76,42,58,${smoke*.22})`);g.addColorStop(1,'rgba(50,42,60,0)');ctx.fillStyle=g;ctx.fillRect(px-radius,py-radius,2*radius,2*radius);
+ }
+ for(let j=0;j<3;j++){
+   const q=clamp((p-j*.09)/(.72-j*.08));if(q<=0||q>=1)continue;
+   ctx.globalAlpha=(1-q)*(.84-j*.19);ctx.beginPath();ctx.arc(x,y,r*(.22+q*2.6),0,Math.PI*2);ctx.lineWidth=(7-j*1.5)*(1-q)+.5;ctx.strokeStyle=j===0?'#fff2be':j===1?'#ffb977':'#9fe7ff';ctx.shadowColor=ctx.strokeStyle;ctx.shadowBlur=18;ctx.stroke();ctx.shadowBlur=0;
+ }ctx.globalAlpha=1;
+ // Planet crust exists as chunks, even after the central light has faded.
+ drawShards(i,x,y,r,p);
+ if(i===5){ // Saturn ring breaks into broad drifting arcs.
+   ctx.save();ctx.translate(x,y);ctx.rotate(-.23);for(let k=0;k<12;k++){
+     const a=k*2*Math.PI/12,dist=r*(1.45+p*.9);ctx.beginPath();ctx.ellipse(Math.cos(a)*p*r*.7,Math.sin(a)*p*r*.3,dist*.28,dist*.075,0,a,a+.41);ctx.strokeStyle=k%2?'#edcb89':'#f7e6b7';ctx.lineWidth=r*.085*(1-p*.4);ctx.stroke();}ctx.restore();
+ }ctx.restore();
+}
 function drawMercuryImplosion(f){const p=clamp(f),cx=W*.44,cy=H*.65,r=Math.min(W*.47,H*.30);if(p<=0)return;
 const status=outcome?.statuses?.[0]??0,full=status===4,hot=clamp(p*2.1);drawCorona(cx,cy,r*1.25,hot*.65,0);
 if(full){if(p<.57){ctx.save();ctx.globalAlpha=1-clamp((p-.33)/.24);drawPlanet(0,cx,cy,r*.76,0);drawThermalPlanet(0,cx,cy,r*.76,hot,4);ctx.restore()}
@@ -282,12 +323,25 @@ function drawStickFigure(x,feet,size,bend=0,t=0){ctx.save();ctx.translate(x,feet
 function drawShockFront(x,y,t,amp=1,fade=1){const h=Math.max(H*.68,310),a=clamp(amp),opacity=clamp(fade);ctx.save();
 // Tail is cold dispersed ionized gas, with its highest density near the shockfront.
 const g=ctx.createLinearGradient(x-W*.68,0,x+44,0);g.addColorStop(0,'rgba(74,153,247,0)');g.addColorStop(.62,`rgba(84,172,240,${.055*opacity})`);g.addColorStop(.89,`rgba(135,217,255,${.20*opacity})`);g.addColorStop(1,'rgba(180,244,255,0)');ctx.fillStyle=g;ctx.fillRect(x-W*.68,y-h*.57,W*.68+52,h*1.14);
-for(let j=0;j<5;j++){const ox=-j*19,phase=t*4-j*.55;const points=[];for(let k=0;k<=52;k++){const u=k/52,dy=(u-.5)*h;const bow=24*Math.pow(Math.abs(dy)/(h*.5),1.6),warp=(10-j*1.4)*Math.sin(u*8.3+phase)+3*Math.sin(u*25+phase*1.4);
+for(let j=0;j<6;j++){const ox=-j*19,phase=t*4-j*.55;const points=[];for(let k=0;k<=52;k++){const u=k/52,dy=(u-.5)*h;const bow=24*Math.pow(Math.abs(dy)/(h*.5),1.6),warp=(10-j*1.4)*Math.sin(u*8.3+phase)+3*Math.sin(u*25+phase*1.4);
 points.push([x+ox-bow+warp, y+dy]);}
 ctx.beginPath();points.forEach(([px,py],k)=>k?ctx.lineTo(px,py):ctx.moveTo(px,py));ctx.globalAlpha=opacity*(.75-j*.11);ctx.strokeStyle=j===0?'#f3fbff':j===1?'#7ee9ff':j===2?'#74bfff':'#85a3ff';ctx.lineWidth=(j===0?4.2:j===1?3.4:2.3)*(1-.10*j);ctx.shadowBlur=16-j*2;ctx.shadowColor=j<2?'#68e9ff':'#4e7dff';ctx.stroke();ctx.shadowBlur=0;}
 for(let k=0;k<25;k++){const yy=y+(rand(k*18+4)-.5)*h*.92,tail=60+rand(k+38)*110;ctx.globalAlpha=(.06+rand(k+7)*.15)*opacity;ctx.strokeStyle=k%4?'#86c5ff':'#ffe7ae';ctx.lineWidth=.8+rand(k*11)*1.4;ctx.beginPath();ctx.moveTo(x-tail,yy+Math.sin(yy*.032+t*7)*9);ctx.quadraticCurveTo(x-tail*.5,yy-12,x+rand(k+8)*10,yy+8);ctx.stroke()}
 ctx.restore()}
 function drawStreaks(t,speed=1){ctx.save();for(let k=0;k<24;k++){const x=rand(k+11)*W,y=rand(k*6+21)*H,len=(15+rand(k+8)*78)*speed;ctx.globalAlpha=.08+rand(k)*.20;ctx.strokeStyle=k%5===0?'#fbd9ae':'#bdddfd';ctx.lineWidth=.8+rand(k+14)*1.6;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-len,y+len*.025);ctx.stroke()}ctx.restore()}
+function drawImpactCompression(x,y,r,phase,level){
+ const p=clamp(phase);if(p<=0||p>=1)return;
+ ctx.save();const side=ease(clamp(p*2.5));
+ // A curved pressure wall contacts left rim and travels slightly into the sphere.
+ const front=x-r*(1.21-.50*side);
+ for(let j=0;j<5;j++){
+   ctx.beginPath();const xx=front-j*9;ctx.moveTo(xx,y-r*1.2);
+   ctx.bezierCurveTo(xx-r*(.10+.05*j),y-r*.51,xx+r*(.19-.03*j),y+r*.36,xx-r*.05,y+r*1.2);
+   ctx.strokeStyle=j===0?'#fff9e0':j<3?'#88e6ff':'#669dd9';ctx.lineWidth=Math.max(.5,5-j*.7);ctx.globalAlpha=(1-p*.55)*(.71-j*.09);ctx.shadowColor='#c3efff';ctx.shadowBlur=j<2?14:3;ctx.stroke();
+ }
+ ctx.shadowBlur=0;ctx.globalAlpha=(1-p)*.32;ctx.fillStyle='#ffb86e';ctx.beginPath();ctx.ellipse(x-r*.83,y,r*.16*(1+side),r*.72,0,0,Math.PI*2);ctx.fill();
+ ctx.restore();
+}
 function drawSolarChase(t){const {i,phase}=stageInfo(t);const idx=Math.min(7,i),start=WORLD[Math.max(0,idx-1)],dest=WORLD[idx];const travelling=phase<TRAVEL;const travelProgress=ease(clamp(phase/TRAVEL));
 // The lens follows the pressure front, then locks on the planet for the heating / rupture verdict.
 const zoom=lerp(.86,1.05,clamp((phase-TRAVEL+.28)/.53));const camera=travelling?lerp(start,dest,travelProgress):dest;lastCameraX=camera;
@@ -296,7 +350,7 @@ const planetY=H*.475,r=W*(travelling?.255:.31);const centerX=W*.52;
 for(let j=Math.max(0,idx-1);j<=Math.min(7,idx+1);j++){
 const px=centerX+(WORLD[j]-camera)*zoom;const size=r*(j===idx?1:(j<idx?.75:.83));if(px<-size*2.9||px>W+size*2.9)continue;
 const level=outcome.statuses[j];let alpha=j<idx?(level===4?.12:level===3?.50:.84):1;
-const local=j===idx&&!travelling;const waitPhase=clamp((phase-TRAVEL)/JUDGE);
+const local=j===idx&&!travelling;const waitPhase=clamp((phase-TRAVEL-.085)/(JUDGE-.085));
 const strikePhase=clamp((phase-TRAVEL-JUDGE)/STRIKE);
 const heat=local?(phase<TRAVEL+JUDGE?ease(waitPhase):level===4?1:1-ease(strikePhase)*.80):0;
 // Cracks remain on surviving planets, and completed destroyed orbs remain as drifting rubble.
@@ -305,7 +359,7 @@ if(j<idx&&level===4){drawShards(j,px,planetY,size*.85,.95);ctx.restore();continu
 if(local&&level===4&&strikePhase>.16)alpha*=1-ease(clamp((strikePhase-.16)/.33));
 if(alpha>.015){ctx.globalAlpha=alpha;drawPlanet(j,px,planetY,size,Math.sin(t*.17+j)*.05);ctx.globalAlpha=1}
 if(j<idx&&level>0&&level<4){ctx.globalAlpha=.53;drawCracks(px,planetY,size,j,level/4);ctx.globalAlpha=1}
-if(local){if(heat>.01&&alpha>.02){ctx.globalAlpha=alpha;drawThermalPlanet(j,px,planetY,size,heat,Math.max(1,level));ctx.globalAlpha=1}
+if(local){if(phase<TRAVEL+JUDGE)drawImpactCompression(px,planetY,size,waitPhase,level);if(heat>.01&&alpha>.02){ctx.globalAlpha=alpha;drawThermalPlanet(j,px,planetY,size,heat,Math.max(1,level));ctx.globalAlpha=1}
 if(phase>=TRAVEL+JUDGE){const p=strikePhase;
  if(level===4){drawPlanetCataclysm(j,px,planetY,size,p);}
  else{const damage=Math.min(level,3);if(damage>0){drawCracks(px,planetY,size,j,damage/4);if(p>.16)drawEnergyRings(px,planetY,size,p*.65,j)}else{ctx.save();ctx.globalAlpha=(1-p)*.22;drawEnergyRings(px,planetY,size,.15,j);ctx.restore()}}
