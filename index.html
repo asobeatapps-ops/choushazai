@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#080e24">
+<meta name="description" content="水星で謝罪したら太陽系が壊れた。3回タップで宇宙史上最大のお辞儀を決めろ！ ASOBEATの無料2Dバカゲー『超謝罪会見』">
+<title>超謝罪会見 | ASOBEAT</title>
+<style>:root{color-scheme:dark;--bg:#080e24;--ink:#fff;--sky:#4fe8ff;--gold:#ffe16b;--pink:#ff628a;--muted:#aab8d9;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#030718}body{display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 35%,#1a275d 0%,#030718 65%)}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #6ce7fb;outline-offset:3px}#app{position:relative;isolation:isolate;width:min(100vw,490px);height:min(100dvh,940px);overflow:hidden;background:#070b1b;box-shadow:0 0 80px #0009;touch-action:none;user-select:none;-webkit-user-select:none}#world{position:absolute;width:100%;height:100%;inset:0;display:block;z-index:0;touch-action:none}#filmGrain{position:absolute;inset:0;pointer-events:none;opacity:.15;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}#glare{position:absolute;inset:0;pointer-events:none;z-index:5;background:transparent;opacity:0}.screenFlash{animation:flash .34s ease-out}@keyframes flash{0%{background:#fff;opacity:.60}100%{background:transparent;opacity:0}}
+.topHUD{position:absolute;z-index:30;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:calc(env(safe-area-inset-top) + 11px) 17px 10px;background:linear-gradient(#030816d9,#03081600);pointer-events:none}.brand{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:900;letter-spacing:1.25px;color:#eef4ff;white-space:nowrap}.brand b{font-weight:600;opacity:.55;letter-spacing:.2px}.brandMark{width:22px;height:22px;display:grid;place-items:center;background:#ffe16b;border-radius:6px;color:#13213c;font-weight:1000;font-size:16px;box-shadow:0 2px 0 #d89d4a}.topActions{display:flex;align-items:center;gap:4px;pointer-events:auto}.roundBtn{border:1px solid #fff5;border-radius:99px;background:#071331cc;color:#d9e8ff;font-size:10px;font-weight:850;letter-spacing:.2px;padding:7px 8px;min-height:30px;box-shadow:inset 0 1px #ffffff12}
+.panelScene{position:absolute;inset:0;z-index:10;pointer-events:none;opacity:1;transition:opacity .22s ease}.panelScene.hidden{display:none!important}.titleScene{display:flex;flex-direction:column;padding:clamp(66px,11vh,110px) 23px calc(env(safe-area-inset-bottom) + 23px);align-items:center;text-align:center}.titleMeta{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}.eyebrow{font-size:10px;font-weight:850;letter-spacing:2px;color:#a9e5f9}.hotLabel{font-size:9px;font-weight:900;color:#260c11;background:#ffdf75;border-radius:20px;padding:4px 8px;box-shadow:0 0 24px #ffe47644}.titleLogo{margin-top:15px;display:flex;flex-direction:column;line-height:1.08;align-items:center;transform:rotate(-3deg);filter:drop-shadow(0 7px 0 #101628) drop-shadow(0 0 20px #ff56665c)}.logoTop{font-size:clamp(56px,12vw,91px);font-weight:1000;color:#ffe067;-webkit-text-stroke:2.5px #37223b;text-shadow:4px 4px 0 #f9576a,-2px -2px 0 #fff}.logoBottom{font-size:clamp(49px,10.5vw,75px);font-weight:1000;white-space:nowrap;color:#fff;-webkit-text-stroke:2.4px #23385e;text-shadow:4px 5px 0 #ef4f71}.logoBang{font-size:.38em;color:#ffe067;-webkit-text-stroke:1px #223}.titleSub{font-size:clamp(15px,4vw,21px);margin-top:15px;font-weight:900;letter-spacing:2px;text-shadow:0 2px 9px #050518}.titleSpacer{flex:1}.titleActions{width:100%;max-width:390px;pointer-events:auto}.tinyIntro{display:flex;justify-content:space-between;gap:3px;margin-bottom:12px;flex-wrap:wrap;color:#eaf6ff;font-size:9px;letter-spacing:.1px;font-weight:900;text-shadow:0 2px 6px #020612}.tinyIntro span{background:#0d1c3bbd;border:1px solid #ffffff2a;padding:7px 8px;border-radius:8px;flex:1}.primaryBtn{display:flex;justify-content:center;align-items:center;gap:15px;width:100%;border:0;position:relative;color:#141832;border-radius:16px;background:linear-gradient(180deg,#ffef8e 0%,#ffd24a 70%,#f5a83a 100%);padding:17px 14px;font-size:clamp(17px,4.7vw,22px);font-weight:1000;letter-spacing:.8px;box-shadow:0 6px 0 #a76a25,0 14px 28px #0009,inset 0 2px #fffd;pointer-events:auto;touch-action:manipulation}.primaryBtn:active{transform:translateY(4px);box-shadow:0 2px 0 #a76a25,0 8px 15px #0008}.glowBtn{animation:pulse 2.4s ease-in-out infinite}@keyframes pulse{50%{filter:brightness(1.15)}}.btnArrow{font-size:24px}.finePrint{font-size:10px;color:#dbe1fdc9;margin-top:14px;letter-spacing:.3px}
+.timingScene{padding:calc(env(safe-area-inset-top) + 65px) 21px calc(env(safe-area-inset-bottom) + 27px)}.stepIndex{position:absolute;top:calc(env(safe-area-inset-top) + 62px);left:23px;right:23px;display:flex;justify-content:space-between;align-items:center;gap:10px}.stepIndex span:first-child{color:#ffe16b;font-size:19px;font-weight:1000;letter-spacing:3px}.stepTiny{font-size:10px;font-weight:750;letter-spacing:1.2px;color:#bed0f2}.speech{position:absolute;top:17.5%;left:6%;right:6%;min-height:99px;padding:12px 18px 23px;background:linear-gradient(145deg,#fefefe 0%,#e5eff9 100%);border:4px solid #122043;border-radius:22px;box-shadow:0 6px 0 #071228,0 15px 40px #0009;color:#111d3b;transform:rotate(-1deg)}.speechLabel{font-weight:900;font-size:9px;letter-spacing:2px;color:#506681}.speechText{font-size:clamp(23px,6vw,31px);font-weight:1000;letter-spacing:-.6px;margin-top:5px;line-height:1.35}.speechCaret{position:absolute;right:28px;bottom:-19px;font-size:23px;color:#f6fcff;text-shadow:0 3px #101b30}.gradePopup{position:absolute;z-index:8;top:40%;left:3%;right:3%;font-size:clamp(32px,9vw,53px);font-weight:1000;letter-spacing:1px;text-align:center;color:#ffe16a;-webkit-text-stroke:1px #213057;text-shadow:0 6px 1px #1b1838,0 0 35px #ffc869;animation:gradePop .67s both;line-height:1.1}@keyframes gradePop{0%{transform:scale(.25) rotate(-8deg);opacity:0}35%{transform:scale(1.16) rotate(3deg);opacity:1}75%{transform:scale(.98)}100%{transform:scale(1)}}.gradePopup.great{color:#5cf3d2}.gradePopup.good{color:#f6fcff}.gradePopup.miss{color:#bfc7d7}
+.timingBottom{position:absolute;left:20px;right:20px;bottom:calc(env(safe-area-inset-bottom) + 30px);padding:15px 14px 14px;border:1px solid #aee1ff44;background:linear-gradient(150deg,#0a1635ee,#0b1530f2);border-radius:22px;box-shadow:0 16px 50px #000a,inset 0 2px 0 #ffffff12;pointer-events:auto}.timelineStats{display:flex;justify-content:space-between;align-items:center;gap:5px;margin-bottom:16px}.timelineStats span:first-child{color:#fff;font-weight:950;font-size:13px}.timelineStats span:last-child{color:#aee4fa;font-size:11px;font-weight:750}.gaugeShell{position:relative;height:32px;border-radius:9px;background:linear-gradient(90deg,#27375e 0%,#344970 25%,#42517d 50%,#344970 75%,#27375e 100%);border:2px solid #cbe9ff63;overflow:visible;box-shadow:inset 0 2px 10px #0008,0 4px 12px #0008}.gaugeTicks{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(10% - 1px),#ffffff28 calc(10% - 1px),#ffffff28 10%);pointer-events:none}.targetGlow{position:absolute;top:-1px;bottom:-1px;width:24%;background:radial-gradient(ellipse at center,#ffe3a45a,#ffeaa200 73%);transform:translateX(-50%);pointer-events:none}.targetSweet{position:absolute;top:-2px;bottom:-2px;width:10%;transform:translateX(-50%);border-radius:5px;background:linear-gradient(180deg,#fff8b0,#ffd34b);box-shadow:0 0 20px #ffce4dbb,0 0 8px #fff5ac;pointer-events:none}.cursor{position:absolute;z-index:3;left:0;top:-11px;bottom:-11px;width:5px;transform:translateX(-50%);border-radius:3px;background:white;box-shadow:0 0 3px white,0 0 15px #69faff,0 0 27px #69faff}.cursor span{display:block;position:absolute;top:-6px;left:-7px;width:18px;height:9px;border-radius:3px;background:#effaff;clip-path:polygon(0 0,100% 0,50% 100%)}.gaugeLabels{margin:9px 0 17px;display:flex;justify-content:space-between;color:#d4e2ff8a;font-size:10px;font-weight:900;letter-spacing:2px}.gaugeLabels span:nth-child(2){color:#ffdd76}.hitBtn{font-size:23px;padding:17px 8px}.hitBtn span{font-size:15px}.hintKey{text-align:center;margin-top:12px;color:#8fa7d0;font-size:10px;font-weight:800}.stageDots{display:flex;justify-content:center;gap:8px;margin-top:12px}.stageDots span{height:4px;width:33px;background:#536284;border-radius:99px}.stageDots span.on{background:#ffe06d;box-shadow:0 0 12px #ffd256}
+.destructionHeader{position:absolute;top:calc(env(safe-area-inset-top) + 56px);left:0;right:0;text-align:center;padding:0 16px}.overline{font-size:10px;letter-spacing:3px;font-weight:1000;color:#81ddec}.destructionEnergy{font-size:clamp(13px,3.4vw,19px);font-weight:900;color:#fff4cb;margin-top:6px;overflow-wrap:anywhere;text-shadow:0 1px 12px #d4f9ff8c}.planetTrack{position:absolute;left:14px;right:14px;top:calc(env(safe-area-inset-top) + 115px);display:flex;align-items:center;justify-content:space-between;gap:2px;padding:9px 7px;background:#060d24bb;border:1px solid #ffffff25;border-radius:14px;box-shadow:0 8px 20px #0006}.planetChip{display:flex;flex-direction:column;align-items:center;flex:1;min-width:0;gap:3px;opacity:.40;filter:saturate(.3);transition:opacity .22s,filter .22s}.planetChip .dot{display:block;width:clamp(17px,5vw,23px);height:clamp(17px,5vw,23px);border-radius:50%;background:var(--dot);border:2px solid #fff3;box-shadow:inset -5px -4px 6px #0007}.planetChip.active{opacity:1;filter:none}.planetChip.done{opacity:.92;filter:saturate(1)}.planetChip.done .dot{box-shadow:0 0 13px #fff6,inset -5px -4px 6px #0007}.planetChip small{font-weight:900;font-size:9px;color:#c3d2ef}.planetAnnounce{position:absolute;left:5%;right:5%;bottom:18%;display:flex;align-items:center;flex-direction:column;gap:8px;pointer-events:none;text-shadow:0 3px 8px #000,0 0 20px #0007}.planetAnnounce small{font-size:11px;font-weight:950;letter-spacing:3px;color:#77e5f9}.planetAnnounce strong{font-size:clamp(30px,9vw,48px);font-weight:1000;color:#fff;letter-spacing:-1px;text-align:center;line-height:1.2;-webkit-text-stroke:.5px #19214b}.planetAnnounce span{font-size:13px;font-weight:850;color:#ffe16a;text-align:center}.cosmicBanner{position:absolute;top:26%;left:3%;right:3%;z-index:5;font-size:clamp(32px,8vw,50px);font-weight:1000;text-align:center;color:#ffed8b;text-shadow:0 4px #6d294d,0 0 25px #ffe;transform:rotate(-5deg)}.skipBtn{position:absolute;bottom:calc(env(safe-area-inset-bottom) + 24px);right:21px;border:1px solid #b5d6f65a;color:#eaf7ff;background:#102346ce;padding:12px 16px;font-weight:900;font-size:12px;border-radius:99px;pointer-events:auto;box-shadow:0 4px 20px #0008}.skipBtn span{font-size:17px}
+.resultScene{display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top) + 60px) 20px calc(env(safe-area-inset-bottom) + 18px);background:linear-gradient(180deg,#060b1db5 0%,#070d25bf 55%,#040815ee 100%);align-items:stretch;gap:10px;overflow-y:auto;scrollbar-width:none;pointer-events:auto}.resultScene::-webkit-scrollbar{display:none}.resultHeader{text-align:center;display:flex;align-items:center;flex-direction:column;gap:7px}.resultHeader h1{font-size:clamp(29px,8vw,41px);line-height:1.05;color:#fff;margin:0;font-weight:1000;letter-spacing:2px;text-shadow:0 4px 0 #452548,0 0 18px #82e8ff61}.rankTitle{font-size:12px;color:#28203f;background:linear-gradient(120deg,#ffe9a3,#ffba4c);font-weight:1000;padding:5px 15px;border-radius:99px;box-shadow:0 3px 0 #b67440}.resultMain{border:1px solid #cbe6ff4d;border-radius:17px;padding:12px 13px 15px;background:linear-gradient(145deg,#142249de,#0b1431ee);box-shadow:inset 0 1px #ffffff28,0 10px 30px #0008;text-align:center}.resultCap{font-size:11px;font-weight:950;color:#accfee;letter-spacing:3px}.finalJ{color:#ffe586;font-weight:1000;font-size:clamp(18px,5.3vw,27px);line-height:1.35;overflow-wrap:normal;word-break:normal;margin:9px 0 2px;text-shadow:0 0 20px #f3ca6366}.jUnit{color:#ffdc84;font-size:16px;font-weight:1000}.jUnit span{color:#92aecf;font-size:9px;letter-spacing:1px;margin-left:3px}.resultReach{background:#e9f7ff16;border:1px solid #ffffff1f;border-radius:10px;padding:8px;font-size:clamp(16px,4.5vw,22px);font-weight:1000;margin-top:12px;line-height:1.3}.resultsTitle{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-top:4px;font-size:11px;letter-spacing:1px;font-weight:1000;color:#ecf6ff}.resultsTitle span:last-child{font-size:9px;color:#83b7c8}.planetResults{display:grid;grid-template-columns:1fr 1fr;gap:7px}.planetResult{display:flex;align-items:center;min-width:0;gap:7px;background:#101b39e5;padding:8px 8px;border:1px solid #8ca8d936;border-radius:11px}.resultOrb{flex:none;height:25px;width:25px;border-radius:50%;background:var(--orb);box-shadow:inset -7px -5px 10px #0008,0 0 12px #ffffff22}.planetResult .planetInfo{display:flex;flex-direction:column;min-width:0;gap:1px}.planetResult strong{font-size:12px;font-weight:950;letter-spacing:.4px}.planetResult small{font-size:10px;font-weight:850;color:#9fb4d6}.planetResult small.full{color:#ffda76}.planetResult small.half{color:#ffac90}.planetResult small.safe{color:#abbad5}.resultButtons{display:flex;flex-direction:column;gap:7px;margin-top:auto;flex-shrink:0}.resultButtons .primaryBtn{padding:12px;font-size:16px}.resultAlt{display:grid;grid-template-columns:1fr 1fr;gap:7px}.resultAlt button{background:#16274adf;color:#eff8ff;border:1px solid #a9c7ef63;padding:11px 4px;border-radius:11px;font-size:12px;font-weight:900}.shareFeedback{color:#edecad;text-align:center;font-size:11px}.toast{position:absolute;z-index:90;left:50%;bottom:calc(env(safe-area-inset-bottom) + 115px);transform:translateX(-50%);width:max-content;max-width:90%;padding:10px 15px;border-radius:99px;background:#fff;color:#17213a;box-shadow:0 6px 26px #0008;font-size:12px;font-weight:900;text-align:center;pointer-events:none}
+.hidden{display:none!important}@media(max-height:690px){.titleScene{padding-top:50px;padding-bottom:15px}.titleLogo{margin-top:4px;transform:scale(.88) rotate(-3deg)}.titleSub{margin-top:5px}.tinyIntro{margin-bottom:5px}.primaryBtn{padding:12px}.finePrint{margin-top:6px}.speech{top:15%;min-height:70px;padding-top:8px;padding-bottom:12px}.speechText{font-size:21px}.timingBottom{bottom:10px;padding:10px}.timelineStats{margin-bottom:9px}.gaugeLabels{margin-bottom:8px}.hintKey{margin-top:6px}.stageDots{margin-top:6px}.resultScene{gap:6px;padding-top:45px;padding-bottom:8px}.resultMain{padding:8px}.planetResult{padding:5px}.resultHeader{gap:4px}.resultReach{margin-top:6px;padding:5px}.resultButtons .primaryBtn{padding:9px}.resultAlt button{padding:8px}}
+@media(min-aspect-ratio:1/1){#app{width:min(100vw,720px);height:100dvh}.titleScene{padding:48px 0 0 22px;align-items:flex-start;text-align:left}.titleMeta{justify-content:flex-start;gap:5px}.titleMeta .eyebrow{font-size:8px;letter-spacing:1px}.titleLogo{margin-top:5px;transform:scale(.59) rotate(-3deg);transform-origin:top left;height:99px}.titleSub{font-size:14px;margin-top:0}.titleActions{position:absolute;bottom:calc(env(safe-area-inset-bottom) + 23px);left:23px;width:43%;max-width:none}.titleActions .primaryBtn{padding:10px 6px;font-size:17px;min-height:49px}.titleActions .tinyIntro,.titleActions .finePrint{display:none}.timingScene .speech{top:18%;left:4%;right:auto;width:45%;min-height:65px}.timingBottom{left:4%;right:auto;width:45%;bottom:7px;padding:8px 15px}.gaugeShell{height:22px}.gaugeLabels{margin:4px 0 7px}.timelineStats{margin-bottom:8px}.hitBtn{padding:7px;font-size:17px}.hitBtn span{font-size:11px}.hintKey,.stageDots{display:none}.stepIndex{top:46px}.destructionHeader{top:43px}.planetTrack{top:93px}.planetAnnounce{bottom:13%}.resultScene{padding:44px 9% 8px;gap:5px}.resultHeader h1{font-size:28px}.resultMain{padding:6px 9px}.planetResult{padding:3px 8px}.planetResults{grid-template-columns:repeat(4,1fr)}.planetResult .planetInfo strong{font-size:10px}.resultAlt button{padding:8px}}
+@media(prefers-reduced-motion:reduce){.glowBtn,.screenFlash{animation:none!important}}
+</style>
+</head>
+<body>
+<main id="app" aria-label="超謝罪会見ゲーム">
+ <canvas id="world" aria-label="謝罪会見と惑星のアニメーション"></canvas>
+ <div id="filmGrain" aria-hidden="true"></div>
+ <div id="glare" aria-hidden="true"></div>
+ <div class="topHUD">
+   <div class="brand"><span class="brandMark">A</span><span>ASOBEAT <b>/ COSMIC APOLOGY</b></span></div>
+   <div class="topActions"><button id="voiceBtn" class="roundBtn" type="button" title="実況音声の切り替え" aria-label="実況音声を切り替える">実況 OFF</button><button id="soundBtn" class="roundBtn" type="button" title="音のオンオフ" aria-label="音を切り替える">♪ ON</button></div>
+ </div>
+ <section id="titleScene" class="panelScene titleScene" aria-label="タイトル画面">
+    <div class="titleMeta"><span class="eyebrow">第∞回　緊急謝罪会見</span><span class="hotLabel">全宇宙 生中継</span></div>
+    <div class="titleLogo" aria-label="超謝罪会見"><span class="logoTop">超</span><span class="logoBottom">謝罪会見<span class="logoBang">!!</span></span></div>
+    <div class="titleSub">謝罪は、宇宙を破壊する。</div>
+    <div class="titleSpacer"></div>
+    <div class="titleActions"><div class="tinyIntro"><span>01 / この度は、</span><span>02 / 誠に、</span><span>03 / 申し訳ございませんでした！</span></div><button id="startBtn" class="primaryBtn glowBtn" type="button">謝罪を始める <span class="btnArrow">➜</span></button><div class="finePrint">タップ3回で超謝罪。結果をXで共有しよう。　Ver.1.0.0</div></div>
+ </section>
+ <section id="timingScene" class="panelScene timingScene hidden" aria-label="謝罪タイミング画面">
+    <div class="stepIndex"><span id="stepCount">01 / 03</span><span class="stepTiny">謝罪力チャージ中</span></div>
+    <div id="speech" class="speech"><div class="speechLabel">謝罪発言</div><div id="speechText" class="speechText">この度は、</div><div class="speechCaret">▼</div></div>
+    <div id="gradePopup" class="gradePopup hidden" aria-live="polite"></div>
+    <div class="timingBottom">
+      <div class="timelineStats"><span id="stepName">第一声　誠意</span><span id="timingHint">中央の光を狙え！</span></div>
+      <div class="gaugeShell"><div id="targetGlow" class="targetGlow"></div><div id="targetSweet" class="targetSweet"></div><div id="cursor" class="cursor"><span></span></div><div class="gaugeTicks"></div></div>
+      <div class="gaugeLabels"><span>弱</span><span>JUST</span><span>強</span></div>
+      <button id="hitBtn" class="primaryBtn hitBtn" type="button">今だ！ <span>謝罪パワー決定</span></button>
+      <div class="hintKey">画面タップ または SPACE キー</div>
+      <div id="stageDots" class="stageDots"><span></span><span></span><span></span></div>
+    </div>
+ </section>
+ <section id="destroyScene" class="panelScene destroyScene hidden" aria-label="惑星破壊アニメーション">
+   <div class="destructionHeader"><div class="overline">宇宙謝罪波　伝播中</div><div class="destructionEnergy" id="hudJ">0 J</div></div>
+   <div class="planetTrack" id="planetTrack"></div>
+   <div id="planetAnnounce" class="planetAnnounce hidden"><small id="planetLead">BREAKING NEWS</small><strong id="planetAnnouncementText"></strong><span id="planetComment"></span></div>
+   <div id="cosmicBanner" class="cosmicBanner hidden"></div>
+   <button id="skipBtn" class="skipBtn" type="button">演出をスキップ <span>»</span></button>
+ </section>
+ <section id="resultScene" class="panelScene resultScene hidden" aria-label="リザルト画面">
+   <div class="resultHeader"><span class="eyebrow">ASOBEAT / FINAL REPORT</span><h1>超謝罪会見</h1><span id="rankTitle" class="rankTitle">新入謝罪社員</span></div>
+   <div class="resultMain"><div class="resultCap">最終謝罪威力</div><div id="finalJ" class="finalJ" aria-label="最終謝罪威力"></div><div class="jUnit">J <span>JOULES / ゲーム内架空威力</span></div><div id="resultReach" class="resultReach">水星まで到達！</div></div>
+   <div class="resultsTitle"><span>太陽系 被害報告書</span><span>8 PLANETS</span></div>
+   <div id="planetResults" class="planetResults"></div>
+   <div class="resultButtons"><button id="againBtn" type="button" class="primaryBtn">もう一度謝罪する ↗</button><div class="resultAlt"><button id="shareBtn" type="button">Xで結果を共有</button><button id="saveBtn" type="button">結果画像を保存</button></div></div>
+   <div id="shareFeedback" role="status" class="shareFeedback hidden"></div>
+ </section>
+ <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+</main>
+<script>(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const app=$('app'),canvas=$('world'),ctx=canvas.getContext('2d',{alpha:false});
+const panels={title:$('titleScene'),timing:$('timingScene'),bow:$('destroyScene'),destroy:$('destroyScene'),result:$('resultScene')};
+const names=['水星','金星','地球','火星','木星','土星','天王星','海王星'];
+const shortNames=['水','金','地','火','木','土','天','海'];
+const comments=['謝罪会見場、完全壊滅！','濃厚な雲まで謝罪が貫通！','地球へ謝罪が届いてしまった！','赤い星まで土下座の余波！','あの巨大な木星が耐えられない！','土星のリング、粉砕！','謝罪波、天王星を直撃！','海王星ぃぃぃ！ 宇宙が泣いた！'];
+const colors=['#a5aebc','#e8be73','#4ca5ec','#d1785c','#dbab7d','#e4ca8a','#69d4e1','#537de6'];
+const gradesText=['MISS','GOOD','GREAT','PERFECT'];
+const thresholds=Array.from({length:8},(_,i)=>10n**BigInt(13+i*2));
+const steps=[{quote:'この度は、',label:'第一声　誠意',target:.60,half:1.20,phase:0.015},{quote:'誠に、',label:'第二声　反省',target:.34,half:.94,phase:.13},{quote:'申し訳ございませんでした！',label:'最終声　絶叫',target:.73,half:.73,phase:.04}];
+let W=420,H=850,dpr=1,now=0,lastNow=0,elapsed=0,state='title',sceneTime=0,stageIndex=0,stageMode='ready',stageClock=0,cursorPos=0,judgments=[],outcome=null,animPlanetIndex=-1,burstDone=false,impactDone=false,toastTime=0,voiceOn=false,soundOn=true,reduceMotion=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let particleList=[],starfield=[],cachedPlanets=[],toastTimer=0,motionScale=1,particleLimit=125,debugHold=false;
+const stateScreens=['titleScene','timingScene','destroyScene','resultScene'];
+const safe=(v,a,b)=>Math.max(a,Math.min(b,v));
+const fract=v=>v-Math.floor(v);
+function rand(seed){return fract(Math.sin(seed*97.131+3.617)*43758.5453123)}
+function eased(t){t=safe(t,0,1);return 1-Math.pow(1-t,3)}
+function fmt(v){return BigInt(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+function showPanel(name){for(const id of stateScreens)$(id).classList.toggle('hidden',id!==name);}
+function resize(){const r=canvas.getBoundingClientRect();W=r.width||420;H=r.height||840;dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);starsInit();particleLimit=W<350?85:145;}
+function starsInit(){starfield=Array.from({length:W<340?75:150},(_,i)=>({x:rand(i*1.13+1)*W,y:rand(i*2.14+32)*H,r:rand(i*6.31+1)*1.6+.23,a:rand(i+3)*.62+.19,t:rand(i*9.3)*7}));}
+addEventListener('resize',resize,{passive:true});resize();
+function setState(next){state=next;sceneTime=0;showPanel(next==='bow'||next==='destroy'?'destroyScene':next+'Scene');}
+function flash(){const n=$('glare');n.classList.remove('screenFlash');void n.offsetWidth;n.classList.add('screenFlash');}
+function toast(text){const n=$('toast');n.textContent=text;n.classList.remove('hidden');toastTime=elapsed+2.2;}
+function clearToast(){if(elapsed>toastTime)$('toast').classList.add('hidden');}
+function setReducedSwitch(btn,value,positive,negative){btn.textContent=value?positive:negative;}
+class Sounds{
+ constructor(){this.ctx=null;this.nextMusic=0;this.beat=0;}
+ unlock(){if(!soundOn)return;try{if(!this.ctx)this.ctx=new(window.AudioContext||window.webkitAudioContext)();if(this.ctx.state==='suspended')this.ctx.resume();}catch(e){}}
+ tone(f,d=.14,type='sine',gain=.04,to=0){if(!soundOn||!this.ctx||this.ctx.state!=='running')return;try{const a=this.ctx,t=a.currentTime,o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(Math.max(32,f),t);if(to)o.frequency.exponentialRampToValueAtTime(Math.max(32,to),t+d);g.gain.setValueAtTime(.00001,t);g.gain.exponentialRampToValueAtTime(gain,t+.007);g.gain.exponentialRampToValueAtTime(.00001,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d+.008);}catch(e){}}
+ noise(d=.14,vol=.12,filterF=900){if(!soundOn||!this.ctx)return;const a=this.ctx;const n=Math.max(1,Math.floor(a.sampleRate*d));const buffer=a.createBuffer(1,n,a.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<n;i++)data[i]=(Math.random()*2-1)*Math.pow(1-i/n,1.7);const src=a.createBufferSource(),flt=a.createBiquadFilter(),g=a.createGain();flt.type='lowpass';flt.frequency.value=filterF;g.gain.value=vol;src.buffer=buffer;src.connect(flt);flt.connect(g);g.connect(a.destination);src.start();}
+ stage(){this.tone(410,.1,'triangle',.042,520)}
+ press(r){this.tone(r==='PERFECT'?990:r==='GREAT'?740:r==='GOOD'?540:220,.18,'triangle',.05,r==='MISS'?110:1250);if(r==='PERFECT'){this.tone(1470,.23,'sine',.035,1800)}}
+ shock(){this.tone(100,.58,'sawtooth',.09,38);this.noise(.56,.17,2300);this.tone(840,.18,'triangle',.045,160)}
+ crack(i,full){this.noise(full?.38:.17,full?.17:.08,full?1900:900);this.tone(72+i*22,.46,'sawtooth',.066,34+i*7);if(full)this.tone(500+i*61,.25,'triangle',.031,950+i*63)}
+ special(){[550,720,960,1450].forEach((f,j)=>{if(!this.ctx)return;setTimeout(()=>this.tone(f,.23,'square',.028),j*110)})}
+ tick(){this.tone(750,.04,'square',.009)}
+ music(){if(!this.ctx||!soundOn||state==='result')return;if(elapsed<this.nextMusic)return;const tempo=state==='destroy'?0.19:state==='bow'?.25:.35;this.nextMusic=elapsed+tempo;const melody=(state==='destroy'?[0,7,10,12,7,5,10,12]:[0,5,7,12,7,5,3,7]);const note=melody[this.beat%melody.length];const freq=state==='destroy'?150:110;this.tone(freq*Math.pow(2,note/12),.11,'triangle',.0085);if(this.beat%4===0)this.tone(65,.12,'sine',.025,45);this.beat++;}
+}
+const sound=new Sounds();
+function speak(text){if(!voiceOn||!('speechSynthesis'in window))return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=1.22;u.pitch=1.15;u.volume=.85;speechSynthesis.speak(u);}catch(e){}}
+$('soundBtn').addEventListener('click',e=>{e.stopPropagation();soundOn=!soundOn;setReducedSwitch(e.currentTarget,soundOn,'♪ ON','♪ OFF');if(soundOn)sound.unlock();});
+$('voiceBtn').addEventListener('click',e=>{e.stopPropagation();voiceOn=!voiceOn;setReducedSwitch(e.currentTarget,voiceOn,'実況 ON','実況 OFF');if(!voiceOn&&'speechSynthesis'in window)speechSynthesis.cancel();sound.unlock();});
+function enterTiming(){judgments=[];outcome=null;particleList=[];stageIndex=0;setState('timing');stageStart();sound.unlock();sound.stage();}
+function stageStart(){stageMode='intro';stageClock=0;cursorPos=0;let s=steps[stageIndex];$('stepCount').textContent=`0${stageIndex+1} / 03`;$('stepName').textContent=s.label;$('timingHint').textContent=stageIndex===2?'最後の一撃を決めろ！':'中央の光を狙え！';$('speechText').textContent=s.quote;$('gradePopup').classList.add('hidden');$('targetSweet').style.left=(s.target*100)+'%';$('targetGlow').style.left=(s.target*100)+'%';$('hitBtn').disabled=true;$('hitBtn').style.opacity='.55';[...$('stageDots').children].forEach((el,i)=>el.classList.toggle('on',i<=stageIndex));speak(s.quote);}
+function tickStage(dt){stageClock+=dt;const s=steps[stageIndex];if(stageMode==='intro'&&stageClock>=.62){stageMode='active';stageClock=0;$('hitBtn').disabled=false;$('hitBtn').style.opacity='1';}
+ if(stageMode==='active'){
+  cursorPos=1-Math.abs(1-((stageClock/s.half+s.phase)%2));$('cursor').style.left=(cursorPos*100)+'%';
+  if(stageClock>4.8)judgeNow(true);
+ }else if(stageMode==='outro'&&stageClock>=.73){if(stageIndex>=2)beginBow();else{stageIndex++;stageStart();sound.stage()}}
+}
+function gradePrecision(pos,target){const dist=Math.abs(pos-target);const rank=dist<=.05?'PERFECT':dist<=.12?'GREAT':dist<=.25?'GOOD':'MISS';const quality=safe(1-dist/.52,0,1);return{rank,quality,dist,pos};}
+function judgeNow(timeout=false,overridePos=null){if(state!=='timing'||stageMode!=='active')return;stageMode='outro';stageClock=0;const s=steps[stageIndex];const grade=timeout?{rank:'MISS',quality:0,dist:.60,pos:cursorPos}:gradePrecision(overridePos===null?cursorPos:overridePos,s.target);
+ judgments.push(grade);$('hitBtn').disabled=true;$('hitBtn').style.opacity='.55';const pop=$('gradePopup');pop.textContent=grade.rank==='MISS'?'謝罪失敗…':grade.rank==='PERFECT'?'PERFECT!!':grade.rank==='GREAT'?'GREAT!':'GOOD!';pop.className='gradePopup '+(grade.rank==='GREAT'?'great':grade.rank==='GOOD'?'good':grade.rank==='MISS'?'miss':'');sound.press(grade.rank);if(grade.rank==='PERFECT')flash();emitParticles(W*.5,H*.40,grade.rank==='PERFECT'?27:8,grade.rank==='PERFECT'?'#ffe684':'#71ecfb',2.4);
+}
+// Computational model is deterministic. Energy thresholds are GAME RULES, not astrophysical measurements.
+function calculatePower(js){if(!js||js.length!==3)throw new Error('謝罪入力が3回必要です');const q=js.map(x=>safe(x.quality,0,1));const weighted=q[0]*.30+q[1]*.32+q[2]*.38;const skill=weighted*(.78+.22*Math.min(...q));const triple=js.every(x=>x.rank==='PERFECT');const exponent=safe(12.65+15.10*Math.pow(skill,1.55)+(triple?1.20:0),12.65,29.2);
+ const e=Math.floor(exponent),m=Math.floor(10000*Math.pow(10,exponent-e));const energy=BigInt(m)*10n**BigInt(e-4);return{energy,exponent,skill,triple,ultra:triple&&js.every(x=>x.dist<=.018)};
+}
+function evaluatePlanets(energy){const statuses=[];for(let i=0;i<8;i++){const available=energy*100n/BigInt(100+i*9),threshold=thresholds[i];const status=available>=threshold?4:available*2n>=threshold?3:available*5n>=threshold?2:available*20n>=threshold?1:0;statuses.push(status)}const lastReached=statuses.findLastIndex(v=>v>0);const lastFull=statuses.findLastIndex(v=>v===4);return{statuses,lastReached,lastFull};}
+function rankFor(lastFull){return['新人謝罪社員','宇宙迷惑社員','全人類に謝罪','惑星級の反省','銀河土下座主任','謝罪の化身','宇宙謝罪王','宇宙史上最大の戦犯'][Math.max(0,lastFull)]}
+function buildOutcome(js){const p=calculatePower(js),evald=evaluatePlanets(p.energy);return{...p,...evald,grades:js.map(x=>({...x})),rank:rankFor(evald.lastFull)};}
+function beginBow(){outcome=buildOutcome(judgments);setState('bow');animPlanetIndex=-1;impactDone=false;burstDone=false;buildTrack();$('hudJ').textContent='エネルギー充填中...';$('skipBtn').style.display='block';$('planetAnnounce').classList.add('hidden');$('cosmicBanner').classList.add('hidden');if(outcome.triple){$('cosmicBanner').textContent=outcome.ultra?'謝罪、臨界突破。':'土下座・最終形態';$('cosmicBanner').classList.remove('hidden');}speak(outcome.ultra?'謝罪、臨界突破！': '申し訳ございませんでした！');}
+function buildTrack(){const el=$('planetTrack');el.replaceChildren();names.forEach((nm,i)=>{const chip=document.createElement('div');chip.className='planetChip';chip.id='planetChip'+i;chip.style.setProperty('--dot',colors[i]);const d=document.createElement('span');d.className='dot';const t=document.createElement('small');t.textContent=shortNames[i];chip.append(d,t);el.appendChild(chip);});}
+function destroyAnnounce(i){animPlanetIndex=i;const rank=outcome.statuses[i];const headline=rank===4?`${names[i]}、完全崩壊！`:rank===3?`${names[i]}、半壊！！`:rank===2?`${names[i]}、一部破壊！`:rank===1?`${names[i]}に亀裂！`:'衝撃波、消滅…';$('planetAnnouncementText').textContent=headline;$('planetComment').textContent=rank?comments[i]:'宇宙は辛うじて救われた。';$('planetAnnounce').classList.remove('hidden');$('planetLead').textContent=rank===4?'BREAKING NEWS / 惑星崩壊':'COSMIC SHOCKWAVE';for(let j=0;j<8;j++){const chip=$('planetChip'+j);chip.className='planetChip'+(j<i?' done':j===i?' active':'')};sound.crack(i,rank===4);if(i===2&&rank===4)speak('地球まで、謝罪が届いてしまった！');else if(i===4&&rank===4)speak('木星が耐えられない！');else if(i===7&&rank===4)speak('海王星ぃぃ！');}
+function tickDestruction(dt){if(state==='bow'){
+ if(sceneTime>.62&&!impactDone){impactDone=true;sound.shock();flash();emitParticles(W*.5,H*.57,55,'#ffe27c',5.2);}
+ if(sceneTime>1.36){setState('destroy');animPlanetIndex=-1;$('cosmicBanner').classList.add('hidden');}
+ }else if(state==='destroy'){
+  const duration=1.12;const index=Math.floor(sceneTime/duration);const upto=Math.min(7,outcome.lastReached+1);
+  if(index>upto){finishResult();return;}
+  if(index!==animPlanetIndex)destroyAnnounce(index);
+  if(index===7&&outcome.statuses[7]===4&&sceneTime>7*duration+.40&&!burstDone){burstDone=true;sound.special();flash();$('cosmicBanner').textContent='太陽系、謝罪に耐えられず。';$('cosmicBanner').classList.remove('hidden');}
+ }
+}
+function finishResult(){if(!outcome)return;setState('result');particleList.length=0;showResult();if('speechSynthesis'in window)try{speechSynthesis.cancel()}catch(e){}}
+function showResult(){const o=outcome;$('rankTitle').textContent=o.rank;$('finalJ').textContent=fmt(o.energy).replace(/,/g,',\u200B');const last=o.lastReached;const full=o.lastFull;let txt='宇宙は無事だった…';if(last>=0){txt=o.statuses[last]===4?`${names[last]}まで完全破壊！`:`${names[last]}、${['無傷','亀裂','一部破壊','半壊','完全破壊'][o.statuses[last]]}！`;}if(full>=0&&last>full)txt=`${names[full]}まで完全破壊／${names[last]}に到達`;if(o.statuses[7]===4)txt='伝説の謝罪 ― 太陽系完全崩壊！';$('resultReach').textContent=txt;
+ const el=$('planetResults');el.replaceChildren();names.forEach((name,i)=>{const n=document.createElement('div');n.className='planetResult';n.style.setProperty('--orb',colors[i]);const orb=document.createElement('span');orb.className='resultOrb';const inf=document.createElement('div');inf.className='planetInfo';const t=document.createElement('strong');t.textContent=name;const s=document.createElement('small');const labels=['無傷','亀裂','一部破壊','半壊','完全崩壊'];s.textContent=labels[o.statuses[i]];s.className=o.statuses[i]===4?'full':o.statuses[i]>=2?'half':'safe';inf.append(t,s);n.append(orb,inf);el.appendChild(n);});
+ try{const best=localStorage.getItem('choushazai_best');if(!best||o.energy>BigInt(best))localStorage.setItem('choushazai_best',o.energy.toString());}catch(e){}
+}
+$('startBtn').addEventListener('click',enterTiming);$('againBtn').addEventListener('click',enterTiming);$('skipBtn').addEventListener('click',()=>{if(state==='bow'||state==='destroy')finishResult()});
+app.addEventListener('pointerdown',e=>{if(state==='timing'&&!e.target.closest('.topActions')){e.preventDefault();sound.unlock();judgeNow()}});
+$('hitBtn').addEventListener('click',e=>{e.stopPropagation();if(e.detail===0)judgeNow()});
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat){e.preventDefault();if(state==='timing')judgeNow();else if(state==='title')enterTiming();else if(state==='result')enterTiming();else if(state==='bow'||state==='destroy')finishResult();}});
+document.addEventListener('visibilitychange',()=>{lastNow=performance.now()/1000;if(document.hidden){if('speechSynthesis'in window)try{speechSynthesis.cancel()}catch(e){}}});
+function roundRect(x,y,w,h,r,fill,stroke='',lw=1){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw;ctx.stroke()}}
+function circle(x,y,r,color,stroke='',sw=1){ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);if(color){ctx.fillStyle=color;ctx.fill()}if(stroke){ctx.lineWidth=sw;ctx.strokeStyle=stroke;ctx.stroke()}}
+function line(points,color,width=2){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.stroke()}
+function rectG(x,y,w,h,top,bottom){const g=ctx.createLinearGradient(x,y,x,y+h);g.addColorStop(0,top);g.addColorStop(1,bottom);ctx.fillStyle=g;ctx.fillRect(x,y,w,h)}
+function rimText(text,x,y,size,fill='#fff',stroke='#172146',align='center',lineWidth=5){ctx.save();ctx.textAlign=align;ctx.textBaseline='middle';ctx.font=`1000 ${Math.max(8,size)}px "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif`;ctx.lineWidth=lineWidth;ctx.lineJoin='round';ctx.strokeStyle=stroke;ctx.strokeText(text,x,y);ctx.shadowBlur=15;ctx.shadowColor=fill;ctx.fillStyle=fill;ctx.fillText(text,x,y);ctx.restore()}
+function drawSpace(time,planetIndex=-1){const color=planetIndex===-1?'#10204a':colors[planetIndex];ctx.fillStyle='#05091c';ctx.fillRect(0,0,W,H);
+ const gl=ctx.createRadialGradient(W*.65,H*.28,0,W*.56,H*.48,H*.8);gl.addColorStop(0,planetIndex<0?'#273f7d':color+'55');gl.addColorStop(.49,'#172657');gl.addColorStop(1,'#050917');ctx.fillStyle=gl;ctx.fillRect(0,0,W,H);
+ const neb=ctx.createRadialGradient(W*.1,H*.83,1,W*.18,H*.78,W*.52);neb.addColorStop(0,'#b2569e29');neb.addColorStop(1,'#b2569e00');ctx.fillStyle=neb;ctx.fillRect(0,0,W,H);
+ for(let i=0;i<starfield.length;i++){const s=starfield[i],a=s.a*(.66+.34*Math.sin(time*1.3+s.t));ctx.globalAlpha=a;circle(s.x,s.y,s.r,'#e4f4ff');}ctx.globalAlpha=1;
+ if(planetIndex<0){const sun=ctx.createRadialGradient(-15,H*.14,3,-15,H*.14,W*.64);sun.addColorStop(0,'#fff5bf');sun.addColorStop(.10,'#ffcd6d86');sun.addColorStop(.45,'#fa90321a');sun.addColorStop(1,'#df662300');ctx.fillStyle=sun;ctx.fillRect(0,0,W,H*.8);}
+}
+function generatePlanetTexture(i){const c=document.createElement('canvas');c.width=c.height=560;const g=c.getContext('2d');const cx=280,cy=280,r=242;const planet=colors[i];g.save();g.beginPath();g.arc(cx,cy,r,0,Math.PI*2);g.clip();
+ const grad=g.createRadialGradient(180,158,13,324,335,287);grad.addColorStop(0,i===2?'#acdfff':i===7?'#80b1f3':'#ffffff');grad.addColorStop(.12,planet);grad.addColorStop(.68,planet);grad.addColorStop(1,'#10172e');g.fillStyle=grad;g.fillRect(20,20,520,520);
+ let seed=i*999+33;const random=()=>{seed=(1664525*seed+1013904223)>>>0;return seed/4294967296};
+ if(i===0||i===3){for(let j=0;j<67;j++){const x=random()*530+15,y=random()*530+15,rr=4+random()*(i===0?33:23);g.beginPath();g.ellipse(x,y,rr,rr*(.64+random()*.25),random()*.6,0,Math.PI*2);g.lineWidth=Math.max(1,rr*.2);g.fillStyle=i===0?'#616b7a55':'#63251e40';g.fill();g.strokeStyle=i===0?'#fff6':'#f6a67d4b';g.stroke();}}
+ if(i===1||i===4||i===5||i===6||i===7){const bands=i===4?20:i===5?26:i===1?21:12;for(let j=0;j<bands;j++){const y=18+j*(520/bands),h=9+random()*26;g.fillStyle=(i===4?['#7d443e64','#f6dcc06b','#a8645368','#efc28e95','#bc7f6f68']:i===5?['#fef0b75d','#c0976769','#8b644053','#f8e4a36b']:i===1?['#fef6b17c','#d6a06345','#fbddd37c']:i===6?['#c5ffff44','#5297a042','#a7eff252']:['#3a68b977','#c9dafa25','#4260c066'])[j% (i===4?5:i===5?4:i===1?3:3)];g.beginPath();g.moveTo(0,y);g.bezierCurveTo(180,y+random()*13,350,y-12,560,y+8);g.lineTo(560,y+h);g.bezierCurveTo(320,y+h+12,180,y+h-7,0,y+h);g.closePath();g.fill();}
+ if(i===4){g.beginPath();g.ellipse(364,335,62,34,-.15,0,Math.PI*2);g.fillStyle='#bd625dbb';g.fill();g.beginPath();g.ellipse(361,333,36,17,-.15,0,Math.PI*2);g.fillStyle='#e3a17e';g.fill()}
+ if(i===7){g.beginPath();g.ellipse(370,350,79,30,.12,0,Math.PI*2);g.fillStyle='#7da7d180';g.fill()}}
+ if(i===2){g.fillStyle='#2c65a5b0';g.fillRect(0,0,560,560);g.save();g.fillStyle='#67bc88';function continent(pts){g.beginPath();pts.forEach(([x,y],j)=>j?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.fill()}continent([[96,108],[145,75],[224,112],[242,163],[202,192],[232,255],[187,304],[152,281],[119,208],[82,181]]);continent([[290,115],[369,101],[408,154],[454,168],[410,201],[383,277],[348,296],[321,253],[285,223]]);continent([[237,333],[299,321],[332,359],[323,418],[278,476],[244,446],[222,381]]);g.restore();g.strokeStyle='#eefeff91';g.lineWidth=14;for(let j=0;j<11;j++){const y=52+j*48;g.beginPath();g.moveTo(12,y+random()*20);g.bezierCurveTo(160,y-40,265,y+40,560,y-3);g.stroke();}}
+ // tiny grain and atmosphere highlights
+ for(let j=0;j<480;j++){const x=random()*560,y=random()*560,rr=.3+random()*2;g.fillStyle=random()>.5?'#fff2':'#001b3540';g.beginPath();g.arc(x,y,rr,0,Math.PI*2);g.fill()}
+ const shade=g.createLinearGradient(50,80,500,520);shade.addColorStop(0,'#ffffff42');shade.addColorStop(.40,'#ffffff02');shade.addColorStop(.77,'#00102844');shade.addColorStop(1,'#010516ce');g.fillStyle=shade;g.fillRect(0,0,560,560);g.restore();return c;}
+function planetCache(i){if(!cachedPlanets[i])cachedPlanets[i]=generatePlanetTexture(i);return cachedPlanets[i]}
+function drawRing(x,y,r,inFront){ctx.save();ctx.translate(x,y);ctx.rotate(-.23);ctx.beginPath();ctx.ellipse(0,0,r*1.63,r*.39,0,inFront?0:Math.PI, inFront?Math.PI:Math.PI*2,false);ctx.lineWidth=r*.23;ctx.strokeStyle=inFront?'#ecdaacb9':'#c6bb97a8';ctx.stroke();ctx.beginPath();ctx.ellipse(0,0,r*1.63,r*.39,0,inFront?0:Math.PI,inFront?Math.PI:Math.PI*2,false);ctx.lineWidth=r*.10;ctx.strokeStyle='#fff9d3b6';ctx.stroke();ctx.beginPath();ctx.ellipse(0,0,r*1.87,r*.46,0,inFront?0:Math.PI,inFront?Math.PI:Math.PI*2,false);ctx.lineWidth=r*.065;ctx.strokeStyle='#b7976db0';ctx.stroke();ctx.restore();}
+function drawPlanet(i,x,y,r,spin=0,alpha=1){ctx.save();ctx.globalAlpha*=alpha;if(i===5)drawRing(x,y,r,false);const sprite=planetCache(i);ctx.translate(x,y);ctx.rotate(spin);ctx.drawImage(sprite,-r,-r,2*r,2*r);ctx.restore();if(i===5){ctx.save();ctx.globalAlpha=alpha;drawRing(x,y,r,true);ctx.restore()}}
+function drawMercuryGround(time){let horizon=H*.705;const g=ctx.createLinearGradient(0,horizon,0,H);g.addColorStop(0,'#a48878');g.addColorStop(.17,'#645b69');g.addColorStop(.60,'#2c314d');g.addColorStop(1,'#111a36');ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(0,horizon+20);ctx.quadraticCurveTo(W*.5,horizon-55,W,horizon+21);ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();ctx.fill();
+ ctx.strokeStyle='#ce988953';ctx.lineWidth=2;for(let i=0;i<12;i++){const x=rand(i+45)*W,y=horizon+rand(i*3+53)*(H-horizon);ctx.beginPath();ctx.ellipse(x,y,9+rand(i+9)*24,3+rand(i+81)*7,.03,0,Math.PI*2);ctx.stroke();}
+ const lineShade=ctx.createLinearGradient(0,horizon-25,0,horizon+130);lineShade.addColorStop(0,'#cba9a43d');lineShade.addColorStop(1,'#00000000');ctx.fillStyle=lineShade;ctx.fillRect(0,horizon-22,W,155);
+ // conference platform, stage lit by spotlights
+ ctx.fillStyle='#142039';ctx.beginPath();ctx.moveTo(W*.05,horizon+31);ctx.lineTo(W*.95,horizon+31);ctx.lineTo(W,horizon+70);ctx.lineTo(0,horizon+70);ctx.closePath();ctx.fill();line([[0,horizon+42],[W,horizon+42]],'#ffd98964',3);
+}
+function drawCamera(x,y,sc,time,seed){ctx.save();ctx.translate(x,y);ctx.scale(sc,sc);const blink=rand(seed+Math.floor(time*2.0))>.92;roundRect(-21,-15,42,30,5,'#111729','#52618b',2);roundRect(-9,-25,16,10,2,'#1a2037');circle(2,0,12,'#344567','#7b83a5',3);circle(2,0,7,'#17243c','#9eeafa',2);circle(2,0,3,'#b9f4ff');if(blink){const glow=ctx.createRadialGradient(0,0,2,0,0,52);glow.addColorStop(0,'#fff');glow.addColorStop(.08,'#fffaa9ab');glow.addColorStop(1,'#fff80000');ctx.fillStyle=glow;ctx.fillRect(-55,-55,110,110);}ctx.restore()}
+function drawHero(x,y,size,bend=0,time=0){ctx.save();ctx.translate(x,y);ctx.scale(size,size);
+ // shoes + legs behind conference desk
+ roundRect(-37,-1,26,52,6,'#19223d','#5c6b87',3);roundRect(12,-1,26,52,6,'#19223d','#5c6b87',3);
+ ctx.save();ctx.translate(0,-7);const ang=-bend*.95;ctx.rotate(ang);ctx.translate(0,bend*36);
+ // suit body
+ ctx.beginPath();ctx.moveTo(-46,0);ctx.lineTo(-39,-79);ctx.quadraticCurveTo(0,-96,39,-79);ctx.lineTo(46,0);ctx.closePath();ctx.fillStyle='#16223b';ctx.fill();ctx.strokeStyle='#7786a0';ctx.lineWidth=2;ctx.stroke();
+ // sleeves + clenched fists
+ roundRect(-57,-77,20,62,9,'#192845','#536581',2);roundRect(37,-77,20,62,9,'#192845','#536581',2);circle(-47,-10,11,'#f4c79d','#bd796d',2);circle(47,-10,11,'#f4c79d','#bd796d',2);
+ // lapel and neck tie
+ ctx.fillStyle='#f4f5ed';ctx.beginPath();ctx.moveTo(-20,-79);ctx.lineTo(0,-28);ctx.lineTo(20,-79);ctx.closePath();ctx.fill();ctx.fillStyle='#ee486f';ctx.beginPath();ctx.moveTo(-7,-71);ctx.lineTo(7,-71);ctx.lineTo(11,-34);ctx.lineTo(0,-24);ctx.lineTo(-9,-34);ctx.closePath();ctx.fill();line([[-37,-75],[-23,-50],[-10,-61]],'#8494a8',3);line([[37,-75],[23,-50],[10,-61]],'#8494a8',3);
+ // face, highlights
+ const skin=ctx.createRadialGradient(-15,-123,1,0,-119,49);skin.addColorStop(0,'#ffe2c2');skin.addColorStop(.72,'#f1b78f');skin.addColorStop(1,'#ba706a');ctx.fillStyle=skin;ctx.beginPath();ctx.ellipse(0,-119,38,46,0,0,Math.PI*2);ctx.fill();ctx.lineWidth=3;ctx.strokeStyle='#523c57';ctx.stroke();
+ // ears
+ circle(-37,-120,9,'#e8a986','#975d5c',2);circle(37,-120,9,'#e8a986','#975d5c',2);
+ // hair - angular manga
+ ctx.fillStyle='#18233c';ctx.beginPath();ctx.moveTo(-36,-139);ctx.lineTo(-29,-165);ctx.lineTo(-15,-163);ctx.lineTo(-6,-175);ctx.lineTo(4,-163);ctx.lineTo(22,-169);ctx.lineTo(34,-154);ctx.lineTo(39,-130);ctx.lineTo(22,-143);ctx.lineTo(2,-147);ctx.lineTo(-18,-139);ctx.closePath();ctx.fill();
+ // eyes serious + straight eyebrows
+ line([[-23,-125],[-8,-128]],'#29263a',3.5);line([[8,-128],[23,-125]],'#29263a',3.5);circle(-15,-116,2.5,'#262339');circle(15,-116,2.5,'#262339');line([[-8,-100],[8,-101]],'#9a5866',2.5);if(time%4<3.9){ctx.fillStyle='#78e8f6';ctx.beginPath();ctx.moveTo(38,-139);ctx.lineTo(45,-128);ctx.quadraticCurveTo(44,-121,39,-122);ctx.quadraticCurveTo(34,-126,38,-139);ctx.fill();}
+ ctx.restore();ctx.restore();}
+function drawConference(time,bend=0,impact=0){drawSpace(time);drawMercuryGround(time);const u=Math.min(W/420,H/730);const landscape=W>H*1.2;const hx=landscape?W*.70:W*.5;const deskWidth=landscape?W*.42:W*.70;
+ // The desk sign stays visible; no second billboard behind the subtitle.
+ // journalist silhouette crowd and their cameras (foreground at both sides)
+ for(let i=0;i<5;i++){const x=W*(.07+.215*i);const yy=H*.805+(i%2)*19*u;circle(x,yy,19*u,i%2?'#11172d':'#1c263f');roundRect(x-27*u,yy+14*u,54*u,40*u,14*u,'#11162e');if(i!==2)drawCamera(x+(i<2?12:-12)*u,yy-13*u,.45*u,time,i*7)}
+ // shadows + podium
+ ctx.fillStyle='#070d2280';ctx.beginPath();ctx.ellipse(W*.5,H*.73,133*u,22*u,0,0,Math.PI*2);ctx.fill();
+ drawHero(hx,H*.66,.99*u,bend,time);
+ // foreground desk top and faceplate
+ rectG(hx-deskWidth*.47,H*.656,deskWidth*.94,20*u,'#8d726f','#534259');roundRect(hx-deskWidth*.5,H*.65,deskWidth,18*u,5*u,'#4e5e78','#bdd2e5',2*u);rectG(hx-deskWidth*.46,H*.678,deskWidth*.92,70*u,'#314764','#152744');roundRect(hx-deskWidth*.385,H*.692,deskWidth*.77,36*u,3*u,'#fff','#b9e0f1',2*u);rimText('謝 罪 会 見',hx,H*.712,17*u,'#1a2b48','#fff',1.5);
+ // microphones between hero and crowd
+ for(let i of [-1,0,1]){const xx=hx+i*49*u;line([[xx,H*.658],[xx+i*5*u,H*.600]],'#17283e',4*u);circle(xx+i*5*u,H*.596,6*u,'#93a0b6','#253a5e',2*u);}
+ // press flash / debris
+ const f=ctx.createRadialGradient(W*.14,H*.55,1,W*.14,H*.55,W*.13);f.addColorStop(0,`rgba(255,255,255,${.13+.18*Math.abs(Math.sin(time*2.2))})`);f.addColorStop(1,'#ffffff00');ctx.fillStyle=f;ctx.fillRect(0,H*.43,W*.33,H*.27);
+ if(impact>.0){const p=safe(impact,0,1);ctx.save();ctx.globalAlpha=1-p;const rad=(W*.12+p*W*1.7);ctx.lineWidth=(14-8*p)*u;ctx.strokeStyle='#fff7af';ctx.shadowColor='#fff6be';ctx.shadowBlur=28;ctx.beginPath();ctx.ellipse(W*.50,H*.65,rad,rad*.30,0,0,Math.PI*2);ctx.stroke();ctx.restore();
+ for(let i=0;i<12;i++){const a=i*.54,rr=18+p*140;const x=W*.50+Math.cos(a)*rr*u,y=H*.66+Math.sin(a)*rr*.50*u;ctx.save();ctx.translate(x,y);ctx.rotate(a);ctx.fillStyle=['#fee89e','#aac7ed','#ff7185'][i%3];ctx.fillRect(-5*u,-4*u,10*u+8*p,8*u);ctx.restore();}}
+}
+function drawVignette(){const v=ctx.createRadialGradient(W*.5,H*.45,Math.min(W,H)*.15,W*.5,H*.55,Math.max(W,H)*.74);v.addColorStop(0,'#00000000');v.addColorStop(1,'#000b208f');ctx.fillStyle=v;ctx.fillRect(0,0,W,H)}
+function emitParticles(x,y,n,color,power=1){n=Math.min(n,particleLimit-particleList.length);for(let i=0;i<n;i++){const a=(Math.PI*2*i/n)+(rand(i+elapsed*11)-.5)*.25;const v=(.5+rand(i*2.3+8))*80*power;particleList.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-40,age:0,life:.45+rand(i+99)*.9,size:2+rand(i+54)*5,col:typeof color==='string'?color:color[i%color.length],shape:i%4});}}
+function updateParticles(dt){for(let i=particleList.length-1;i>=0;i--){const p=particleList[i];p.age+=dt;if(p.age>=p.life){particleList.splice(i,1);continue}p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=27*dt;p.vx*=Math.pow(.98,dt*60);}}
+function drawParticles(){for(const p of particleList){ctx.save();ctx.globalAlpha=1-p.age/p.life;ctx.translate(p.x,p.y);ctx.rotate(p.age*3+p.vx*.002);ctx.fillStyle=p.col;if(p.shape===0){ctx.fillRect(-p.size/2,-p.size/2,p.size*2,p.size/2)}else if(p.shape===1){circle(0,0,p.size*.6,p.col)}else{ctx.beginPath();ctx.moveTo(-p.size,-p.size);ctx.lineTo(p.size,0);ctx.lineTo(-p.size,p.size);ctx.closePath();ctx.fill();}ctx.restore()}ctx.globalAlpha=1}
+function drawCracks(x,y,r,i,intensity){if(intensity<=0)return;ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.clip();ctx.lineCap='round';ctx.lineJoin='round';
+ const length=r*(.30+.70*intensity),branches=11;
+ for(let j=0;j<branches;j++){
+  const a=j*2*Math.PI/branches+i*.13,twist=(rand(i*104+j)-.5)*.26;
+  const ox=x+(rand(i*55+j)-.5)*r*.16,oy=y+(rand(i*71+j*3)-.5)*r*.16;
+  const x1=ox+Math.cos(a+twist)*length*.29,y1=oy+Math.sin(a+twist)*length*.29;
+  const x2=ox+Math.cos(a-twist*.3)*length*.63,y2=oy+Math.sin(a-twist*.3)*length*.63;
+  const x3=ox+Math.cos(a+twist*.2)*length,y3=oy+Math.sin(a+twist*.2)*length;
+  const path=[[ox,oy],[x1,y1],[x2,y2],[x3,y3]];
+  line(path,'#090f20ed',3+1.2*intensity);ctx.shadowColor='#ffe9ae';ctx.shadowBlur=10;line(path,'#ffe7a0',1.2+intensity*.35);ctx.shadowBlur=0;
+  const side=j%2?1:-1;const ba=a+side*.65;
+  const bx=x2+Math.cos(ba)*length*.26,by=y2+Math.sin(ba)*length*.26;
+  line([[x1,y1],[x2,y2],[bx,by]],'#1c193c',1.8);line([[x2,y2],[bx,by]],'#fff7d2',.8);
+ }
+ ctx.restore();}
+function drawExplosionCore(i,x,y,r,impact){const p=safe((impact-.47)/.53,0,1);if(p<=0)return;ctx.save();
+ const rad=r*(.50+p*1.75),alpha=.94*(1-p*.65);
+ const glow=ctx.createRadialGradient(x,y,0,x,y,rad);
+ glow.addColorStop(0,`rgba(255,255,249,${alpha})`);glow.addColorStop(.14,`rgba(255,244,182,${alpha*.93})`);
+ glow.addColorStop(.42,colors[i]+'91');glow.addColorStop(1,colors[i]+'00');ctx.fillStyle=glow;ctx.fillRect(x-rad,y-rad,rad*2,rad*2);
+ ctx.strokeStyle='#fff4c6';ctx.shadowColor=colors[i];ctx.shadowBlur=21;
+ for(let j=0;j<23;j++){const a=j*Math.PI*2/23+i*.12,inner=r*(.21+p*.32),outer=r*(.46+p*(1.17+rand(i*34+j)*.51));
+ ctx.globalAlpha=(1-p)*(.45+rand(j+45)*.43);ctx.lineWidth=1.2+rand(j+8)*3;
+ ctx.beginPath();ctx.moveTo(x+Math.cos(a)*inner,y+Math.sin(a)*inner);ctx.lineTo(x+Math.cos(a)*outer,y+Math.sin(a)*outer);ctx.stroke();}
+ ctx.restore();}
+function drawShards(i,x,y,r,progress){const p=safe(progress,0,1);if(p===0)return;ctx.save();ctx.translate(x,y);
+ const count=i===5?42:35;for(let j=0;j<count;j++){
+ const a=j*2.39996+i*.37,spread=r*(.18+p*(.58+rand(j+i)*.93)),sx=Math.cos(a)*spread,sy=Math.sin(a)*spread;
+ const size=r*(.035+rand(j+97)*.074);ctx.save();ctx.translate(sx,sy);ctx.rotate(p*6*(j%2?1:-1)+a);ctx.globalAlpha=1-p*.25;
+ ctx.fillStyle=j%5===0?'#fff3c5':j%4===0?'#f6d78d':colors[i];ctx.lineWidth=1.1;ctx.strokeStyle='#0b1938';
+ ctx.beginPath();ctx.moveTo(-size,-size*.55);ctx.lineTo(size*1.3,-size*.4);ctx.lineTo(size*.25,size*1.4);ctx.closePath();ctx.fill();ctx.stroke();
+ ctx.globalAlpha=.65*(1-p);line([[-size*1.7,size*.15],[-size*3.5,size*.15]],'#c3e8ff',1);ctx.restore();}
+ ctx.restore();}
+function drawEnergyRings(x,y,r,time,planetId){const tt=safe(time,0,1);if(tt<=0)return;for(let j=0;j<3;j++){const p=safe((tt-j*.18)/(.83-j*.08),0,1);if(p<=0||p>=1)continue;ctx.save();ctx.globalAlpha=(1-p)*.7;ctx.beginPath();ctx.arc(x,y,r*(.4+p*3),0,Math.PI*2);ctx.lineWidth=5*(1-p)+1;ctx.strokeStyle=j===0?'#fff5c0':j===1?'#a2eeff':'#ed83ff';ctx.shadowBlur=21;ctx.shadowColor='#c8faff';ctx.stroke();ctx.restore();}}
+function drawPlanetScene(t){const duration=1.12;const i=Math.min(7,Math.floor(t/duration));const phase=(t-i*duration)/duration;drawSpace(t+20,i);const r=Math.min(W*.31,H*.195),x=W*.5,y=H*.485;
+ // orbit/sunlight and velocity streaks
+ const halo=ctx.createRadialGradient(x,y,0,x,y,r*2.2);halo.addColorStop(0,colors[i]+'53');halo.addColorStop(.57,colors[i]+'18');halo.addColorStop(1,colors[i]+'00');ctx.fillStyle=halo;ctx.fillRect(0,y-r*2.2,W,r*4.4);
+ for(let j=0;j<18;j++){const a=j*Math.PI*2/18+sceneTime*.01,rr=r*(1.45+rand(j+2)*.60);const xx=x+Math.cos(a)*rr,yy=y+Math.sin(a)*rr;ctx.globalAlpha=.17+.2*Math.sin(t*3+j)**2;line([[xx,yy],[xx+Math.cos(a)*W*.065,yy+Math.sin(a)*W*.065]],'#ddf8ff',1.4);ctx.globalAlpha=1}
+ const status=outcome.statuses[i];const impact=safe((phase-.17)/.7,0,1);const crk=impact*(status===4?1:status/4);
+ const shake=status&&phase>.25&&phase<.76&&!reduceMotion?Math.sin(t*180)*(.7+status*.7)*(1-phase):0;
+ ctx.save();ctx.translate(shake,shake*.5);const normalScale=phase<.2?.90+phase*.35:1.0;ctx.translate(x,y);ctx.scale(normalScale,normalScale);ctx.translate(-x,-y);
+ let alpha=1,scale=1;if(status===4&&impact>.50){alpha=1-safe((impact-.52)/.22,0,1);scale=1+Math.min(.19,impact*.2)}
+ ctx.translate(x,y);ctx.scale(scale,scale);ctx.translate(-x,-y);if(status>0){ctx.shadowBlur=22;ctx.shadowColor=colors[i]}drawPlanet(i,x,y,r,0,alpha);ctx.shadowBlur=0;
+ if(crk>0){ctx.globalAlpha=alpha;drawCracks(x,y,r,i,crk);ctx.globalAlpha=1}
+ if(status===4&&impact>.47)drawExplosionCore(i,x,y,r,impact);
+ if(status===4&&impact>.38)drawShards(i,x,y,r,(impact-.38)/.62);
+ if(status===3&&impact>.50){ctx.save();ctx.globalAlpha=.36;ctx.fillStyle='#030917';ctx.beginPath();ctx.ellipse(x+r*.27,y-r*.02,r*.74,r*.9,.45,0,Math.PI*2);ctx.fill();ctx.restore()}
+ ctx.restore();
+ // incoming shockwave from left
+ const wave=safe(phase/.26,0,1);if(phase<.4){ctx.save();const g=ctx.createLinearGradient(-20,0,x+r,0);g.addColorStop(0,'#5cfbff00');g.addColorStop(.6,'#6be9ffc5');g.addColorStop(1,'#fff6bb');ctx.lineWidth=9;ctx.strokeStyle=g;ctx.shadowColor='#7bf4ff';ctx.shadowBlur=22;ctx.beginPath();ctx.moveTo(-50+wave*(x-r*1.7),y);ctx.lineTo(-40+wave*(x-r*.55),y);ctx.stroke();ctx.restore()}
+ if(phase>.22&&status>0)drawEnergyRings(x,y,r,(phase-.20)*1.4,i);
+ if(status===4&&impact>.65){rimText('バァァン!!',x,y-r*1.35,Math.min(44,W*.095),'#fff3b6','#4e2954',7)}
+ if(status===0&&phase>.25){ctx.save();ctx.globalAlpha=Math.min(1,(phase-.2)*4);rimText('衝撃波 消滅…',W*.5,H*.7,26,'#cadff7','#122147',5);ctx.restore()}
+}
+function drawResultScene(time){drawSpace(time,Math.max(0,outcome?.lastReached??2));const i=Math.max(0,outcome?.lastReached??2);const u=W/420;const rad=150*u;drawPlanet(i,W*.82,H*.27,rad,Math.sin(time*.18)*.11,.48);const grad=ctx.createLinearGradient(0,H*.42,0,H);grad.addColorStop(0,'#050a1900');grad.addColorStop(1,'#030817a0');ctx.fillStyle=grad;ctx.fillRect(0,0,W,H)}
+function drawBowScene(t){let bow=t<.6?eased(t/.6)*.12:t<.80?.20+eased((t-.6)/.20)*.92:1.11;const shock=safe((t-.59)/.78,0,1);drawConference(t,bow,shock);
+ if(t>.60){if(shock<.5)rimText('ドゴォォン!!',W*.5,H*.39,42*W/420,'#fff5be','#ee4e79',7);else rimText(outcome.ultra?'究極・土下座ッ!!':'謝罪衝撃波ッ!!',W*.5,H*.38,32*W/420,'#ffeaa0','#b8377d',6);
+ const energy=outcome.energy*BigInt(Math.max(0,Math.floor(shock*1000)))/1000n;$('hudJ').textContent=fmt(energy)+' J';
+ ctx.save();ctx.globalAlpha=.5*(1-shock);ctx.fillStyle='#fff2ba';ctx.fillRect(0,H*.63,W,4+shock*W*.1);ctx.restore();} }
+function frameRender(dt){ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);ctx.save();if((state==='bow'||state==='destroy')&&!reduceMotion){const intensity=state==='bow'&&sceneTime>.55&&sceneTime<1.03?Math.sin(sceneTime*85)*3.7:state==='destroy'&&outcome?.statuses[Math.min(7,Math.floor(sceneTime/1.12))]===4?Math.sin(sceneTime*133)*1.4:0;ctx.translate(intensity,intensity*.6)}
+ if(state==='title'||state==='timing')drawConference(elapsed);else if(state==='bow')drawBowScene(sceneTime);else if(state==='destroy')drawPlanetScene(sceneTime);else drawResultScene(elapsed);
+ updateParticles(dt);drawParticles();drawVignette();ctx.restore();}
+function frame(timeMs){const t=timeMs/1000;let dt=lastNow?safe(t-lastNow,0,.050):.016;lastNow=t;if(debugHold)dt=0;if(document.hidden){requestAnimationFrame(frame);return;}elapsed+=dt;sceneTime+=dt;if(state==='timing')tickStage(dt);if(state==='bow'||state==='destroy')tickDestruction(dt);clearToast();sound.music();frameRender(dt);requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+function createResultImage(){if(!outcome)throw new Error('結果がありません');const cv=document.createElement('canvas');cv.width=1200;cv.height=630;const g=cv.getContext('2d');const bg=g.createLinearGradient(0,0,1200,630);bg.addColorStop(0,'#05091e');bg.addColorStop(.58,'#132650');bg.addColorStop(1,'#311d4e');g.fillStyle=bg;g.fillRect(0,0,1200,630);
+ let seed=12345;for(let i=0;i<175;i++){seed=(seed*1664525+1013904223)>>>0;const x=(seed%1197)+1;seed=(seed*1664525+1013904223)>>>0;const y=seed%630;g.fillStyle=i%4===0?'#e2f5ffb0':'#a6b9df64';g.fillRect(x,y,i%7===0?3:1,i%7===0?3:1)}
+ const backIdx=Math.max(0,outcome.lastReached);if(backIdx===5){g.save();g.translate(1030,270);g.rotate(-.24);g.lineWidth=24;g.strokeStyle='#d8c5a477';g.beginPath();g.ellipse(0,0,210,55,0,0,2*Math.PI);g.stroke();g.restore()}
+ g.globalAlpha=.44;g.drawImage(planetCache(backIdx),860,75,375,375);g.globalAlpha=1;
+ g.fillStyle='#ffe47f';g.fillRect(59,63,10,37);g.fillStyle='#a8e0f5';g.font='bold 22px sans-serif';g.fillText('ASOBEAT / COSMIC APOLOGY',83,89);g.fillStyle='white';g.font='900 74px "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif';g.fillText('超謝罪会見',63,173);
+ g.fillStyle='#dbeaf9';g.font='bold 21px sans-serif';g.fillText('最終謝罪威力',65,229);
+ const s=fmt(outcome.energy);g.fillStyle='#ffdf81';let size=s.length>33?32:s.length>26?39:47;g.font=`900 ${size}px "Arial", sans-serif`;if(g.measureText(s).width>1030){const ratio=1030/g.measureText(s).width;g.font=`900 ${Math.floor(size*ratio)}px "Arial", sans-serif`;}g.fillText(s,65,291);g.font='900 29px sans-serif';g.fillText('J',65,327);
+ let title=$('resultReach').textContent;g.fillStyle='#ffffff';g.font='900 29px "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif';g.fillText(title,65,385);g.fillStyle='#ffd37d';g.font='bold 22px sans-serif';g.fillText('称号：'+outcome.rank,65,427);
+ for(let i=0;i<8;i++){const x=63+(i%4)*283,y=457+Math.floor(i/4)*67;g.fillStyle='#0a173dc9';g.strokeStyle='#99bce23d';g.lineWidth=1;g.beginPath();g.roundRect(x,y,268,56,10);g.fill();g.stroke();g.save();g.beginPath();g.arc(x+29,y+28,16,0,2*Math.PI);g.clip();g.drawImage(planetCache(i),x+13,y+12,32,32);g.restore();g.fillStyle='#f9fcff';g.font='bold 17px sans-serif';g.fillText(names[i],x+54,y+24);g.fillStyle=outcome.statuses[i]===4?'#ffe18f':'#a8c6e8';g.font='bold 14px sans-serif';g.fillText(['無傷','亀裂','一部破壊','半壊','完全崩壊'][outcome.statuses[i]],x+54,y+43)}
+ g.fillStyle='#9bb5db';g.font='14px sans-serif';g.fillText('※ 惑星破壊J値はゲーム内の架空設定です',62,618);return cv;}
+function shareText(){const o=outcome;const deep=o.lastReached<0?'惑星には届かず':names[o.lastReached]+'まで衝撃到達';const url=['https:','http:'].includes(location.protocol)?location.origin+location.pathname:'';return `水星で謝罪会見したら、${deep}！\n最終謝罪威力：${fmt(o.energy)} J\n称号：${o.rank}\nあなたはどこまで謝罪できますか？\n超謝罪会見 / ASOBEAT\n${url}\n#ゲーム開発 #gamedev`.trim()}
+function canvasBlob(c){return new Promise((resolve,reject)=>{try{c.toBlob(b=>b?resolve(b):reject(new Error('PNG作成失敗')),'image/png')}catch(err){reject(err)}})}
+async function saveResult(){if(!outcome)return;try{const b=await canvasBlob(createResultImage());const a=document.createElement('a'),uri=URL.createObjectURL(b);a.href=uri;a.download='choushazai-result.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(uri),6000);toast('結果画像を保存しました');}catch(err){toast('画像保存に失敗しました。スクリーンショットをご利用ください。')}}
+async function shareResult(){if(!outcome)return;const text=shareText();try{const blob=await canvasBlob(createResultImage());const file=new File([blob],'choushazai-result.png',{type:'image/png'});const data={title:'超謝罪会見',text,files:[file]};if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share(data);return;} }catch(err){if(err&&err.name==='AbortError')return;}
+ try{await navigator.clipboard.writeText(text);toast('投稿文をコピーしました。画像は「結果画像を保存」から追加できます');}catch(err){toast('結果画像を保存してXに添付してください');}const shareUrl='https://twitter.com/intent/tweet?text='+encodeURIComponent(text);const child=window.open(shareUrl,'_blank','noopener,noreferrer');if(!child){toast('ポップアップが開けません。文章コピー・画像保存をご利用ください');}}
+$('shareBtn').addEventListener('click',shareResult);$('saveBtn').addEventListener('click',saveResult);
+// Optional, explicitly enabled deterministic QA hooks. Not active in normal gameplay.
+if(new URLSearchParams(location.search).has('qa'))window.__QA={
+ snapshot:()=>({state,stageIndex,stageMode,cursorPos,stageClock,judgments:judgments.map(x=>({...x})),energy:outcome?.energy.toString()||null,statuses:outcome?.statuses||null,lastReached:outcome?.lastReached,sceneTime}),
+ calculate:(quality)=>{const v=quality.map((q,i)=>({...gradePrecision(steps[i].target+(1-q)*.52,steps[i].target),quality:q}));const o=buildOutcome(v);return{energy:o.energy.toString(),statuses:o.statuses,rank:o.rank,lastReached:o.lastReached}},
+ pressAt:(position)=>judgeNow(false,position),
+ forceRun:(positions=[.60,.34,.73])=>{judgments=positions.map((p,i)=>gradePrecision(p,steps[i].target));beginBow();},
+ finish:finishResult,
+ setTime:(s)=>{sceneTime=s;frameRender(0)},
+ freeze:(on)=>{debugHold=on},
+ showPlanet:(i)=>{if(!outcome)return;setState('destroy');sceneTime=i*1.12+.50;animPlanetIndex=-1},
+ resultImage:()=>createResultImage().toDataURL('image/png')
+};
+})();
+</script>
+</body>
+</html>
