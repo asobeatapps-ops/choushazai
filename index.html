@@ -2,7 +2,7 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#080d25"><meta name="description" content="水星で3回謝罪したら太陽系が崩壊!? ASOBEATの無料2Dバカゲー『超謝罪会見』。">
-<title>超謝罪会見 Ver.1.3 | ASOBEAT</title>
+<title>超謝罪会見 Ver.1.3.1 PLAYER RECORDS | ASOBEAT</title>
 <style>:root{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;color:#fff;--yellow:#ffdd70;--bright:#65e8ff;--coral:#ff657f;--text:#f5f7ff;--muted:#a5b4d6;touch-action:manipulation;color-scheme:dark}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#030719}body{display:flex;align-items:center;justify-content:center}button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:3px solid #7dd9ff;outline-offset:3px}
 #app{position:relative;width:min(100vw,520px);height:100dvh;max-height:980px;overflow:hidden;touch-action:none;isolation:isolate;background:#06102c;box-shadow:0 0 70px #000c}#world{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}#grain{position:absolute;inset:0;z-index:1;opacity:.09;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.16' d='M0 0h160v160H0z'/%3E%3C/svg%3E")}#flash{position:absolute;inset:0;z-index:8;pointer-events:none;opacity:0;background:#ffe9c2}.flash{animation:flash .25s ease-out}@keyframes flash{0%{opacity:.48}100%{opacity:0}}
@@ -18,37 +18,99 @@
 @media(prefers-reduced-motion:reduce){.judgment,.flash{animation:none!important}}
 .bestRank{color:#bdd9ff;font-size:11px;font-weight:850;text-align:center;margin:6px 0}.resultScene{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}.accuracyFeedback{position:absolute;top:46%;left:2%;right:2%;text-align:center;color:#d7fcff;font-size:clamp(12px,3vw,15px);font-weight:900;text-shadow:0 2px 8px #030c24,0 0 9px #030c24}.precisionBreakdown{font-size:10px;line-height:1.45;letter-spacing:0;word-break:break-word;color:#d9e6ff;margin-top:5px;font-weight:800;opacity:.92}
 @media(min-aspect-ratio:1/1){.accuracyFeedback{left:3%;right:auto;width:44%;top:53%}}
+
+/* Ver.1.3 CHASE: a single accelerating pressure front, overlapping destruction */
+#app{touch-action:pan-y}
+.timingScene,.blastScene{touch-action:none}
+.resultScene{touch-action:pan-y;overscroll-behavior:contain}
+.liveCombo{position:absolute;top:calc(env(safe-area-inset-top) + 186px);right:15px;padding:5px 11px;
+ border-radius:40px;background:#1c2449cc;border:1px solid #ffdd77a9;color:#ffedb7;font-size:11px;font-weight:1000;
+ text-shadow:0 2px 5px #000;box-shadow:0 0 16px #ffc36b26;letter-spacing:1px;pointer-events:none}
+.comboPop{position:absolute;top:32%;left:4%;right:4%;z-index:11;text-align:center;pointer-events:none;
+ color:#fff2a4;font-size:clamp(22px,7vw,43px);font-weight:1000;line-height:1.12;
+ -webkit-text-stroke:1.15px #60263b;text-shadow:0 4px #882b43,0 9px 8px #000e,0 0 24px #ff9936;
+ transform:rotate(-5deg);letter-spacing:-1px}
+.comboPop.pulse{animation:chainPop .73s cubic-bezier(.1,.86,.12,1) both}
+@keyframes chainPop{0%{opacity:0;transform:translateY(15px) rotate(-10deg) scale(.42)}18%{opacity:1;transform:translateY(0) rotate(-5deg) scale(1.22)}55%{opacity:1;transform:rotate(-4deg) scale(1)}100%{opacity:0;transform:translateY(-13px) rotate(-4deg) scale(.93)}}
+.resultCombo{margin:7px auto 4px;font-size:13px;font-weight:1000;color:#ffd87d}
+.nextGoal{margin:10px 0 0;padding:11px;border:1px solid #f7c6817a;border-radius:11px;
+ background:#ffcd5414;color:#faead5;line-height:1.6;font-weight:850;font-size:12px;text-align:left;overflow-wrap:anywhere}
+.nextGoal b{color:#ffe18e}.phaseLabel,.commentary{overflow-wrap:anywhere}
+@media(max-height:650px){.liveCombo{top:calc(env(safe-area-inset-top) + 125px)}.comboPop{top:28%}.blastBottom{bottom:calc(env(safe-area-inset-bottom) + 67px)}.phaseLabel{font-size:21px}.commentary{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.comboPop.pulse{animation:none;opacity:1}}
+
+
+/* Force solid manga lettering; avoid WebKit stroke consuming the thin Japanese glyphs. */
+.logo{text-shadow:none}
+.logoBig{color:#ffe477;-webkit-text-stroke:0;text-shadow:4px 5px 0 #e7446a,0 9px 21px #000b}
+.logoRest{color:#fffefa;-webkit-text-stroke:0;text-shadow:4px 5px 0 #e7446a,0 9px 21px #000b}
+.bang{color:#ffe477;-webkit-text-stroke:0}
+
+/* Color-first typography for rapid overlapping impact captions. */
+.comboPop{color:#fff5b7;-webkit-text-stroke:0;text-shadow:3px 4px 0 #aa3852,0 6px 14px #050719,0 0 15px #ffac5a}
+.phaseLabel{color:#ffe5a3;-webkit-text-stroke:0;text-shadow:2px 3px 0 #763747,0 4px 15px #030712,0 0 12px #ffbb7360}
+.commentary{text-shadow:0 3px 7px #030712}
+.flash{animation:flash .20s ease-out}@keyframes flash{0%{opacity:.25}100%{opacity:0}}
+/* Ver.1.3.1: persistent local player identities and named history. */
+.playerProfile{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 12px;margin-bottom:12px;border:1px solid #91deff8a;border-radius:12px;background:#061b3edb;box-shadow:0 4px 19px #0005;text-align:left}
+.registeredName{min-width:0;display:flex;flex-direction:column;gap:3px}.registeredName small{font-size:9px;color:#a7d4ec;font-weight:800}.registeredName strong{font-size:15px;font-weight:1000;color:#ffeda3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:190px}
+.changeNameBtn{flex:none;color:#c9edff;background:#203864b3;border:1px solid #79c2ff69;border-radius:9px;font-size:11px;font-weight:900;padding:9px 10px}
+.resultIdentity{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin:4px 0 9px;color:#e7f7ff;font-size:12px;font-weight:800}
+.resultIdentity strong{font-size:14px;color:#ffe7a0;overflow-wrap:anywhere}.resultIdentity button{font-size:10px;color:#c6edff;border:1px solid #81ceff75;border-radius:99px;background:#14335ed1;padding:6px 10px}
+.boardLabel{display:flex;flex-direction:column;gap:2px;min-width:0}.boardLabel strong{font-size:12px;color:#f2f6ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.boardLabel small{font-size:9px;color:#9ebbdc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.boardScore{max-width:60%;min-width:0;text-align:right;overflow-wrap:anywhere;line-height:1.2;font-variant-numeric:tabular-nums}.boardRow.me .boardLabel strong{color:#ffe79c}
+.historyMore{display:block;width:100%;margin-top:7px;padding:9px;font-size:11px;font-weight:900;border:1px solid #a6bbdb83;border-radius:9px;background:#152b4b;color:#d1eafa}.tabs .tab{min-width:0}
+.nameDialog{position:absolute;inset:0;z-index:75;display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top) + 12px) 14px calc(env(safe-area-inset-bottom) + 12px);background:#010616d9;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);pointer-events:auto;touch-action:pan-y;overscroll-behavior:contain}
+.namePanel{width:min(100%,420px);max-height:100%;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;text-align:center;border:2px solid #ffdf84;border-radius:24px;background:linear-gradient(160deg,#152e58,#0d1c40 65%,#070e29);padding:21px 19px 18px;box-shadow:0 24px 70px #000e,0 0 65px #7c95ef44}
+.nameIcon{font-size:39px;line-height:1.15}.nameEyebrow{margin-top:5px;color:#98cdef;font-size:9px;font-weight:1000;letter-spacing:1.5px}.namePanel h2{font-size:clamp(21px,6vw,29px);font-weight:1000;line-height:1.3;color:#ffeaa7;margin:8px 0 10px}.namePanel>p:not(.nameHelp){font-size:12px;color:#e8f1ff;line-height:1.6;margin:0 0 20px}
+.nameLabel{display:flex;align-items:center;justify-content:space-between;text-align:left;color:#fff7dc;font-size:12px;font-weight:1000;margin-bottom:8px}.nameLabel small{color:#9fb6d6;font-size:10px}
+#playerNameInput{width:100%;min-height:53px;display:block;padding:11px 15px;border-radius:12px;color:#14213d;background:#fff9e9;border:3px solid #f0c866;font-weight:1000;font-size:18px;outline-offset:3px;text-align:left;-webkit-user-select:text;user-select:text;touch-action:manipulation}
+.nameHelp{font-size:10px!important;line-height:1.65!important;color:#b6cce9!important;text-align:left;margin:13px 0 17px!important}.nameSubmit{font-size:17px;padding:13px 8px}.nameCancel{font-size:12px;color:#b6cbe8;background:transparent;border:0;min-height:41px;padding:8px 20px;margin-top:12px;font-weight:800}
+@media(max-height:595px){.namePanel{padding:13px 16px 10px}.nameIcon{font-size:26px}.namePanel h2{margin:4px 0 6px}.namePanel>p:not(.nameHelp){margin-bottom:9px}.nameHelp{margin:8px 0!important}.nameSubmit{padding:10px 8px}.nameCancel{margin-top:5px;min-height:31px}.playerProfile{margin-bottom:7px;padding:6px 9px}}
 </style>
-</head><body><main id="app" aria-label="超謝罪会見 Ver.1.1.1">
+</head><body><main id="app" aria-label="超謝罪会見 Ver.1.3.1 PLAYER RECORDS">
 <canvas id="world" aria-label="惑星と会見シーンの2Dアニメーション"></canvas>
 <div id="grain" aria-hidden="true"></div><div id="flash" aria-hidden="true"></div>
 <header class="topbar"><div class="brand"><span class="mark">A</span><div>ASOBEAT <span>/ 宇宙規模の謝罪</span></div></div><div class="topBtns"><button class="mini" id="soundBtn" aria-label="音声切替">♪ ON</button><button class="mini" id="motionBtn" aria-label="演出の軽減">演出 ON</button></div></header>
 <section id="titleScene" class="scene titleScene">
- <div class="titleTop"><div class="tag">水星発／宇宙史上最悪の会見</div><div class="logo"><span class="logoBig">超</span><span class="logoRest">謝罪会見<span class="bang">!!</span></span></div><p>謝罪は、宇宙を破壊する。</p><span class="ver">Ver.1.2 · CINEMATIC WAVE</span></div>
- <div class="titleFoot"><div class="tipRow"><span>3回タップで謝罪</span><span>惑星8つを破壊せよ</span></div><button id="startBtn" class="primary">謝罪会見を始める <b>→</b></button><div class="subtext">結果はJ（ジュール）で記録！　ランキングとX共有対応</div></div>
+ <div class="titleTop"><div class="tag">水星発／宇宙史上最悪の会見</div><div class="logo"><span class="logoBig">超</span><span class="logoRest">謝罪会見<span class="bang">!!</span></span></div><p>謝罪は、宇宙を破壊する。</p><span class="ver">Ver.1.3.1 · PLAYER RECORDS</span></div>
+ <div class="titleFoot"><div id="playerProfile" class="playerProfile hidden"><span class="registeredName"><small>登録済みプレイヤー</small><strong id="profileName">匿名</strong></span><button type="button" id="changeNameBtn" class="changeNameBtn">名前変更 <span aria-hidden="true">✎</span></button></div><div class="tipRow"><span>3回タップで謝罪</span><span>惑星8つを破壊せよ</span></div><button id="startBtn" class="primary">謝罪会見を始める <b>→</b></button><div class="subtext">結果はJ（ジュール）で記録！　ランキングとX共有対応</div></div>
 </section>
 <section id="timingScene" class="scene timingScene hidden">
  <div class="stageHeadline"><span id="stageCount">01 / 03</span><span id="stageLabel">第一声 · 誠意</span></div>
  <div class="speech" id="speech"><div class="speechTiny">記者会見中</div><div id="speechText">この度は、</div></div>
  <div id="judgment" class="judgment hidden" aria-live="polite">Good謝罪！</div><div id="accuracyFeedback" class="accuracyFeedback hidden" aria-live="polite"></div>
- <div class="timingFoot"><div class="gaugeHead"><strong>動く急所を見極めろ！</strong><small id="gaugeHelp">変速カーソル × 動く中心！</small></div>
+ <div class="timingFoot"><div class="gaugeHead"><strong>動く急所を見極めろ！</strong><small id="gaugeHelp">見える中心 × 速度は3段階</small></div>
  <div class="gauge" id="gauge"><div class="gaugeTicks"></div><div id="targetHalo" class="targetHalo"></div><div id="targetGold" class="targetGold"></div><div id="targetPerfect" class="targetPerfect"></div><div id="needle" class="needle"><i></i></div></div>
  <div class="gaugeBelow"><span>NO謝罪</span><span>PERFECT</span><span>NO謝罪</span></div>
- <button id="hitBtn" class="primary hitBtn">今だ！ <small>タップして謝罪力を決定</small></button><p class="smallCenter">PERFECT ±0.9%／3段階で速度が変化</p><div id="stageDots" class="stageDots"><i></i><i></i><i></i></div></div>
+ <button id="hitBtn" class="primary hitBtn">今だ！ <small>タップして謝罪力を決定</small></button><p class="smallCenter">PERFECT ±0.8% ／ 神謝罪 ±0.25%</p><div id="stageDots" class="stageDots"><i></i><i></i><i></i></div></div>
 </section>
 <section id="blastScene" class="scene blastScene hidden">
- <div class="blastTop"><div class="tag cool">右方向へ伝播中 →</div><div id="powerHud" class="powerHud">0 J</div></div>
- <div id="planetTrack" class="planetTrack"></div><div class="blastBottom"><div id="phaseLabel" class="phaseLabel">超謝罪、発動ッ！</div><div id="commentary" class="commentary">衝撃波をカメラが追跡中</div></div>
+ <div class="blastTop"><div class="tag cool">衝撃波追尾カメラ ACTIVE →</div><div id="powerHud" class="powerHud">0 J</div></div>
+ <div id="planetTrack" class="planetTrack"></div><div id="liveCombo" class="liveCombo hidden">0 COMBO</div><div id="comboPop" class="comboPop hidden" aria-live="polite"></div><div class="blastBottom"><div id="phaseLabel" class="phaseLabel">超謝罪、発動ッ！</div><div id="commentary" class="commentary">衝撃波をカメラが追跡中</div></div>
  <button id="skipBtn" class="skip">演出をスキップ »</button>
 </section>
 <section id="resultScene" class="scene resultScene hidden">
- <div class="resultLead"><span>ASOBEAT / 宇宙被害報告書</span><h1>超謝罪会見</h1><div id="rankTitle" class="rankTitle">新人謝罪社員</div></div>
- <div class="resultPower"><div class="rpLabel">最終謝罪威力</div><div id="resultJ" class="resultJ">0</div><div class="rJ">J <small>ジュール ／ ゲーム内架空基準</small></div><div id="resultReached" class="resultReached">水星に到達！</div><div id="precisionBreakdown" class="precisionBreakdown"></div></div>
+ <div class="resultLead"><span>ASOBEAT / 宇宙被害報告書</span><h1>超謝罪会見</h1><div class="resultIdentity"><span>謝罪者：<strong id="resultPlayerName">匿名</strong></span><button type="button" id="resultChangeNameBtn">次回の名前を変更</button></div><div id="rankTitle" class="rankTitle">新人謝罪社員</div></div>
+ <div class="resultPower"><div class="rpLabel">最終謝罪威力</div><div id="resultJ" class="resultJ">0</div><div class="rJ">J <small>ジュール ／ ゲーム内架空基準</small></div><div id="resultReached" class="resultReached">水星に到達！</div><div id="precisionBreakdown" class="precisionBreakdown"></div><div id="resultCombo" class="resultCombo"></div><div id="nextGoal" class="nextGoal"></div></div>
  <div class="sectionCaption">惑星別 被害報告 <small>左から右へ衝撃波が進行</small></div><div id="planetResults" class="planetResults"></div>
- <div class="localLeaderboard"><div class="boardHead"><span>この端末のランキング</span><small id="boardTag">ローカル記録</small></div><div class="tabs"><button id="allTab" class="tab selected">歴代TOP</button><button id="todayTab" class="tab">本日の記録</button></div><div id="boardRows" class="boardRows"></div><div id="myRank" class="myRank">今回の順位 —</div><div id="bestRank" class="bestRank">自己ベスト —</div><p class="boardNote">※ この端末の実記録です。世界順位はサーバーの設定後に表示できます。</p></div>
+ <div class="localLeaderboard"><div class="boardHead"><span>この端末のプレイヤー記録</span><small id="boardTag">ローカル記録</small></div><div class="tabs"><button id="allTab" class="tab selected">歴代TOP</button><button id="todayTab" class="tab">本日のTOP</button><button id="historyTab" class="tab">プレイ履歴</button></div><div id="boardRows" class="boardRows"></div><button type="button" id="moreHistoryBtn" class="historyMore hidden">さらに10件見る ▼</button><div id="myRank" class="myRank">今回の順位 —</div><div id="bestRank" class="bestRank">自己ベスト —</div><p class="boardNote">※ 名前とスコアはこのブラウザに保存されます。別の端末との共通ランキングではありません。以前の名前なし記録は「匿名」と表示します。</p></div>
  <div class="actions"><button class="primary" id="retryBtn">もう一度謝罪する ↗</button><div class="twocol"><button id="shareBtn">Xで共有する</button><button id="saveBtn">結果画像を保存</button></div></div>
 </section>
-<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+ <div id="nameDialog" class="nameDialog hidden" role="dialog" aria-modal="true" aria-labelledby="nameDialogTitle" aria-describedby="nameDialogInfo">
+  <form id="nameForm" class="namePanel" autocomplete="off">
+   <div class="nameIcon" aria-hidden="true">✍️</div>
+   <div class="nameEyebrow">ASOBEAT / PLAYER ENTRY</div>
+   <h2 id="nameDialogTitle">謝罪者のお名前は？</h2>
+   <p id="nameDialogInfo">ランキングに残す名前を登録してください。初回だけの登録です。</p>
+   <label for="playerNameInput" class="nameLabel">プレイヤー名 <small>最大12文字</small></label>
+   <input id="playerNameInput" name="playerName" type="text" inputmode="text" maxlength="12" value="匿名" autocomplete="nickname" enterkeyhint="done" aria-label="プレイヤー名">
+   <p class="nameHelp">何も入力しない場合は「匿名」になります。登録名はこのブラウザに記憶され、次回から入力は不要です。X共有・結果画像にも名前が表示されます。</p>
+   <button id="saveNameBtn" class="primary nameSubmit" type="submit">この名前で謝罪する →</button>
+   <button id="cancelNameBtn" class="nameCancel" type="button">戻る</button>
+  </form>
+ </div>
+ <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
 </main><script>(()=>{'use strict';
 /* Reused and refined planet artwork and VFX from Ver.1.0. */
 function roundRect(x,y,w,h,r,fill,stroke='',lw=1){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw;ctx.stroke()}}
@@ -115,7 +177,7 @@ function drawShards(i,x,y,r,progress){
    ctx.globalAlpha=(1-p*.22)*.67;ctx.beginPath();ctx.moveTo(-size*.47,size*.43);ctx.lineTo(size*.45,size*.29);ctx.lineTo(size*.10,size*.68);ctx.closePath();ctx.fillStyle='#fc7535';ctx.fill();ctx.restore();
  }
  // Smaller grit trails behind the heavy pieces.
- for(let k=0;k<96;k++){
+ for(let k=0;k<(reduceMotion?22:96);k++){
    const seed=k*23+i*53,a=k*2.399963+i*.23,travel=r*p*(.48+rand(seed+5)*2.12),px=Math.cos(a)*travel,py=Math.sin(a)*travel;
    const size=r*(.008+rand(seed+6)*.022);ctx.save();ctx.translate(px,py);ctx.rotate(a+p*k*.22);ctx.globalAlpha=(1-p*.45)*(.4+rand(seed+8)*.6);
    ctx.fillStyle=k%4===0?'#ffbc67':k%3===0?'#ffe6ad':colors[i];ctx.beginPath();ctx.moveTo(-size,-size*.55);ctx.lineTo(size*.75,-size*.16);ctx.lineTo(size*.12,size);ctx.closePath();ctx.fill();ctx.restore();
@@ -132,15 +194,23 @@ const shortNames=['水','金','地','火','木','土','天','海'];
 const colors=['#a5aebc','#edc277','#53aeef','#d97858','#ddae84','#e3c68f','#72d7e1','#597ddd'];
 const thresholds=Array.from({length:8},(_,i)=>10n**BigInt(13+i*2));
 const STATUS=['無傷','亀裂','一部破壊','半壊','完全崩壊'];
-const TITLES=['新人謝罪社員','宇宙迷惑社員','全人類に謝罪','惑星級の反省','銀河土下座主任','謝罪の化身','宇宙謝罪王','宇宙史上最大の戦犯'];
-const GRADES=[{name:'パーフェクト謝罪',limit:.009,key:'perfect'},{name:'超Good謝罪',limit:.027,key:'super'},{name:'Good謝罪',limit:.072,key:'good'},{name:'なかなか謝罪',limit:.135,key:'nice'},{name:'まあまあ謝罪',limit:.225,key:'normal'},{name:'ちょっと謝罪',limit:.34,key:'small'},{name:'NO謝罪',limit:Infinity,key:'no'}];
-const steps=[{quote:'この度は、',label:'第一声・誠意',target:.58,half:1.15,phase:.025,sway:.024,drift:1.42},{quote:'誠に、',label:'第二声・反省',target:.39,half:.87,phase:.04,sway:.054,drift:2.18},{quote:'申し訳ございませんでした！！！',label:'最終声・全力の謝罪',target:.66,half:.67,phase:.10,sway:.075,drift:2.68}];
-const WORLD=names.map((_,i)=>i*900);
-const STORAGE='asobeat_choushazai_v12_records';
+const TITLES=['新人謝罪社員','宇宙迷惑社員','全人類に謝罪','惑星級の反省','惑星粉砕マネージャー','謝罪の化身','宇宙謝罪王','太陽系終了責任者'];
+const GRADES=[{name:'パーフェクト謝罪',limit:.008,key:'perfect'},{name:'超Good謝罪',limit:.045,key:'super'},{name:'Good謝罪',limit:.09,key:'good'},{name:'なかなか謝罪',limit:.15,key:'nice'},{name:'まあまあ謝罪',limit:.23,key:'normal'},{name:'ちょっと謝罪',limit:.34,key:'small'},{name:'NO謝罪',limit:Infinity,key:'no'}];
+const steps=[{quote:'この度は、',label:'第一声・誠意',target:.58,half:1.12,phase:.025,sway:0,drift:0},{quote:'誠に、',label:'第二声・反省',target:.39,half:.89,phase:.04,sway:0,drift:0},{quote:'申し訳ございませんでした！！！',label:'最終声・全力の謝罪',target:.66,half:.72,phase:.10,sway:0,drift:0}];
+const WORLD=names.map((_,i)=>i*540);
+const STORAGE='asobeat_choushazai_v12_records'; // Keep existing scores in place.
+const PROFILE_STORAGE='asobeat_choushazai_player_v1'; // Name remains across visits, independent from scores.
+const ANONYMOUS='匿名';
 let W=390,H=844,dpr=1,now=0,lastNow=0,elapsed=0,sceneTime=0,state='title';
 let runNumber=0,stageIndex=0,stageMode='intro',stageClock=0,cursorPos=0,judgments=[],outcome=null,stageAnnounced=-1;
 let starfield=[],cachedPlanets=[],particleList=[],particleLimit=140,reduceMotion=matchMedia('(prefers-reduced-motion:reduce)').matches,soundOn=true;
-let toastUntil=0,localRecords=[],currentRecordId='',boardView='all',lastCameraX=0,impactMarked=false,finaleMarked=false,pressLock=false;
+let toastUntil=0,localRecords=[],currentRecordId='',boardView='all',historyShown=12,lastCameraX=0,impactMarked=false,finaleMarked=false,pressLock=false;
+let registeredName=null,currentRunName=ANONYMOUS,nameDialogMode='start';
+// World units are independent of canvas pixels; only screen projection changes on resize.
+let timingAnchorMs=0,hiddenAtMs=0;
+let waveX=0,waveSpeed=0,chaseTime=0,hitStop=0,combo=0,bestCombo=0,impactEvents=Array(8).fill(null),
+ impactIndex=1,stopIndex=-1,finishWait=0,comboPopTime=0,impactLog=[],shakeTime=0;
+
 const clamp=(n,a=0,b=1)=>Math.min(b,Math.max(a,n));
 const safe=clamp;
 const fract=n=>n-Math.floor(n);
@@ -159,21 +229,55 @@ function resizeText(){if(!outcome)return;$('resultJ').textContent=fmt(outcome.en
 function particles(x,y,n,col,force=1){n=Math.min(n,particleLimit-particleList.length);for(let i=0;i<n;i++){const a=i*2.39996+rand(i+elapsed*27)*.8,speed=(55+rand(i+12)*170)*force;particleList.push({x,y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed-85,life:.4+rand(i*6+2)*.95,age:0,col:Array.isArray(col)?col[i%col.length]:col,size:2+rand(i+83)*6,kind:i%3})}}
 function updateParticles(dt){for(let i=particleList.length-1;i>=0;i--){const p=particleList[i];p.age+=dt;if(p.age>=p.life){particleList.splice(i,1);continue}p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=85*dt;p.vx*=Math.pow(.985,dt*60)}}
 function drawParticles(){for(const p of particleList){ctx.save();ctx.globalAlpha=1-p.age/p.life;ctx.translate(p.x,p.y);ctx.rotate(p.age*3+p.vx*.002);ctx.fillStyle=p.col;if(p.kind===0)ctx.fillRect(-p.size,-p.size/2,p.size*2,p.size);else if(p.kind===1)circle(0,0,p.size/2,p.col);else{ctx.beginPath();ctx.moveTo(-p.size,0);ctx.lineTo(p.size,-p.size/2);ctx.lineTo(p.size/2,p.size);ctx.closePath();ctx.fill()}ctx.restore()}ctx.globalAlpha=1}
-function loadRecords(){try{const v=JSON.parse(localStorage.getItem(STORAGE)||'[]');localRecords=Array.isArray(v)?v.filter(r=>r&&/^\d+$/.test(r.energy||'')&&typeof r.id==='string').slice(-200):[]}catch(_){localRecords=[]}}
-function saveRecords(){try{localStorage.setItem(STORAGE,JSON.stringify(localRecords.slice(-200)))}catch(_){toast('記録保存が無効です（プライベートモード等）')}}
-function sortedRecords(view='all'){const list=localRecords.filter(r=>view!=='today'||r.day===todayKey());return list.sort((a,b)=>{const A=BigInt(a.energy),B=BigInt(b.energy);return A===B?a.order-b.order:A>B?-1:1})}
-function saveCurrentResult(){const o=outcome;if(!o)return;currentRecordId=String(Date.now())+'-'+Math.floor(Math.random()*1000000);localRecords.push({id:currentRecordId,energy:o.energy.toString(),day:todayKey(),order:Date.now(),reach:o.lastReached,rank:o.title});if(localRecords.length>200)localRecords=localRecords.slice(-200);saveRecords();}
-function renderBoard(){const rows=$('boardRows');rows.replaceChildren();const arr=sortedRecords(boardView);$('allTab').classList.toggle('selected',boardView==='all');$('todayTab').classList.toggle('selected',boardView==='today');const rank=arr.findIndex(r=>r.id===currentRecordId);$('myRank').textContent=rank<0?'この期間の記録なし':`今回の順位：${rank+1}位 / ${arr.length}件（この端末）`;const all=sortedRecords();const best=all[0];$('bestRank').textContent=best?`自己ベスト：${fmt(best.energy)} J　／　全${all.length}件`:'自己ベスト：記録なし';
+// Accept legacy records (Ver.1.2/1.3), which did not store player names.
+const normalName=value=>Array.from(String(value??'').replace(/[\u0000-\u001f\u007f]/g,'').trim()).slice(0,12).join('')||ANONYMOUS;
+const recordName=record=>normalName(record.name||ANONYMOUS);
+function refreshProfileUI(){const hasName=registeredName!==null;$('playerProfile').classList.toggle('hidden',!hasName);$('profileName').textContent=registeredName??ANONYMOUS;}
+function loadProfile(){registeredName=null;try{const raw=localStorage.getItem(PROFILE_STORAGE);if(raw!==null){const data=JSON.parse(raw);if(typeof data==='string')registeredName=normalName(data);else if(data&&typeof data.name==='string')registeredName=normalName(data.name)}}catch(_){}refreshProfileUI();}
+function savePlayerName(input){registeredName=normalName(input);try{localStorage.setItem(PROFILE_STORAGE,JSON.stringify({name:registeredName,updated:Date.now()}));}catch(_){toast('このブラウザでは名前を保存できません。次回は再登録が必要です。')}refreshProfileUI();return registeredName;}
+function openNameDialog(mode='start'){
+ nameDialogMode=mode;const editing=mode==='change';$('nameDialogTitle').textContent=editing?'プレイヤー名を変更':'謝罪者のお名前は？';
+ $('nameDialogInfo').textContent=editing?'名前を変更しても過去の記録の名前は変わりません。次回のプレイから新しい名前になります。':'ランキングに残す名前を登録してください。初回だけの登録です。';
+ $('saveNameBtn').textContent=editing?'この名前で保存する':'この名前で謝罪する →';$('playerNameInput').value=registeredName??ANONYMOUS;
+ $('nameDialog').classList.remove('hidden');$('playerNameInput').focus({preventScroll:true});$('playerNameInput').select();
+}
+function closeNameDialog(){$('nameDialog').classList.add('hidden');}
+function requestGameStart(){if(registeredName===null){openNameDialog('start');return}beginGame();}
+$('nameForm').addEventListener('submit',e=>{e.preventDefault();const name=savePlayerName($('playerNameInput').value);const starting=nameDialogMode==='start';closeNameDialog();if(starting)beginGame();else toast('登録名を「'+name+'」に変更しました。次回から反映されます。')});
+$('cancelNameBtn').onclick=closeNameDialog;
+$('changeNameBtn').onclick=()=>openNameDialog('change');$('resultChangeNameBtn').onclick=()=>openNameDialog('change');
+function loadRecords(){try{const v=JSON.parse(localStorage.getItem(STORAGE)||'[]');localRecords=Array.isArray(v)?v.filter(r=>r&&/^\d+$/.test(r.energy||'')&&typeof r.id==='string').slice(-500):[]}catch(_){localRecords=[]}}
+function saveRecords(){try{localStorage.setItem(STORAGE,JSON.stringify(localRecords.slice(-500)))}catch(_){toast('記録保存が無効です（プライベートモード等）')}}
+function sortedRecords(view='all'){const list=localRecords.filter(r=>view!=='today'||r.day===todayKey());if(view==='history')return list.sort((a,b)=>b.order-a.order);return list.sort((a,b)=>{const A=BigInt(a.energy),B=BigInt(b.energy);return A===B?a.order-b.order:A>B?-1:1})}
+function saveCurrentResult(){const o=outcome;if(!o)return;currentRecordId=String(Date.now())+'-'+Math.floor(Math.random()*1000000);localRecords.push({id:currentRecordId,name:currentRunName,energy:o.energy.toString(),day:todayKey(),order:Date.now(),reach:o.lastReached,rank:o.title});if(localRecords.length>500)localRecords=localRecords.slice(-500);saveRecords();}
+function renderBoard(){
+ const rows=$('boardRows');rows.replaceChildren();const arr=sortedRecords(boardView),all=sortedRecords();
+ $('allTab').classList.toggle('selected',boardView==='all');$('todayTab').classList.toggle('selected',boardView==='today');$('historyTab').classList.toggle('selected',boardView==='history');
+ $('boardTag').textContent=all.length+'件保存済み';const rank=arr.findIndex(r=>r.id===currentRecordId);
+ $('myRank').textContent=boardView==='history'?`最新の記録：全${arr.length}件（この端末）`:rank<0?'この期間の記録なし':`今回の順位：${rank+1}位 / ${arr.length}件（この端末）`;
+ const own=all.filter(r=>recordName(r)===currentRunName);const best=own[0];
+ $('bestRank').textContent=best?`${currentRunName} のベスト：${fmt(best.energy)} J　／　${own.length}回の記録`:`${currentRunName} のベスト：記録なし`;
+ const take=boardView==='history'?historyShown:5;
+ $('moreHistoryBtn').classList.toggle('hidden',boardView!=='history'||arr.length<=historyShown);
  if(!arr.length){const p=document.createElement('div');p.className='emptyBoard';p.textContent='この期間の記録はまだありません';rows.appendChild(p);return}
- arr.slice(0,5).forEach((r,i)=>{const node=document.createElement('div');node.className='boardRow'+(r.id===currentRecordId?' me':'');const no=document.createElement('span');no.className='medal';no.textContent=i===0?'🥇':i===1?'🥈':i===2?'🥉':String(i+1)+'位';const label=document.createElement('span');label.className='boardLabel';label.textContent=r.id===currentRecordId?'今回の謝罪':r.day+' の謝罪';const val=document.createElement('span');val.className='boardScore';val.textContent=fmt(r.energy)+' J';node.append(no,label,val);rows.appendChild(node)});
+ arr.slice(0,take).forEach((r,i)=>{
+  const node=document.createElement('div');node.className='boardRow'+(r.id===currentRecordId?' me':'');
+  const no=document.createElement('span');no.className='medal';no.textContent=boardView==='history'?String(i+1):i===0?'🥇':i===1?'🥈':i===2?'🥉':String(i+1)+'位';
+  const label=document.createElement('span');label.className='boardLabel';
+  const player=document.createElement('strong');player.textContent=recordName(r);
+  const detail=document.createElement('small');detail.textContent=(r.id===currentRecordId?'今回の謝罪 · ':'')+(r.day||'記録日不明');
+  label.append(player,detail);const val=document.createElement('span');val.className='boardScore';val.textContent=fmt(r.energy)+' J';node.append(no,label,val);rows.appendChild(node);
+ });
 }
 $('allTab').onclick=()=>{boardView='all';renderBoard()};$('todayTab').onclick=()=>{boardView='today';renderBoard()};
+$('historyTab').onclick=()=>{boardView='history';historyShown=12;renderBoard()};
+$('moreHistoryBtn').onclick=()=>{historyShown+=10;renderBoard()};
 const ac=window.AudioContext||window.webkitAudioContext;
 class AudioFx{constructor(){this.ctx=null;this.next=0;this.beat=0}
  unlock(){if(!soundOn)return;try{if(!this.ctx)this.ctx=new ac();if(this.ctx.state==='suspended')this.ctx.resume()}catch(_){}}
  tone(f,d=.13,type='sine',vol=.03,end=0){if(!this.ctx||!soundOn||this.ctx.state!=='running')return;try{const t=this.ctx.currentTime,o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type=type;o.frequency.setValueAtTime(Math.max(f,25),t);if(end)o.frequency.exponentialRampToValueAtTime(Math.max(25,end),t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(this.ctx.destination);o.start(t);o.stop(t+d+.02)}catch(_){}}
  noise(d=.18,v=.065){if(!this.ctx||!soundOn)return;try{const a=this.ctx,b=a.createBuffer(1,Math.ceil(a.sampleRate*d),a.sampleRate),p=b.getChannelData(0);for(let j=0;j<p.length;j++)p[j]=(Math.random()*2-1)*Math.pow(1-j/p.length,1.8);const src=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();src.buffer=b;f.type='lowpass';f.frequency.value=1600;g.gain.value=v;src.connect(f);f.connect(g);g.connect(a.destination);src.start()}catch(_){}}
- hit(g){const n=GRADES.findIndex(v=>v.name===g.name);this.tone([1450,1120,780,540,390,280,170][n]||240,.22,'triangle',n<2?.075:.034,n<2?1950:420);if(n<2)this.tone(1750,.15,'sine',.035,2000)}
+ hit(g){const n=Math.max(0,GRADES.findIndex(v=>v.key===g.key));this.tone([1450,1120,780,540,390,280,170][n]||240,.22,'triangle',n<2?.075:.034,n<2?1950:420);if(n<2)this.tone(1750,.15,'sine',.035,2000)}
  smash(i,full){
    this.tone(1750+i*23,.105,'square',full?.052:.024,340);this.tone(210+i*13,.36,'sawtooth',full?.077:.035,37);
    this.noise(full?.45:.19,full?.09:.042);
@@ -185,52 +289,147 @@ class AudioFx{constructor(){this.ctx=null;this.next=0;this.beat=0}
    }
  }
  swoosh(){this.tone(440,.28,'sawtooth',.024,1150)}
- bg(){if(!this.ctx||!soundOn||state==='result'||elapsed<this.next)return;const fast=state==='destroy'||state==='bow';this.next=elapsed+(fast?.26:.42);const tune=[0,4,7,12,7,4,9,5];const root=fast?130:112;this.tone(root*Math.pow(2,tune[this.beat%8]/12),.105,'triangle',.0075);if(this.beat%4===0)this.tone(72,.14,'sine',.014,55);this.beat++}}
+ bg(){if(!this.ctx||!soundOn||state==='result'||elapsed<this.next)return;const fast=state==='destroy'||state==='bow';this.next=elapsed+(fast?(combo>=5?.14:combo>=3?.18:.25):.42);const tune=[0,4,7,12,7,4,9,5];const root=fast?130:112;this.tone(root*Math.pow(2,tune[this.beat%8]/12),.105,'triangle',.0075);if(this.beat%4===0)this.tone(72,.14,'sine',.014,55);this.beat++}}
+// Combo audio is sparse and pitched to remain audible on phone speakers.
+AudioFx.prototype.combo=function(n){if(n<2)return;const pitches=n>=8?[1318,1760,2093,2637]:n>=5?[880,1174,1568]:[740,988];
+ pitches.forEach((f,j)=>{if(!this.ctx||!soundOn)return;try{const t=this.ctx.currentTime+j*.055,o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type='triangle';o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.07,t+.012);g.gain.exponentialRampToValueAtTime(.001,t+.21);o.connect(g);g.connect(this.ctx.destination);o.start(t);o.stop(t+.22)}catch(_){}})};
+AudioFx.prototype.charge=function(){this.tone(250,.42,'sawtooth',.025,1060);this.tone(720,.21,'triangle',.03,1250)};
 const audio=new AudioFx();
 $('soundBtn').onclick=()=>{soundOn=!soundOn;$('soundBtn').textContent=soundOn?'♪ ON':'♪ OFF';if(soundOn)audio.unlock()};
 $('motionBtn').onclick=()=>{reduceMotion=!reduceMotion;$('motionBtn').textContent=reduceMotion?'演出 軽':'演出 ON'};
-function beginGame(){runNumber++;judgments=[];outcome=null;currentRecordId='';particleList.length=0;stageIndex=0;impactMarked=false;finaleMarked=false;stageAnnounced=-1;setState('timing');nextStage();audio.unlock()}
+function beginGame(){currentRunName=registeredName??ANONYMOUS;runNumber++;judgments=[];outcome=null;currentRecordId='';particleList.length=0;stageIndex=0;impactMarked=false;finaleMarked=false;stageAnnounced=-1;pressLock=false;
+ waveX=0;waveSpeed=0;chaseTime=0;hitStop=0;combo=0;bestCombo=0;impactEvents=Array(8).fill(null);
+ impactIndex=1;stopIndex=-1;finishWait=0;comboPopTime=0;impactLog=[];shakeTime=0;
+ $('comboPop').classList.add('hidden');$('liveCombo').classList.add('hidden');setState('timing');nextStage();audio.unlock()}
+
 function nextStage(){stageClock=0;stageMode='intro';cursorPos=0;pressLock=false;const s=steps[stageIndex];$('stageCount').textContent=`0${stageIndex+1} / 03`;$('stageLabel').textContent=s.label;$('speechText').textContent=s.quote;$('judgment').classList.add('hidden');$('accuracyFeedback').classList.add('hidden');$('hitBtn').disabled=true;
-$('gaugeHelp').textContent=['中心がゆっくり揺れる','中心が移動・針が変速','高速・変速・広い揺れ'][stageIndex];
+$('gaugeHelp').textContent=['ゆっくり左右に移動','少し速く往復','最終声は高速で往復'][stageIndex];
 Array.from($('stageDots').children).forEach((n,i)=>n.classList.toggle('on',i<=stageIndex));const target=targetAt(0,s);drawGaugeTarget(target);audio.tone(480,.13,'triangle',.03,600)}
 // All motion is calculated directly from elapsed time. No hidden score RNG.
 // The target is visible and gently drifts; the needle accelerates and decelerates predictably.
-function targetAt(t,s=steps[stageIndex]){const offset=runNumber*.71+stageIndex*1.21;return clamp(s.target+s.sway*(.63*Math.sin(t*s.drift+offset)+.37*Math.sin(t*s.drift*.53+offset*.81)),.17,.83)}
-function cursorAt(t,s){const u=(t+.105*Math.sin(t*3.3+s.phase*5)+.045*Math.sin(t*6.2+s.phase*8))/s.half+s.phase;const v=((u%2)+2)%2;return v<=1?v:2-v}
+function targetAt(t,s=steps[stageIndex]){return s.target}
+function cursorAt(t,s){const u=t/s.half+s.phase;const v=((u%2)+2)%2;return v<=1?v:2-v}
 function drawGaugeTarget(target){for(const id of ['targetHalo','targetGold','targetPerfect'])$(id).style.left=(target*100)+'%'}
 function classify(pos,target,idx=stageIndex){const d=Math.abs(pos-target);const g=GRADES.find(v=>d<=v.limit);return{name:g.name,key:g.key,dist:d,accuracy:clamp(1-d/.53),pos,target,idx,precision:Math.round(clamp(1-d/.5)*10000)/100};}
-function resolveStage(dt){stageClock+=dt;const s=steps[stageIndex];if(stageMode==='intro'){if(stageClock>=.58){stageMode='active';stageClock=0;$('hitBtn').disabled=false}}else if(stageMode==='active'){
+function resolveStage(dt){stageClock+=dt;const s=steps[stageIndex];if(stageMode==='intro'){if(stageClock>=.58){stageMode='active';stageClock=0;timingAnchorMs=performance.now();$('hitBtn').disabled=false}}else if(stageMode==='active'){
+stageClock=Math.max(0,(performance.now()-timingAnchorMs)/1000);
 const target=targetAt(stageClock,s);cursorPos=cursorAt(stageClock,s);$('needle').style.left=(cursorPos*100)+'%';drawGaugeTarget(target);
 if(stageClock>=5.0)judge(true)}else if(stageMode==='outro'&&stageClock>=.67){if(stageIndex===2)beginBow();else{stageIndex++;nextStage()}}}
-function judge(timeout=false,override=null){if(state!=='timing'||stageMode!=='active'||pressLock)return;pressLock=true;const sampleTime=override===null&&!timeout?stageClock+clamp(performance.now()/1000-lastNow,0,.048):stageClock;const grade=timeout?{name:'NO謝罪',key:'no',dist:.53,accuracy:0,pos:cursorPos,target:targetAt(stageClock),precision:0}:classify(override===null?cursorAt(sampleTime,steps[stageIndex]):override,targetAt(sampleTime,steps[stageIndex]),stageIndex);judgments.push(grade);stageMode='outro';stageClock=0;$('hitBtn').disabled=true;const pop=$('judgment');pop.textContent=grade.name+'！';pop.style.color=grade.key==='perfect'?'#fff4ad':grade.key==='super'?'#74fcff':grade.key==='no'?'#b5b8c7':'#ffffff';pop.classList.remove('hidden');const feedback=$('accuracyFeedback');feedback.textContent=timeout?'時間切れ ／ 反省する気なし':`中心との差 ${ (grade.dist*100).toFixed(2)}%  ／  ${grade.pos<grade.target?'手前で押した':'通り過ぎた'}`;feedback.classList.remove('hidden');pop.style.animation='none';void pop.offsetWidth;pop.style.animation='pop .7s both';audio.hit(grade);if(grade.key==='perfect'||grade.key==='super'){flash();particles(W*.5,H*.45,23,grade.key==='perfect'?['#fff6d0','#ffd05e','#c4ffff']:['#8cfcff','#d3ffff'],1.4)}}
+function judge(timeout=false,override=null){if(state!=='timing'||stageMode!=='active'||pressLock)return;pressLock=true;const sampleTime=override===null&&!timeout?Math.max(0,(performance.now()-timingAnchorMs)/1000):stageClock;const grade=timeout?{name:'NO謝罪',key:'no',dist:.53,accuracy:0,pos:cursorPos,target:targetAt(stageClock),precision:0}:classify(override===null?cursorAt(sampleTime,steps[stageIndex]):override,targetAt(sampleTime,steps[stageIndex]),stageIndex);if(!timeout&&grade.dist<=.0025){grade.god=true;grade.name='神謝罪';grade.key='god'}judgments.push(grade);stageMode='outro';stageClock=0;$('hitBtn').disabled=true;const pop=$('judgment');pop.textContent=grade.name+'！';pop.style.color=(grade.key==='perfect'||grade.key==='god')?'#fff4ad':grade.key==='super'?'#74fcff':grade.key==='no'?'#b5b8c7':'#ffffff';pop.classList.remove('hidden');const feedback=$('accuracyFeedback');feedback.textContent=timeout?'時間切れ ／ 反省する気なし':`中心との差 ${ (grade.dist*100).toFixed(2)}%  ／  ${grade.pos<grade.target?'手前で押した':'通り過ぎた'}`;feedback.classList.remove('hidden');pop.style.animation='none';void pop.offsetWidth;pop.style.animation='pop .7s both';audio.hit(grade);if(grade.key==='perfect'||grade.key==='god'||grade.key==='super'){flash();particles(W*.5,H*.45,23,(grade.key==='perfect'||grade.key==='god')?['#fff6d0','#ffd05e','#c4ffff']:['#8cfcff','#d3ffff'],1.4)}}
 // 7-grade scoring, continuous precision, no random damage. Values are game-fiction, not real celestial mechanics.
-function calculatePower(list){if(list.length!==3)throw Error('3回の入力が必要です');const a=list.map(x=>x.accuracy);const weighted=.31*a[0]+.33*a[1]+.36*a[2];const consistency=.72+.28*Math.min(...a);const triple=list.every(x=>x.key==='perfect');const ultra=triple&&list.every(x=>x.dist<=.007);
-const delicate=list.map(x=>Math.exp(-Math.pow(x.dist/.14,1.28)));const finelyWeighted=.31*delicate[0]+.33*delicate[1]+.36*delicate[2];const skill=(weighted*consistency*.45+finelyWeighted*.55);const exponent=11.10+14.55*Math.pow(skill,1.56)+(triple?.85:0)+(ultra?.75:0);const e=Math.floor(exponent),m=BigInt(Math.max(100000000000,Math.floor(Math.pow(10,exponent-e)*100000000000)));const energy=m*10n**BigInt(Math.max(0,e-11));return{energy,skill,exponent,triple,ultra}}
+function calculatePower(list){
+ if(list.length!==3)throw Error('3回の入力が必要です');
+ const a=list.map(x=>x.accuracy),weighted=.31*a[0]+.33*a[1]+.36*a[2];
+ const consistency=.72+.28*Math.min(...a);
+ const delicate=list.map(x=>Math.exp(-Math.pow(x.dist/.14,1.28)));
+ const fine=.31*delicate[0]+.33*delicate[1]+.36*delicate[2];
+ const skill=clamp(weighted*consistency*.45+fine*.55);
+ const score=BigInt(Math.round(skill*1_000_000)),base=1_000_000n;
+ const triple=list.every(x=>x.dist<=.008),ultra=list.every(x=>x.dist<=.0025);
+ // Once the fractional input is quantized, ALL large-number arithmetic is exact BigInt.
+ // The 13th-power curve rewards precision but still allows weaker early-planet runs.
+ let energy=10n**11n+(32n*10n**26n)*(score**13n)/(base**13n);
+ if(triple)energy=energy*112n/100n;
+ if(ultra)energy=energy*124n/100n;
+ return {energy,skill,exponent:13,triple,ultra,score:score.toString()};
+}
 function evaluatePlanets(energy){const statuses=[];for(let i=0;i<8;i++){const power=energy*100n/BigInt(100+i*9);const t=thresholds[i];const status=power>=t?4:power*2n>=t?3:power*5n>=t?2:power*20n>=t?1:0;statuses.push(status)}return{statuses,lastReached:statuses.findLastIndex(s=>s>0),lastFull:statuses.findLastIndex(s=>s===4)}}
-function buildOutcome(list){const p=calculatePower(list),res=evaluatePlanets(p.energy),title=res.lastFull<0?'未遂の謝罪犯':TITLES[Math.max(0,res.lastFull)];return{...p,...res,title,grades:list.map(v=>({...v}))}}
-function beginBow(){outcome=buildOutcome(judgments);stageAnnounced=-1;impactMarked=false;finaleMarked=false;setState('bow');$('powerHud').textContent='お辞儀エネルギー充填中…';$('phaseLabel').textContent=outcome.triple?'土下座・最終形態！':'謝罪衝撃波、発動ッ！';$('commentary').textContent='すべての始まりは、水星の謝罪会見';buildTrack()}
+function buildOutcome(list){const p=calculatePower(list),res=evaluatePlanets(p.energy),title=p.ultra&&res.statuses[7]===4?'伝説の謝罪王':res.lastFull<0?'未遂の謝罪犯':TITLES[Math.max(0,res.lastFull)];return{...p,...res,title,grades:list.map(v=>({...v}))}}
+function beginBow(){
+ outcome=buildOutcome(judgments);stageAnnounced=-1;impactMarked=false;finaleMarked=false;
+ waveX=0;waveSpeed=0;chaseTime=0;hitStop=0;combo=0;bestCombo=0;impactEvents=Array(8).fill(null);
+ impactIndex=1;stopIndex=-1;finishWait=0;comboPopTime=0;impactLog=[];shakeTime=0;
+ setState('bow');$('powerHud').textContent='お辞儀エネルギー充填中…';
+ $('phaseLabel').textContent=outcome.ultra?'神謝罪、臨界突破！':outcome.triple?'土下座・最終形態！':'謝罪衝撃波、発動ッ！';
+ $('commentary').textContent='この謝罪が、すべてを終わらせる';$('liveCombo').classList.add('hidden');
+ buildTrack();audio.charge();
+}
 function buildTrack(){const t=$('planetTrack');t.replaceChildren();names.forEach((n,i)=>{const el=document.createElement('div');el.className='chip';el.id='chip'+i;el.style.setProperty('--planet',colors[i]);const d=document.createElement('span');d.className='chipOrb';const text=document.createElement('small');text.textContent=shortNames[i];el.append(d,text);t.appendChild(el)});$('chip0').classList.add('active')}
 function updateTrack(index){for(let i=0;i<8;i++)$('chip'+i).className='chip'+(i<index?' done':i===index?' active':'')}
-const SEG=3.06,TRAVEL=.92,JUDGE=.91,STRIKE=1.23;
-function stageInfo(t){const k=1+Math.floor(Math.max(0,t)/SEG);const phase=Math.max(0,t-(k-1)*SEG);return{i:k,phase}}
-function updateBlast(dt){if(state==='bow'){
- const t=sceneTime;if(t>.7&&!impactMarked){impactMarked=true;audio.smash(0,outcome.statuses[0]===4);flash();particles(W*.47,H*.70,reduceMotion?35:110,['#ffe3aa','#f56b70','#c6d5e6','#83e2ff'],2.3);$('powerHud').textContent=fmt(outcome.energy)+' J';$('phaseLabel').textContent=outcome.statuses[0]===4?'水星、完全崩壊!!':outcome.statuses[0]?'水星に亀裂!!':'水星、耐えた…';}
- if(t>2.12){if(outcome.lastReached<=0)finishResult();else{setState('destroy');stageAnnounced=-1;$('phaseLabel').textContent='謝罪衝撃波、右へ疾走！'}}
+function announceCombo(n){
+ if(n<2)return;const el=$('comboPop');
+ const label=n>=8?'太陽系完全崩壊ッ!!!':n>=5?`${n}連続・超謝罪連鎖!!!`:n>=3?`${n}連続粉砕!!!`:`${n}連続崩壊!!`;
+ el.textContent=label;el.classList.remove('hidden','pulse');void el.offsetWidth;el.classList.add('pulse');comboPopTime=.76;
+ const bar=$('liveCombo');bar.textContent=`🔥 ${n} COMBO`;bar.classList.remove('hidden');audio.combo(n);
+}
+function onImpact(i){
+ const level=outcome.statuses[i];impactEvents[i]={age:0,level};impactLog.push({index:i,worldX:waveX,time:chaseTime,level});
+ hitStop=reduceMotion?.04:.075;shakeTime=reduceMotion?0:.22;
+ audio.smash(i,level===4);if(level>=3||i===7)flash();
+ particles(W*.52,H*.475,reduceMotion?18:level===4?46:22,
+    [colors[i],'#ffe8b9','#fa7549','#b6edff'],level===4?1.95:1.12);
+ if(level===4){combo++;bestCombo=Math.max(bestCombo,combo);announceCombo(combo)}else{
+  combo=0;$('liveCombo').classList.add('hidden');
+ }
+ updateTrack(i);
+ $('phaseLabel').textContent=level===4?`${names[i]}、接触即粉砕!!`:level>=2?`${names[i]}、耐えきれないッ！`:level===1?`${names[i]}、ひび割れた！`:`${names[i]}、耐えた!!`;
+ $('commentary').textContent=level===4?`衝撃波は止まらない！ ${bestCombo}連続崩壊！`:level>0?'熱と亀裂が残った…次は耐えられるか!?':'謝罪の圧力が尽きた…';
+ if(i===7){stopIndex=i;finishWait=level===4?1.28:.85;
+  if(level===4){$('phaseLabel').textContent='海王星、最終崩壊ッ!!!';$('commentary').textContent='太陽系大謝罪連鎖！！！'}}
+ else if(level===0){stopIndex=i;finishWait=.86;}
+}
+function updateBlast(dt){
+ if(state==='bow'){
+  if(sceneTime>=.70&&!impactMarked){impactMarked=true;hitStop=reduceMotion?.045:.085;
+   audio.smash(0,outcome.statuses[0]===4);audio.charge();flash();
+   particles(W*.43,H*.66,reduceMotion?24:92,['#ffe1b0','#ff7e54','#ebeffa','#77d6ff'],2.0);
+   $('powerHud').textContent=fmt(outcome.energy)+' J';
+   $('phaseLabel').textContent=outcome.statuses[0]===4?'水星ごと会見場、消滅ッ!!!':outcome.statuses[0]?'水星、亀裂だらけ！':'水星、耐え切った!?';
+   combo=outcome.statuses[0]===4?1:0;bestCombo=combo;impactLog.push({index:0,worldX:0,time:0,level:outcome.statuses[0]});
+  }
+  if(sceneTime>=1.62){
+    if(outcome.lastReached<=0){finishResult();return;}
+    setState('destroy');waveX=0;chaseTime=0;
+    $('phaseLabel').textContent='謝罪衝撃波、超加速!!';
+    $('commentary').textContent='カメラは衝撃波を離さない';
+    updateTrack(1);audio.swoosh();
+  }
  }else if(state==='destroy'){
- const {i,phase}=stageInfo(sceneTime);const lastStage=Math.min(7,outcome.lastReached+1);if(i>lastStage){finishResult();return}
- if(i!==stageAnnounced){stageAnnounced=i;updateTrack(i);audio.swoosh();$('phaseLabel').textContent=`${names[i]}へ、衝撃波接近！`;$('commentary').textContent='カメラが衝撃波を追跡中'}
- if(phase>=TRAVEL&&phase-dt<TRAVEL){$('phaseLabel').textContent='惑星、急速赤熱中…';$('commentary').textContent=`${names[i]}の表面温度が急上昇！ 耐えられるのか!?`}
- if(phase>=TRAVEL+JUDGE&&phase-dt<TRAVEL+JUDGE){const level=outcome.statuses[i];audio.smash(i,level===4);if(level===4){flash();particles(W*.5,H*.47,reduceMotion?30:80,[colors[i],'#fff2c9','#ffe080'],2)}$('phaseLabel').textContent=level===4?`${names[i]}、完全崩壊!!`:level===3?`${names[i]}、半壊！`:level===2?`${names[i]}、一部破壊！`:level===1?`${names[i]}、亀裂！`:`${names[i]}、耐えた！`;$('commentary').textContent=level===4?(i>=1?`🔥 ${i+1}連続粉砕 COMBO!! 実況「謝罪が重すぎるぅぅ!!」`:'実況「謝罪が重すぎるぅぅ!!」'):level===0?'実況「衝撃波が消えたぁぁ!!」':'実況「まだ耐えているぞ!!」';if(i===7&&level===4&&!finaleMarked){finaleMarked=true;$('commentary').textContent='太陽系、謝罪に耐えられず。伝説の謝罪！';}}
- }}
+  chaseTime+=dt;shakeTime=Math.max(0,shakeTime-dt);comboPopTime=Math.max(0,comboPopTime-dt);
+  if(comboPopTime<=0)$('comboPop').classList.add('hidden');
+  for(const p of impactEvents){if(p)p.age+=dt}
+  if(stopIndex>=0){finishWait-=dt;if(finishWait<=0)finishResult();return}
+  // Acceleration is continuous. The camera is locked to the pressure front, never to a planet.
+  waveSpeed=710+Math.min(330,combo*55)+Math.min(160,chaseTime*18);
+  waveX+=waveSpeed*dt;
+  const virtualRadius=Math.min(W*.265,H*.205);
+  while(impactIndex<8&&waveX>=WORLD[impactIndex]-virtualRadius*.96){
+   onImpact(impactIndex++);if(stopIndex>=0)break;
+  }
+  if(chaseTime>18)finishResult();
+ }
+}
 function finishResult(){if(!outcome||state==='result')return;setState('result');particleList.length=0;saveCurrentResult();showResult()}
-function showResult(){const o=outcome;$('rankTitle').textContent=o.title;resizeText();$('precisionBreakdown').textContent=o.grades.map((v,i)=>`${i+1}声目：${(v.dist*100).toFixed(2)}%${v.dist>.018?'（要改善）':''}`).join('  ｜  ');let reach='宇宙、無傷で済んだ…';if(o.lastReached>=0){const last=o.lastReached;reach=o.statuses[last]===4?`${names[last]}まで完全破壊！`:`${names[last]}、${STATUS[o.statuses[last]]}！`;if(o.lastFull>=0&&o.lastFull<last)reach=`${names[o.lastFull]}まで完全破壊・${names[last]}に到達`;}if(o.statuses[7]===4)reach='太陽系、謝罪に耐えられず！';$('resultReached').textContent=reach;
+function showResult(){const o=outcome;$('rankTitle').textContent=o.title;$('resultPlayerName').textContent=currentRunName;resizeText();$('precisionBreakdown').textContent=o.grades.map((v,i)=>`${i+1}声目：${(v.dist*100).toFixed(2)}%${v.dist>.018?'（要改善）':''}`).join('  ｜  ');let reach='宇宙、無傷で済んだ…';if(o.lastReached>=0){const last=o.lastReached;reach=o.statuses[last]===4?`${names[last]}まで完全破壊！`:`${names[last]}、${STATUS[o.statuses[last]]}！`;if(o.lastFull>=0&&o.lastFull<last)reach=`${names[o.lastFull]}まで完全破壊・${names[last]}に到達`;}if(o.statuses[7]===4)reach='太陽系、謝罪に耐えられず！';$('resultReached').textContent=reach;
  const root=$('planetResults');root.replaceChildren();names.forEach((n,i)=>{const cell=document.createElement('div');cell.className='planetCell';cell.style.setProperty('--planet',colors[i]);const orb=document.createElement('span');orb.className='orb';const text=document.createElement('span');text.className='ptext';const nm=document.createElement('strong');nm.textContent=n;const s=document.createElement('small');s.textContent=STATUS[o.statuses[i]];s.className=o.statuses[i]===4?'full':o.statuses[i]>=2?'partial':'';text.append(nm,s);cell.append(orb,text);root.appendChild(cell)});
- boardView='all';renderBoard()}
-$('startBtn').onclick=beginGame;$('retryBtn').onclick=beginGame;$('skipBtn').onclick=()=>{if(state==='bow'||state==='destroy')finishResult()};
+// Actionable next-run information, derived from the actual BigInt threshold and grade gaps.
+ const destroyed=o.statuses.filter(s=>s===4).length;
+ $('resultCombo').textContent=`💥 ${destroyed}惑星完全崩壊　／　最大 ${bestCombo} COMBO`;
+ const next=o.statuses.findIndex(s=>s<4);
+ const weak=o.grades.map((v,i)=>({i,dist:v.dist,weighted:v.dist*[.31,.33,.36][i]})).sort((a,b)=>b.weighted-a.weighted)[0];
+ let message='';
+ if(o.ultra&&next<0){message='<b>神謝罪3連続・宇宙完全粉砕達成！</b> これ以上ない最上位判定。記録を共有しよう。';}else if(next>=0){const required=(thresholds[next]*BigInt(100+next*9)+99n)/100n;
+   const gap=required>o.energy?required-o.energy:0n;
+   message=`<b>次の目標：${names[next]}を完全破壊！</b>　必要威力まであと ${fmt(gap)} J。`;
+ }else{message='<b>太陽系完全崩壊！</b> 次は3回すべて神謝罪を狙おう。'}
+ const weakest=o.grades[weak.i];
+ const gid=GRADES.findIndex(g=>weakest.dist<=g.limit);
+ if(o.ultra&&next<0){/* all input already at the accuracy limit */}
+ else if(gid>0){const upper=GRADES[gid-1];const dist=Math.max(0,(weakest.dist-upper.limit)*100);
+  message+=`<br>第${weak.i+1}謝罪：あと ${dist.toFixed(2)}% 中心へ近づくと「${upper.name}」！`;
+ }else if(weakest.dist>.000001){message+=`<br>第${weak.i+1}謝罪をさらに中心へ（現在のズレ ${(weakest.dist*100).toFixed(2)}%）。`}
+ $('nextGoal').innerHTML=message;
+ boardView='all';historyShown=12;renderBoard()}
+$('startBtn').onclick=requestGameStart;$('retryBtn').onclick=requestGameStart;$('skipBtn').onclick=()=>{if(state==='bow'||state==='destroy')finishResult()};
 app.addEventListener('pointerdown',e=>{if(state==='timing'&&!e.target.closest('.topBtns')){if(e.target.closest('#hitBtn')||!e.target.closest('button')){e.preventDefault();audio.unlock();judge()}}});
 $('hitBtn').onclick=e=>{if(e.detail===0)judge()};
-addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat){e.preventDefault();audio.unlock();if(state==='timing')judge();else if(state==='title'||state==='result')beginGame();else if(state==='bow'||state==='destroy')finishResult()}});
-addEventListener('visibilitychange',()=>{lastNow=performance.now()/1000;if(document.hidden&&audio.ctx&&audio.ctx.state==='running')audio.ctx.suspend();else if(!document.hidden&&soundOn&&audio.ctx)audio.ctx.resume()});
+addEventListener('keydown',e=>{if(!$('nameDialog').classList.contains('hidden')){if(e.code==='Escape')closeNameDialog();return}if(e.code==='Space'&&!e.repeat){e.preventDefault();audio.unlock();if(state==='timing')judge();else if(state==='title'||state==='result')requestGameStart();else if(state==='bow'||state==='destroy')finishResult()}});
+addEventListener('visibilitychange',()=>{
+ const t=performance.now();lastNow=t/1000;
+ if(document.hidden){hiddenAtMs=t;if(audio.ctx&&audio.ctx.state==='running')audio.ctx.suspend()}
+ else{if(stageMode==='active'&&hiddenAtMs)timingAnchorMs+=Math.max(0,t-hiddenAtMs);
+ hiddenAtMs=0;if(soundOn&&audio.ctx)audio.ctx.resume()}
+});
 function drawMercuryConference(t=0,bow=0,force=0){drawSpace(elapsed,-1);
  // Mercury's cratered surface curves across the lower frame, placing the press conference ON the planet.
  const surfaceY=H*.79;const globeR=W*.90;ctx.save();ctx.beginPath();ctx.ellipse(W*.35,surfaceY+globeR*.70,globeR*1.33,globeR*.93,0,0,Math.PI*2);ctx.clip();const ground=ctx.createLinearGradient(0,surfaceY-.1*globeR,0,H);ground.addColorStop(0,'#c3a18d');ground.addColorStop(.26,'#706981');ground.addColorStop(1,'#19213c');ctx.fillStyle=ground;ctx.fillRect(0,H*.49,W,H*.6);for(let j=0;j<36;j++){const x=rand(j*8+3)*W,y=H*.71+rand(j*3.7)*H*.35,r=4+rand(j+37)*23;ctx.save();ctx.globalAlpha=.15;ctx.strokeStyle='#fee0ce';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(x,y,r,r*.23,.1,0,Math.PI*2);ctx.stroke();ctx.restore()}ctx.restore();
@@ -274,7 +473,7 @@ function drawPlanetCataclysm(i,x,y,r,progress){
  const burst=ease(clamp(p/.39)),smoke=ease(clamp((p-.12)/.8));
  ctx.save();ctx.globalCompositeOperation='screen';
  // Off-axis plumes break the perfect-circle look.
- for(let k=0;k<21;k++){
+ for(let k=0;k<(reduceMotion?10:21);k++){
    const seed=i*51+k*29,a=k*2.399963+i*.49,travel=r*(.14+p*(.44+rand(seed+7)*1.25)),px=x+Math.cos(a)*travel,py=y+Math.sin(a)*travel;
    const radius=r*(.20+rand(seed+11)*.20+p*.39);const grad=ctx.createRadialGradient(px,py,0,px,py,radius);
    const opacity=(1-p*.62)*(.43+rand(seed+4)*.34);
@@ -283,7 +482,7 @@ function drawPlanetCataclysm(i,x,y,r,progress){
  const rr=r*(.16+burst*1.17),white=ctx.createRadialGradient(x,y,0,x,y,rr);white.addColorStop(0,`rgba(255,255,225,${(1-p)*.98})`);white.addColorStop(.26,`rgba(255,201,103,${(1-p)*.78})`);white.addColorStop(1,'rgba(255,87,36,0)');ctx.fillStyle=white;ctx.fillRect(x-rr,y-rr,rr*2,rr*2);
  ctx.globalCompositeOperation='source-over';
  // Irregular cool smoke blooms on the OUTER EDGE behind the ejecta.
- for(let k=0;k<12;k++){
+ for(let k=0;k<(reduceMotion?6:12);k++){
    const a=k*2.4+i*.3,outer=r*(.57+smoke*(.65+rand(k*9+i)*.72)),px=x+Math.cos(a)*outer,py=y+Math.sin(a)*outer;
    const radius=r*(.22+smoke*.4),g=ctx.createRadialGradient(px,py,radius*.1,px,py,radius);
    g.addColorStop(0,`rgba(39,33,52,${smoke*.52*(1-p*.43)})`);g.addColorStop(.66,`rgba(76,42,58,${smoke*.22})`);g.addColorStop(1,'rgba(50,42,60,0)');ctx.fillStyle=g;ctx.fillRect(px-radius,py-radius,2*radius,2*radius);
@@ -342,79 +541,123 @@ function drawImpactCompression(x,y,r,phase,level){
  ctx.shadowBlur=0;ctx.globalAlpha=(1-p)*.32;ctx.fillStyle='#ffb86e';ctx.beginPath();ctx.ellipse(x-r*.83,y,r*.16*(1+side),r*.72,0,0,Math.PI*2);ctx.fill();
  ctx.restore();
 }
-function drawSolarChase(t){const {i,phase}=stageInfo(t);const idx=Math.min(7,i),start=WORLD[Math.max(0,idx-1)],dest=WORLD[idx];const travelling=phase<TRAVEL;const travelProgress=ease(clamp(phase/TRAVEL));
-// The lens follows the pressure front, then locks on the planet for the heating / rupture verdict.
-const zoom=lerp(.86,1.05,clamp((phase-TRAVEL+.28)/.53));const camera=travelling?lerp(start,dest,travelProgress):dest;lastCameraX=camera;
-drawSpace(elapsed,idx);if(travelling)drawStreaks(t,1.20+travelProgress*.60);
-const planetY=H*.475,r=W*(travelling?.255:.31);const centerX=W*.52;
-for(let j=Math.max(0,idx-1);j<=Math.min(7,idx+1);j++){
-const px=centerX+(WORLD[j]-camera)*zoom;const size=r*(j===idx?1:(j<idx?.75:.83));if(px<-size*2.9||px>W+size*2.9)continue;
-const level=outcome.statuses[j];let alpha=j<idx?(level===4?.12:level===3?.50:.84):1;
-const local=j===idx&&!travelling;const waitPhase=clamp((phase-TRAVEL-.085)/(JUDGE-.085));
-const strikePhase=clamp((phase-TRAVEL-JUDGE)/STRIKE);
-const heat=local?(phase<TRAVEL+JUDGE?ease(waitPhase):level===4?1:1-ease(strikePhase)*.80):0;
-// Cracks remain on surviving planets, and completed destroyed orbs remain as drifting rubble.
-ctx.save();if(local&&heat>.01)drawCorona(px,planetY,size,heat*.7,j);
-if(j<idx&&level===4){drawShards(j,px,planetY,size*.85,.95);ctx.restore();continue;}
-if(local&&level===4&&strikePhase>.16)alpha*=1-ease(clamp((strikePhase-.16)/.33));
-if(alpha>.015){ctx.globalAlpha=alpha;drawPlanet(j,px,planetY,size,Math.sin(t*.17+j)*.05);ctx.globalAlpha=1}
-if(j<idx&&level>0&&level<4){ctx.globalAlpha=.53;drawCracks(px,planetY,size,j,level/4);ctx.globalAlpha=1}
-if(local){if(phase<TRAVEL+JUDGE)drawImpactCompression(px,planetY,size,waitPhase,level);if(heat>.01&&alpha>.02){ctx.globalAlpha=alpha;drawThermalPlanet(j,px,planetY,size,heat,Math.max(1,level));ctx.globalAlpha=1}
-if(phase>=TRAVEL+JUDGE){const p=strikePhase;
- if(level===4){drawPlanetCataclysm(j,px,planetY,size,p);}
- else{const damage=Math.min(level,3);if(damage>0){drawCracks(px,planetY,size,j,damage/4);if(p>.16)drawEnergyRings(px,planetY,size,p*.65,j)}else{ctx.save();ctx.globalAlpha=(1-p)*.22;drawEnergyRings(px,planetY,size,.15,j);ctx.restore()}}
+function drawSolarChase(t){
+ const y=H*.475,r=Math.min(W*.265,H*.205),anchor=W*.355;
+ const next=Math.min(7,impactIndex),d=stopIndex>=0?0:WORLD[next]-waveX;
+ const near=stopIndex>=0?0:1-clamp((d-r)/(W*1.15));
+ // A subtle focus zoom while the world keeps translating across the shockfront.
+ const zoom=1+.085*ease(near);
+ lastCameraX=waveX;const active=Math.min(7,Math.max(1,impactIndex-1));
+ drawSpace(elapsed,active);
+ drawStreaks(t,1.12+combo*.13+Math.min(.4,chaseTime*.04));
+ // The wave does not wait for any planet's destruction animation to finish.
+ // Multiple event animations can overlap in the same frame.
+ for(let j=1;j<8;j++){
+  const x=anchor+(WORLD[j]-waveX)*zoom;
+  if(x<-r*3.2||x>W+r*3.2)continue;
+  const evt=impactEvents[j],level=outcome.statuses[j];
+  if(!evt){
+   ctx.save();const ahead= j===impactIndex ? clamp((r*1.85-(x-anchor))/(r*1.85)) : 0;
+   if(ahead>0)drawCorona(x,y,r,ahead*.15,j);
+   drawPlanet(j,x,y,r,Math.sin(t*.13+j)*.035);
+   // The sphere feels the wall before fracture; only contact triggers actual heat/damage.
+   if(ahead>0)drawImpactCompression(x,y,r,ahead*.50,level);
+   ctx.restore();
+   continue;
+  }
+  const age=evt.age;
+  ctx.save();
+  if(level===4){
+   // Contact = immediate bright impact; 80ms stress, then huge chunks peel away.
+   if(age<.19){const squash=1-.13*ease(clamp(age/.095));ctx.save();ctx.translate(x,y);ctx.scale(squash,1+.045*(1-squash));
+    const intensity=ease(clamp(age/.12));drawPlanet(j,0,0,r,0,1-ease(clamp((age-.07)/.12))*.84);
+    drawThermalPlanet(j,0,0,r,Math.max(.43,intensity),4);ctx.restore();}
+   const p=clamp((age+.045)/.94);
+   drawPlanetCataclysm(j,x,y,r,p);
+   if(age<.61)drawEnergyRings(x,y,r,clamp((age+.04)/.58),j);
+   if(age<.20)drawImpactCompression(x,y,r,clamp((age+.03)/.20),4);
+  }else{
+   const heat=age<.21?clamp(age/.15):Math.max(.12,1-(age-.21)*.8);
+   const squash=1-.15*ease(clamp(age/.11))+.15*ease(clamp((age-.11)/.28));
+   ctx.save();ctx.translate(x,y);ctx.scale(squash,1+.035*(1-squash));
+   drawPlanet(j,0,0,r,Math.sin(t*.11+j)*.03);
+   if(level>0){drawThermalPlanet(j,0,0,r,Math.max(heat,.14),Math.min(3,level));drawCracks(0,0,r,j,level/4);}
+   else if(age<.5)drawCorona(0,0,r,heat*.45,j);
+   ctx.restore();
+   if(age<.53){drawImpactCompression(x,y,r,clamp(age/.29),level);drawEnergyRings(x,y,r,clamp(age/.65),j);}
+  }
+  if(age<.56){const msg=level===4?'ドゴォォン!!':level>=2?'メリメリ…':'耐 え た!!';
+   ctx.save();ctx.globalAlpha=clamp(age/.06)*clamp((.60-age)/.24);
+   rimText(msg,x,y-r*1.38,Math.min(W*.067,29),level===4?'#ffe2a0':'#d6f3ff','#5e2946',5);ctx.restore();}
+  ctx.restore();
+ }
+ const level=outcome.statuses[Math.min(7,impactIndex)];
+ const amp=.30+.70*(level/4);
+ const opacity=stopIndex>=0?clamp(finishWait/.78):1;
+ // Pressure wall stays in view for its entire trip; incoming planets fly into it.
+ if(opacity>0){drawShockFront(anchor,y,t,amp,opacity);
+  ctx.save();ctx.globalAlpha=opacity*.75;const front=ctx.createRadialGradient(anchor-7,y,0,anchor-7,y,r*.58);
+  front.addColorStop(0,'#ffffffde');front.addColorStop(.27,'#b8f2ffe0');front.addColorStop(.67,'#78caff54');front.addColorStop(1,'#5b9eff00');ctx.fillStyle=front;
+  ctx.fillRect(anchor-r*.6,y-r*.6,r*1.2,r*1.2);ctx.restore();}
+ if(stopIndex===7&&outcome.statuses[7]===4&&finishWait>0){
+  const center=anchor+(WORLD[7]-waveX)*zoom;
+  ctx.save();ctx.globalAlpha=.56*clamp(finishWait/.75);
+  rimText('太陽系、大謝罪完了。',W*.5,H*.32,Math.min(32,W*.07),'#ffe2ae','#753345',6);ctx.restore();
  }
 }
-ctx.restore();}
-if(travelling){const waveWorld=lerp(start,dest,travelProgress),wx=centerX+(waveWorld-camera)*zoom;drawShockFront(wx,planetY,t,1,.90+travelProgress*.10);
-}else if(phase<TRAVEL+JUDGE){const p=clamp((phase-TRAVEL)/JUDGE);drawShockFront(centerX-r*.95-14*ease(p),planetY,t,.74,1-p*.86);
-// Heat pressure gauge allows the player to read the incoming verdict, not just a hard cut.
-const bx=centerX-r*.75,by=planetY+r*1.58,bw=r*1.5;ctx.save();roundRect(bx,by,bw,9,5,'#14203b','#a5b9da88',1);roundRect(bx+2,by+2,(bw-4)*ease(p),5,3,p>.72?'#ff4d36':'#ff9b55');ctx.restore();
-rimText(p>.65?'臨界温度に接近…':'衝撃吸収中…',centerX,by+29,Math.min(W*.050,20),p>.65?'#ffbd80':'#f6e1c2','#10172d',4);
-}else{const level=outcome.statuses[idx];const p=clamp((phase-TRAVEL-JUDGE)/STRIKE);
-if(level===4&&p>.12){rimText(['惑星、大破ッ！','粉　砕　ッ!!','完全崩壊!!'][Math.min(2,Math.floor(p*3))],centerX,planetY-r*1.55,Math.min(34,W*.080),'#ffe7ac','#9b253b',6)}
-else if(level<4&&p>.12){rimText(level===0?'耐　え　た!!':level===3?'半　壊!!':'亀　裂!!',centerX,planetY-r*1.50,Math.min(30,W*.070),'#fff0be','#7c3548',5)}
-}
-}
 function drawResultBack(t){drawSpace(t,Math.max(0,outcome?.lastReached??0));const idx=Math.max(0,outcome?.lastReached??2);drawPlanet(idx,W*.82,H*.30,W*.37,Math.sin(t*.11)*.07,.27);const g=ctx.createLinearGradient(0,H*.20,0,H);g.addColorStop(0,'#030a1900');g.addColorStop(1,'#03081ac9');ctx.fillStyle=g;ctx.fillRect(0,0,W,H)}
-function render(dt){ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);ctx.save();let sh=0;if(!reduceMotion&&state==='bow'&&sceneTime>.69&&sceneTime<1.22&&outcome?.statuses[0]===4)sh=Math.sin(sceneTime*114)*4.1*(1-(sceneTime-.69)/.53);ctx.translate(sh,sh*.5);
+function render(dt){ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);ctx.save();let sh=0;if(!reduceMotion&&state==='bow'&&sceneTime>.69&&sceneTime<1.22&&outcome?.statuses[0]===4)sh=Math.sin(sceneTime*114)*4.1*(1-(sceneTime-.69)/.53);if(!reduceMotion&&state==='destroy'&&shakeTime>0)sh+=Math.sin(chaseTime*165)*Math.min(4.6,shakeTime*21);ctx.translate(sh,sh*.5);
  if(state==='title'||state==='timing')drawMercuryConference(elapsed,0,0);
  else if(state==='bow'){const b=sceneTime<.65?.08:sceneTime<.85?ease((sceneTime-.65)/.2)*1.17:1.17;const blast=clamp((sceneTime-.71)/1.15);drawMercuryConference(sceneTime,b,blast);drawMercuryImplosion(blast);}
  else if(state==='destroy')drawSolarChase(sceneTime);else drawResultBack(elapsed);
  updateParticles(dt);drawParticles();drawVignette();ctx.restore()}
-function frame(ms){const t=ms/1000;let dt=lastNow?clamp(t-lastNow,0,.05):.016;lastNow=t;if(document.hidden){requestAnimationFrame(frame);return;}elapsed+=dt;sceneTime+=dt;if(state==='timing')resolveStage(dt);else if(state==='bow'||state==='destroy')updateBlast(dt);if(elapsed>toastUntil)$('toast').classList.add('hidden');audio.bg();render(dt);requestAnimationFrame(frame)}
+function frame(ms){const t=ms/1000;let dt=lastNow?clamp(t-lastNow,0,.12):.016;lastNow=t;if(document.hidden){requestAnimationFrame(frame);return;}elapsed+=dt;
+ const liveDt=(state==='bow'||state==='destroy')&&hitStop>0?0:dt;
+ if(hitStop>0)hitStop=Math.max(0,hitStop-dt);
+ sceneTime+=liveDt;
+ if(state==='timing')resolveStage(dt);else if(state==='bow'||state==='destroy')updateBlast(liveDt);if(elapsed>toastUntil)$('toast').classList.add('hidden');audio.bg();render(liveDt);requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
 // Result card uses the real score and locally stored rank. No fabricated world leaderboard.
 function makeCard(){if(!outcome)throw Error('結果がありません');const c=document.createElement('canvas');c.width=1200;c.height=630;const g=c.getContext('2d');const grad=g.createLinearGradient(0,0,1200,630);grad.addColorStop(0,'#071024');grad.addColorStop(.63,'#13274c');grad.addColorStop(1,'#2d214c');g.fillStyle=grad;g.fillRect(0,0,1200,630);
  for(let k=0;k<160;k++){const x=rand(k+5)*1200,y=rand(k*8+11)*630;g.fillStyle=k%4?'#d5ecff55':'#ffe4bba8';g.fillRect(x,y,k%6===0?3:1,k%6===0?3:1)}
  const img=planetCache(Math.max(0,outcome.lastReached));g.globalAlpha=.43;g.drawImage(img,830,80,440,440);g.globalAlpha=1;
  g.fillStyle='#ffe29a';g.fillRect(60,52,8,38);g.fillStyle='#b9e6ff';g.font='bold 22px sans-serif';g.fillText('ASOBEAT / COSMIC APOLOGY',84,81);g.fillStyle='#ffffff';g.font='900 74px "Yu Gothic",sans-serif';g.fillText('超謝罪会見',60,165);
- g.fillStyle='#c9d8f0';g.font='bold 22px sans-serif';g.fillText('最終謝罪威力',60,224);
+ g.fillStyle='#ffe5a8';g.font='bold 21px "Yu Gothic",sans-serif';g.fillText('謝罪者：'+currentRunName,60,200);g.fillStyle='#c9d8f0';g.font='bold 22px sans-serif';g.fillText('最終謝罪威力',60,224);
  const val=fmt(outcome.energy);let font=val.length>33?32:val.length>27?39:47;g.font=`900 ${font}px sans-serif`;while(g.measureText(val).width>1045&&font>18){font--;g.font=`900 ${font}px sans-serif`};g.fillStyle='#ffe49c';g.fillText(val,60,297);g.font='900 31px sans-serif';g.fillText('J',60,334);
  g.fillStyle='#f7f6ff';g.font='900 27px "Yu Gothic",sans-serif';g.fillText($('resultReached').textContent,60,386);
  g.fillStyle='#ffe099';g.font='bold 24px "Yu Gothic",sans-serif';g.fillText('称号：'+outcome.title,60,426);
  const ar=sortedRecords();const rank=ar.findIndex(r=>r.id===currentRecordId);g.fillStyle='#b6def3';g.font='bold 19px sans-serif';g.fillText(rank>=0?`この端末：${rank+1}位 / ${ar.length}件`:'ランキング：ローカル',61,458);
  for(let j=0;j<8;j++){const x=61+(j%4)*280,y=476+Math.floor(j/4)*64;g.fillStyle='#152749df';g.beginPath();g.roundRect(x,y,265,55,11);g.fill();g.save();g.beginPath();g.arc(x+27,y+27,17,0,Math.PI*2);g.clip();g.drawImage(planetCache(j),x+10,y+10,34,34);g.restore();g.fillStyle='#fff';g.font='bold 18px sans-serif';g.fillText(names[j],x+52,y+23);g.fillStyle=outcome.statuses[j]===4?'#ffe192':'#c3d4ed';g.font='bold 14px sans-serif';g.fillText(STATUS[outcome.statuses[j]],x+52,y+43)}
  g.font='14px sans-serif';g.fillStyle='#93a8c3';g.fillText('※ 破壊エネルギーはゲーム独自の架空設定です',61,620);return c}
-function shareText(){const o=outcome;const where=o.lastReached<0?'惑星は無傷':names[o.lastReached]+'まで衝撃到達';const rank=sortedRecords().findIndex(r=>r.id===currentRecordId);const url=location.protocol==='https:'||location.protocol==='http:'?location.origin+location.pathname:'';return `水星で謝罪会見したら、${where}！\n謝罪威力：${fmt(o.energy)} J\n称号：${o.title}\n${rank>=0?'この端末のランキング '+(rank+1)+'位\n':''}あなたはどこまで謝罪できる？\n超謝罪会見 / ASOBEAT\n${url}\n#ゲーム開発 #gamedev`.trim()}
+function shareText(){const o=outcome;const where=o.lastReached<0?'惑星は無傷':names[o.lastReached]+'まで衝撃到達';const rank=sortedRecords().findIndex(r=>r.id===currentRecordId);const url=location.protocol==='https:'||location.protocol==='http:'?location.origin+location.pathname:'';return `水星で謝罪会見したら、${where}！\n謝罪者：${currentRunName}\n謝罪威力：${fmt(o.energy)} J\n称号：${o.title}\n${rank>=0?'この端末のランキング '+(rank+1)+'位\n':''}あなたはどこまで謝罪できる？\n超謝罪会見 / ASOBEAT\n${url}\n#ASOBEAT #超謝罪会見`.trim()}
 const pngBlob=c=>new Promise((resolve,reject)=>{try{c.toBlob(b=>b?resolve(b):reject(Error('画像を作成できません')),'image/png')}catch(e){reject(e)}});
-async function saveCard(){try{const b=await pngBlob(makeCard()),u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='choushazai-result-v12.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),7000);toast('結果画像を保存しました')}catch(e){toast('画像保存に失敗しました。スクリーンショットをご利用ください')}}
-async function share(){if(!outcome)return;const text=shareText();try{const blob=await pngBlob(makeCard());const f=new File([blob],'choushazai-result-v12.png',{type:'image/png'});if(navigator.share&&navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({title:'超謝罪会見',text,files:[f]});return}}catch(e){if(e&&e.name==='AbortError')return}
- try{await navigator.clipboard.writeText(text);toast('投稿文をコピーしました。結果画像は保存して添付できます')}catch(e){toast('画像を保存し、X投稿時に添付してください')}
- const u='https://twitter.com/intent/tweet?text='+encodeURIComponent(text);const w=window.open(u,'_blank','noopener,noreferrer');if(!w)toast('ポップアップが開けません。画像保存・文章コピーをご利用ください')}
+async function saveCard(){try{const b=await pngBlob(makeCard()),u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='choushazai-result-v131-player.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),7000);toast('結果画像を保存しました')}catch(e){toast('画像保存に失敗しました。スクリーンショットをご利用ください')}}
+function share(){
+ if(!outcome)return;const msg=shareText();
+ const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(msg);
+ // User-gesture synchronous opening prevents iPhone Safari from blocking the window.
+ const win=window.open(url,'_blank','noopener,noreferrer');
+ if(!win){try{navigator.clipboard.writeText(msg).then(()=>toast('投稿文をコピーしました')).catch(()=>{});}catch(_){}
+   toast('X投稿画面を開けない場合は投稿文をコピーしてご利用ください');}
+}
+
 $('saveBtn').onclick=saveCard;$('shareBtn').onclick=share;
-loadRecords();
+loadRecords();loadProfile();
 if(new URLSearchParams(location.search).has('qa'))window.__QA={
- snapshot:()=>({state,stageMode,stageIndex,cursorPos,stageClock,judgments:judgments.map(x=>({...x})),energy:outcome?.energy.toString()||null,statuses:outcome?.statuses||null,lastReached:outcome?.lastReached,lastFull:outcome?.lastFull,sceneTime,cameraX:lastCameraX,rank:sortedRecords().findIndex(r=>r.id===currentRecordId)+1}),
+ snapshot:()=>({registeredName,currentRunName,nameDialogVisible:!$('nameDialog').classList.contains('hidden'),state,stageMode,stageIndex,cursorPos,stageClock,judgments:judgments.map(x=>({...x})),energy:outcome?.energy.toString()||null,statuses:outcome?.statuses||null,lastReached:outcome?.lastReached,lastFull:outcome?.lastFull,sceneTime,cameraX:lastCameraX,waveX,waveSpeed,hitStop,combo,bestCombo,stopIndex,impactIndex,impactLog:impactLog.map(x=>({...x})),ages:impactEvents.map(x=>x?.age??null),rank:sortedRecords().findIndex(r=>r.id===currentRecordId)+1}),
  grade:(pos,idx=0)=>classify(pos,steps[idx].target,idx),
  targetAt:(t,idx=0)=>targetAt(t,steps[idx]),cursorAt:(t,idx=0)=>cursorAt(t,steps[idx]),
  calculate:(positions)=>{const o=buildOutcome(positions.map((p,i)=>classify(p,steps[i].target,i))); return{energy:o.energy.toString(),statuses:o.statuses,lastReached:o.lastReached}},
  forceRun:(positions=[.58,.39,.66])=>{judgments=positions.map((p,i)=>classify(p,steps[i].target,i));beginBow()},
  pressAt:p=>judge(false,p),
  setTime:t=>{sceneTime=t;render(0)},
+ simulate:(seconds,step=1/60)=>{const n=Math.ceil(seconds/step);for(let j=0;j<n;j++){const dt=Math.min(step,seconds-j*step);const live=(state==='bow'||state==='destroy')&&hitStop>0?0:dt;hitStop=Math.max(0,hitStop-dt);sceneTime+=live;updateBlast(live)}render(0);return{state,waveX,combo,impactLog:impactLog.map(x=>({...x}))}},
  finish:finishResult,
  image:()=>makeCard().toDataURL('image/png'),
  clearRecords:()=>{localRecords=[];saveRecords()},
+ getProfile:()=>registeredName,
+ registerName:(name)=>savePlayerName(name),
+ openName:()=>openNameDialog('change'),
  getRecords:()=>localRecords.map(r=>({...r})),
  shareText:()=>shareText(),
  setMotion:v=>{reduceMotion=!!v},
