@@ -2,7 +2,7 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#080d25"><meta name="description" content="水星で3回謝罪したら太陽系が崩壊!? ASOBEATの無料2Dバカゲー『超謝罪会見』。">
-<title>超謝罪会見 Ver.1.4 ONLINE RANKING | ASOBEAT</title>
+<title>超謝罪会見 Ver.1.4.1 RANK FIRST | ASOBEAT</title>
 <style>:root{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;color:#fff;--yellow:#ffdd70;--bright:#65e8ff;--coral:#ff657f;--text:#f5f7ff;--muted:#a5b4d6;touch-action:manipulation;color-scheme:dark}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#030719}body{display:flex;align-items:center;justify-content:center}button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:3px solid #7dd9ff;outline-offset:3px}
 #app{position:relative;width:min(100vw,520px);height:100dvh;max-height:980px;overflow:hidden;touch-action:none;isolation:isolate;background:#06102c;box-shadow:0 0 70px #000c}#world{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}#grain{position:absolute;inset:0;z-index:1;opacity:.09;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.16' d='M0 0h160v160H0z'/%3E%3C/svg%3E")}#flash{position:absolute;inset:0;z-index:8;pointer-events:none;opacity:0;background:#ffe9c2}.flash{animation:flash .25s ease-out}@keyframes flash{0%{opacity:.48}100%{opacity:0}}
@@ -75,12 +75,66 @@
 .onlineBoard .boardRow{display:grid;grid-template-columns:36px minmax(0,1fr) minmax(80px,auto);align-items:center;gap:6px;margin:4px 0}
 .onlineBoard .boardScore{font-size:clamp(10px,2.6vw,13px);overflow-wrap:anywhere;text-align:right}
 .onlineBoard .boardLabel{min-width:0}.onlineBoard .boardLabel strong{overflow-wrap:anywhere}.onlineBoard .emptyBoard{padding:18px 7px;text-align:center}
-</style></head><body><main id="app" aria-label="超謝罪会見 Ver.1.4 ONLINE RANKING">
+
+/* Ver.1.4.1: 全国オンラインランキングを結果直下へ移動し、視認性を大幅強化 */
+.onlineBoard{order:0;margin-top:2px;padding:15px 12px 12px;border-radius:19px;
+ border:2px solid #ffd775;box-shadow:0 0 0 1px #fff4c52b,0 0 30px #ffd75d25,0 12px 30px #0009;
+ background:radial-gradient(ellipse at 90% 0%,#275b95b0,transparent 54%),linear-gradient(155deg,#142858,#080f2b 70%);}
+.onlineHero{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;min-width:0;margin-bottom:12px}
+.onlineHeroText{min-width:0;flex:1}.onlineEyebrow{font-size:9px;letter-spacing:.6px;font-weight:900;color:#9bddff}
+.onlineHero h2{font-size:clamp(21px,5.6vw,29px);line-height:1.15;letter-spacing:-.5px;font-weight:1000;color:#fff5c2;margin:5px 0 5px;text-shadow:0 3px 13px #102e5c}
+.onlineHero p{font-size:11px;color:#d3e7ff;font-weight:850;margin:0}
+.onlineNarrow{display:none}
+.onlineStatus{flex:none;border:1px solid #a9ddff80;border-radius:99px;padding:5px 7px;background:#0a1b43;font-weight:900;color:#baf0ff;font-size:9px;max-width:105px;text-align:center;overflow-wrap:anywhere}
+.onlineMyCard{border:1px solid #ffe399c9;border-radius:13px;padding:10px 12px;margin:0 0 12px;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px;background:linear-gradient(115deg,#564018d9,#20254be8);box-shadow:inset 0 1px #fff3bc46}
+.onlineMineTitle{display:flex;flex-direction:column;gap:2px;min-width:100px}.onlineMineTitle small{color:#ffcf83;letter-spacing:1px;font-size:8px;font-weight:950}.onlineMineTitle strong{font-size:12px;font-weight:950;color:#fff6dc}
+.onlineMineValues{display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:0;text-align:right}.onlineMineValues strong{font-size:clamp(17px,4.8vw,25px);font-weight:1000;color:#ffe083;line-height:1.2;overflow-wrap:anywhere}.onlineMineValues span{color:#e8ecff;font-size:10px;line-height:1.3;overflow-wrap:anywhere;font-weight:800}
+.onlineBoard .onlineTabs{display:grid;grid-template-columns:1fr 1fr auto;gap:6px;margin:0 0 14px;flex-wrap:nowrap}
+.onlineBoard .onlineTabs .tab{font-size:clamp(10px,2.7vw,12px);border-radius:10px;min-height:39px;padding:8px 4px;white-space:nowrap}
+.onlineBoard .onlineTabs .tab.selected{background:linear-gradient(#fff0ae,#ffcf69);box-shadow:0 2px 0 #a9783a}
+.onlineBoard .onlineTabs .onlineReload{min-width:54px;flex:none}
+.onlineListHead{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px;color:#f6faff}.onlineListHead strong{font-size:12px}.onlineListHead small{font-size:9px;color:#abc1d9}
+.onlineBoard .boardRows{display:flex;flex-direction:column;max-height:330px;overflow-y:auto;overflow-x:hidden;gap:5px;padding-right:1px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;scrollbar-color:#6994c6 transparent}
+.onlineBoard .boardRow{display:grid;grid-template-columns:33px minmax(0,1fr) minmax(92px,41%);gap:6px;align-items:center;padding:9px 8px;margin:0;min-height:55px;border:1px solid #92bceb35;border-radius:11px;background:linear-gradient(95deg,#22345a9c,#162648b0)}
+.onlineBoard .boardRow.podium{min-height:65px;padding:10px 8px}
+.onlineBoard .boardRow.podium-1{background:linear-gradient(110deg,#94703488,#4c3c2259,#152644);border-color:#ffdd84c9;box-shadow:inset 0 0 10px #ffc65f18}
+.onlineBoard .boardRow.podium-2{background:linear-gradient(110deg,#556c8c85,#1b2946c9);border-color:#bcc9e9a6}
+.onlineBoard .boardRow.podium-3{background:linear-gradient(110deg,#7152398c,#222440d9);border-color:#e7aa75a6}
+.onlineBoard .boardRow.me{outline:2px solid #ffe39b;outline-offset:-2px}
+.onlineBoard .medal{width:auto;display:block;font-size:clamp(12px,3.2vw,21px);line-height:1.2}
+.onlineBoard .boardLabel{display:flex;flex-direction:column;gap:3px;min-width:0;white-space:normal;overflow:hidden}
+.onlineBoard .boardLabel strong{color:#fff;font-size:clamp(11px,3.2vw,14px);line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.onlineBoard .boardLabel small{font-size:9px;white-space:nowrap;color:#b5d4ed}
+.onlineBoard .boardScore{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;max-width:none;min-width:0;text-align:right;white-space:normal;line-height:1.2;font-size:clamp(11px,2.8vw,14px);font-variant-numeric:tabular-nums}
+.onlineBoard .scoreNum{color:#ffe6a2;font-weight:1000;overflow-wrap:anywhere;word-break:break-word}.onlineBoard .scoreUnit{font-size:9px;color:#d1e3f8;letter-spacing:.5px;font-weight:800}
+.onlineBoard .emptyBoard{padding:21px 10px;text-align:center;background:#142647a8;border:1px dashed #759fd56a;border-radius:9px;color:#daedff;font-size:12px;line-height:1.55}
+.onlineDisclosure{margin-top:11px;border-top:1px solid #ffffff21;padding-top:9px;color:#aec5e2;font-size:10px;line-height:1.6}
+.onlineDisclosure summary{cursor:pointer;list-style:revert;font-weight:850;touch-action:manipulation}.onlineDisclosure p{margin:8px 0 0}
+.detailSeparator{margin:15px 2px 0;text-align:center;padding:8px;color:#a9cced;border-top:1px solid #ffffff24;font-size:11px;font-weight:900;letter-spacing:.5px}
+#resultScene>.actions{margin:2px 0 3px}
+#resultScene>.nextGoal{margin:3px 0 0}
+@media(max-width:380px){.resultScene{padding-left:11px;padding-right:11px}.onlineBoard{padding:12px 9px}.onlineHero h2{font-size:21px}.onlineNarrow{display:block}.onlineStatus{font-size:9px;max-width:85px}.onlineMineTitle{min-width:80px}.onlineMyCard{padding:9px}.onlineBoard .boardRow{grid-template-columns:25px minmax(0,1fr) minmax(89px,42%);padding:8px 6px}.onlineBoard .onlineTabs .tab{font-size:10px}}
+@media(max-height:690px){.onlineBoard .boardRow:nth-child(n+4){display:grid}.onlineBoard .boardRows{max-height:280px}.onlineBoard{margin-top:1px}.resultScene{gap:8px}}
+@media(prefers-reduced-motion:reduce){.onlineBoard{scroll-behavior:auto}}
+
+/* 細い縦画面でも、結果から全国ランキングへ自然につながるよう高さを圧縮 */
+.resultLead h1{font-size:clamp(29px,7.5vw,38px);margin:3px 0}
+.resultIdentity{margin:3px 0 6px}
+.rankTitle{padding:5px 13px}
+.resultPower{padding:10px 11px}
+.resultJ{font-size:clamp(16px,4.8vw,24px);line-height:1.25;margin:5px 0 0}
+.rJ{font-size:19px}
+.resultReached{padding:8px 5px;margin-top:8px}
+.precisionBreakdown{margin-top:3px;font-size:9px}
+.resultCombo{margin:4px auto 1px;font-size:11px}
+.onlineNarrow{display:block}
+@media(min-width:600px){.onlineNarrow{display:none}}
+</style></head><body><main id="app" aria-label="超謝罪会見 Ver.1.4.1 RANK FIRST">
 <canvas id="world" aria-label="惑星と会見シーンの2Dアニメーション"></canvas>
 <div id="grain" aria-hidden="true"></div><div id="flash" aria-hidden="true"></div>
 <header class="topbar"><div class="brand"><span class="mark">A</span><div>ASOBEAT <span>/ 宇宙規模の謝罪</span></div></div><div class="topBtns"><button class="mini" id="soundBtn" aria-label="音声切替">♪ ON</button><button class="mini" id="motionBtn" aria-label="演出の軽減">演出 ON</button></div></header>
 <section id="titleScene" class="scene titleScene">
- <div class="titleTop"><div class="tag">水星発／宇宙史上最悪の会見</div><div class="logo"><span class="logoBig">超</span><span class="logoRest">謝罪会見<span class="bang">!!</span></span></div><p>謝罪は、宇宙を破壊する。</p><span class="ver">Ver.1.4 · ONLINE RANKING</span></div>
+ <div class="titleTop"><div class="tag">水星発／宇宙史上最悪の会見</div><div class="logo"><span class="logoBig">超</span><span class="logoRest">謝罪会見<span class="bang">!!</span></span></div><p>謝罪は、宇宙を破壊する。</p><span class="ver">Ver.1.4.1 · RANK FIRST</span></div>
  <div class="titleFoot"><div id="playerProfile" class="playerProfile hidden"><span class="registeredName"><small>登録済みプレイヤー</small><strong id="profileName">匿名</strong></span><button type="button" id="changeNameBtn" class="changeNameBtn">名前変更 <span aria-hidden="true">✎</span></button></div><div class="tipRow"><span>3回タップで謝罪</span><span>惑星8つを破壊せよ</span></div><button id="startBtn" class="primary">謝罪会見を始める <b>→</b></button><div class="subtext">結果はJ（ジュール）で記録！　ランキングとX共有対応</div></div>
 </section>
 <section id="timingScene" class="scene timingScene hidden">
@@ -99,17 +153,35 @@
 </section>
 <section id="resultScene" class="scene resultScene hidden">
  <div class="resultLead"><span>ASOBEAT / 宇宙被害報告書</span><h1>超謝罪会見</h1><div class="resultIdentity"><span>謝罪者：<strong id="resultPlayerName">匿名</strong></span><button type="button" id="resultChangeNameBtn">次回の名前を変更</button></div><div id="rankTitle" class="rankTitle">新人謝罪社員</div></div>
- <div class="resultPower"><div class="rpLabel">最終謝罪威力</div><div id="resultJ" class="resultJ">0</div><div class="rJ">J <small>ジュール ／ ゲーム内架空基準</small></div><div id="resultReached" class="resultReached">水星に到達！</div><div id="precisionBreakdown" class="precisionBreakdown"></div><div id="resultCombo" class="resultCombo"></div><div id="nextGoal" class="nextGoal"></div></div>
- <div class="sectionCaption">惑星別 被害報告 <small>左から右へ衝撃波が進行</small></div><div id="planetResults" class="planetResults"></div>
- <div class="localLeaderboard"><div class="boardHead"><span>この端末のプレイヤー記録</span><small id="boardTag">ローカル記録</small></div><div class="tabs"><button id="allTab" class="tab selected">歴代TOP</button><button id="todayTab" class="tab">本日のTOP</button><button id="historyTab" class="tab">プレイ履歴</button></div><div id="boardRows" class="boardRows"></div><button type="button" id="moreHistoryBtn" class="historyMore hidden">さらに10件見る ▼</button><div id="myRank" class="myRank">今回の順位 —</div><div id="bestRank" class="bestRank">自己ベスト —</div><p class="boardNote">※ 名前とスコアはこのブラウザに保存されます。別の端末との共通ランキングではありません。以前の名前なし記録は「匿名」と表示します。</p></div>
- <section id="onlineBoard" class="onlineBoard" aria-label="全国オンラインランキング">
- <div class="boardHead"><span>🌏 全国オンラインランキング</span><small id="onlineStatus">接続準備中</small></div>
- <div class="tabs"><button id="onlineAll" class="tab selected" type="button">歴代TOP100</button><button id="onlineWeek" class="tab" type="button">週間TOP100</button><button id="onlineReload" class="tab" type="button">↻ 更新</button></div>
- <div id="onlineRows" class="boardRows"><div class="emptyBoard">ランキング接続中…</div></div>
- <div id="onlineMyRank" class="myRank">オンライン自己ベスト：読み込み中</div>
- <p class="boardNote">※記録はプレイヤーごとに自己ベスト1件。週間はUTC基準の月曜開始。匿名認証を利用します。<br>※端末変更・ブラウザデータ削除では同一プレイヤーとして引き継げません。</p>
+ <div class="resultPower"><div class="rpLabel">最終謝罪威力</div><div id="resultJ" class="resultJ">0</div><div class="rJ">J <small>ジュール ／ ゲーム内架空基準</small></div><div id="resultReached" class="resultReached">水星に到達！</div><div id="precisionBreakdown" class="precisionBreakdown"></div><div id="resultCombo" class="resultCombo"></div></div>
+  <section id="onlineBoard" class="onlineBoard" aria-labelledby="onlineHeading">
+  <div class="onlineHero">
+    <div class="onlineHeroText">
+      <span class="onlineEyebrow">🌏 ASOBEAT / GLOBAL CHALLENGE</span>
+      <h2 id="onlineHeading">全国オンライン<br class="onlineNarrow">ランキング <span aria-hidden="true">🏆</span></h2>
+      <p>あなたの謝罪は、全国何位？</p>
+    </div>
+    <span id="onlineStatus" class="onlineStatus" role="status">接続準備中</span>
+  </div>
+  <div class="onlineMyCard" aria-label="あなたのオンライン順位">
+    <div class="onlineMineTitle"><small>YOUR RANK</small><strong>あなたの全国順位</strong></div>
+    <div class="onlineMineValues"><strong id="onlineMyRank" aria-live="polite">確認中…</strong><span id="onlineMyBest">全国ランキングのデータを読み込みます</span></div>
+  </div>
+  <div class="tabs onlineTabs" role="group" aria-label="全国ランキングの表示期間">
+    <button id="onlineAll" class="tab selected" type="button" aria-pressed="true">🏅 歴代TOP100</button>
+    <button id="onlineWeek" class="tab" type="button" aria-pressed="false">📅 週間TOP100</button>
+    <button id="onlineReload" class="tab onlineReload" type="button" aria-label="ランキングを更新する">↻ 更新</button>
+  </div>
+  <div class="onlineListHead"><strong id="onlinePeriodTitle">歴代ベスト TOP100</strong><small>上位3名を特別表示</small></div>
+  <div id="onlineRows" class="boardRows" aria-live="polite"><div class="emptyBoard">ランキング接続中…</div></div>
+  <details class="onlineDisclosure"><summary>ランキングの仕組み・注意事項</summary><p>各プレイヤーの自己ベストを1件掲載します。週間はUTC基準の月曜日開始です。匿名認証で端末を識別します。端末変更やブラウザデータ削除では記録を引き継げない場合があります。</p></details>
  </section>
  <div class="actions"><button class="primary" id="retryBtn">もう一度謝罪する ↗</button><div class="twocol"><button id="shareBtn">Xで共有する</button><button id="saveBtn">結果画像を保存</button></div></div>
+ <div class="detailSeparator" aria-hidden="true">▼ 詳細な被害報告と端末記録</div>
+ <div id="nextGoal" class="nextGoal"></div>
+ <div class="sectionCaption">惑星別 被害報告 <small>左から右へ衝撃波が進行</small></div><div id="planetResults" class="planetResults"></div>
+ <div class="localLeaderboard"><div class="boardHead"><span>この端末のプレイヤー記録</span><small id="boardTag">ローカル記録</small></div><div class="tabs"><button id="allTab" class="tab selected">歴代TOP</button><button id="todayTab" class="tab">本日のTOP</button><button id="historyTab" class="tab">プレイ履歴</button></div><div id="boardRows" class="boardRows"></div><button type="button" id="moreHistoryBtn" class="historyMore hidden">さらに10件見る ▼</button><div id="myRank" class="myRank">今回の順位 —</div><div id="bestRank" class="bestRank">自己ベスト —</div><p class="boardNote">※ 名前とスコアはこのブラウザに保存されます。別の端末との共通ランキングではありません。以前の名前なし記録は「匿名」と表示します。</p></div>
+ 
 </section>
  <div id="nameDialog" class="nameDialog hidden" role="dialog" aria-modal="true" aria-labelledby="nameDialogTitle" aria-describedby="nameDialogInfo">
   <form id="nameForm" class="namePanel" autocomplete="off">
@@ -413,7 +485,7 @@ function updateBlast(dt){
   if(chaseTime>18)finishResult();
  }
 }
-function finishResult(){if(!outcome||state==='result')return;setState('result');particleList.length=0;saveCurrentResult();showResult()}
+function finishResult(){if(!outcome||state==='result')return;setState('result');particleList.length=0;saveCurrentResult();showResult();$('resultScene').scrollTop=0}
 function showResult(){const o=outcome;$('rankTitle').textContent=o.title;$('resultPlayerName').textContent=currentRunName;resizeText();$('precisionBreakdown').textContent=o.grades.map((v,i)=>`${i+1}声目：${(v.dist*100).toFixed(2)}%${v.dist>.018?'（要改善）':''}`).join('  ｜  ');let reach='宇宙、無傷で済んだ…';if(o.lastReached>=0){const last=o.lastReached;reach=o.statuses[last]===4?`${names[last]}まで完全破壊！`:`${names[last]}、${STATUS[o.statuses[last]]}！`;if(o.lastFull>=0&&o.lastFull<last)reach=`${names[o.lastFull]}まで完全破壊・${names[last]}に到達`;}if(o.statuses[7]===4)reach='太陽系、謝罪に耐えられず！';$('resultReached').textContent=reach;
  const root=$('planetResults');root.replaceChildren();names.forEach((n,i)=>{const cell=document.createElement('div');cell.className='planetCell';cell.style.setProperty('--planet',colors[i]);const orb=document.createElement('span');orb.className='orb';const text=document.createElement('span');text.className='ptext';const nm=document.createElement('strong');nm.textContent=n;const s=document.createElement('small');s.textContent=STATUS[o.statuses[i]];s.className=o.statuses[i]===4?'full':o.statuses[i]>=2?'partial':'';text.append(nm,s);cell.append(orb,text);root.appendChild(cell)});
 // Actionable next-run information, derived from the actual BigInt threshold and grade gaps.
@@ -682,7 +754,7 @@ if(new URLSearchParams(location.search).has('qa'))window.__QA={
 // ASOBEAT GLOBAL RANKING v1.4 — no bundler necessary on GitHub Pages.
 const $=id=>document.getElementById(id);
 const cfg={apiKey:"AIzaSyCGTLi4K7baN12VPL98Hm4CZ8xOQcjMxpc",authDomain:"asobeat-91aef.firebaseapp.com",projectId:"asobeat-91aef",storageBucket:"asobeat-91aef.firebasestorage.app",messagingSenderId:"708217053143",appId:"1:708217053143:web:43f03c653ee40795df7592",measurementId:"G-MNBTX2S3N9"};
-let db,auth,uid,lib,view='all',busy=false,ready=false,pending=null;
+let db,auth,uid,lib,view='all',busy=false,ready=false,pending=null,queuedRefresh=false;
 const cols={all:'bestScores',week:'weeklyScores'};
 const safeName=v=>String(v||'匿名').trim().slice(0,12)||'匿名';
 const isEnergy=v=>/^\d{1,45}$/.test(String(v)) && BigInt(v)>0n;
@@ -691,16 +763,51 @@ const fmt=v=>{let s=String(v);if(s.length<=6)return BigInt(s).toLocaleString('ja
 function weekId(date=new Date()){const d=new Date(Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate()));d.setUTCDate(d.getUTCDate()+4-(d.getUTCDay()||7));const y=d.getUTCFullYear();const start=new Date(Date.UTC(y,0,1));return y+'-W'+String(Math.ceil((((d-start)/86400000)+1)/7)).padStart(2,'0');}
 function status(t){$('onlineStatus').textContent=t}
 function info(t){$('onlineRows').replaceChildren();const p=document.createElement('div');p.className='emptyBoard';p.textContent=t;$('onlineRows').appendChild(p)}
-function errorString(e){if(!navigator.onLine)return 'オフラインのため端末記録のみ保存されました';if(e?.code==='permission-denied')return 'アクセス拒否：firestore.rules を公開してください';if(e?.code==='auth/operation-not-allowed')return 'Firebaseで匿名認証を有効にしてください';if(e?.code==='failed-precondition')return 'Firebaseの設定またはインデックスを確認してください';return '接続できません。再読み込みで再試行できます'}
-function draw(items){const root=$('onlineRows');root.replaceChildren();if(!items.length){info('まだ記録がありません。最初の宇宙謝罪王を目指そう！');return}
- items.forEach((d,i)=>{const row=document.createElement('div');row.className='boardRow'+(d.uid===uid?' me':'');const number=document.createElement('span');number.className='medal';number.textContent=['🥇','🥈','🥉'][i]||(i+1)+'位';const label=document.createElement('span');label.className='boardLabel';const name=document.createElement('strong');name.textContent=safeName(d.name);const meta=document.createElement('small');meta.textContent=(d.reach>=0?['水星','金星','地球','火星','木星','土星','天王星','海王星'][d.reach]:'到達なし')+' · '+(d.title||'謝罪者');label.append(name,meta);const score=document.createElement('span');score.className='boardScore';score.textContent=fmt(d.energy)+' J';row.append(number,label,score);root.appendChild(row)})}
-async function refresh(){if(!ready||busy)return;busy=true;status('取得中');info('全国の記録を取得中…');$('onlineAll').classList.toggle('selected',view==='all');$('onlineWeek').classList.toggle('selected',view==='week');try{const collectionPath=view==='all'?cols.all:`weeks/${weekId()}/scores`;const q=lib.query(lib.collection(db,collectionPath),lib.orderBy('scoreKey','desc'),lib.limit(100));const snap=await lib.getDocs(q);draw(snap.docs.map(d=>d.data()));status('接続中 · TOP100');const own=await lib.getDoc(lib.doc(db,collectionPath,uid));$('onlineMyRank').textContent=own.exists()?`オンライン自己ベスト：${fmt(own.data().energy)} J${snap.docs.findIndex(d=>d.id===uid)>=0?' ／ '+(snap.docs.findIndex(d=>d.id===uid)+1)+'位（TOP100内）':' ／ TOP100圏外'}`:'オンライン自己ベスト：未登録';}catch(e){console.warn('Ranking read',e);status('通信エラー');info(errorString(e));}finally{busy=false}}
-async function upload(r){if(!ready){pending=r;return}if(!isEnergy(r?.energy))return;try{const base={uid,name:safeName(r.name),energy:String(BigInt(r.energy)),scoreKey:key(BigInt(r.energy).toString()),reach:Number.isInteger(r.reach)?Math.max(-1,Math.min(7,r.reach)):-1,title:String(r.rank||'謝罪者').slice(0,40),updatedAt:lib.serverTimestamp()};for(const ref of [lib.doc(db,'bestScores',uid),lib.doc(db,'weeks',weekId(),'scores',uid)]){const existing=await lib.getDoc(ref);if(!existing.exists()||BigInt(base.energy)>BigInt(existing.data().energy)){await lib.setDoc(ref,base)}}status('記録を同期しました');await refresh()}catch(e){console.warn('Ranking write',e);status('保存失敗');$('onlineMyRank').textContent=errorString(e)+'。端末の記録は残っています。'}}
+function errorString(e){if(!navigator.onLine)return 'オフラインのため端末記録のみ保存されました';if(e?.code==='permission-denied')return 'アクセス拒否：Firestoreルール・匿名認証・対象DBを確認してください';if(e?.code==='auth/operation-not-allowed')return 'Firebaseで匿名認証を有効にしてください';if(e?.code==='failed-precondition')return 'Firebaseの設定またはインデックスを確認してください';return '接続できません。再読み込みで再試行できます'}
+function draw(items){
+ const root=$('onlineRows');root.replaceChildren();
+ if(!items.length){info('まだ記録がありません。最初の宇宙謝罪王を目指そう！');return}
+ items.forEach((d,i)=>{
+  const row=document.createElement('div');row.className='boardRow'+(i<3?' podium podium-'+(i+1):'')+(d.uid===uid?' me':'');
+  const number=document.createElement('span');number.className='medal';number.textContent=['🥇','🥈','🥉'][i]||(i+1)+'位';
+  const label=document.createElement('span');label.className='boardLabel';const name=document.createElement('strong');name.textContent=safeName(d.name);
+  const meta=document.createElement('small');meta.textContent=(Number.isInteger(d.reach)&&d.reach>=0&&d.reach<=7?['水星','金星','地球','火星','木星','土星','天王星','海王星'][d.reach]:'到達なし')+' · '+String(d.title||'謝罪者');
+  label.append(name,meta);
+  const score=document.createElement('span');score.className='boardScore';
+  const num=document.createElement('strong');num.className='scoreNum';num.textContent=isEnergy(d.energy)?fmt(d.energy):'記録なし';
+  const unit=document.createElement('small');unit.className='scoreUnit';unit.textContent='J（ジュール）';score.append(num,unit);
+  row.append(number,label,score);root.appendChild(row);
+ });
+}
+function ownDisplay(rank,text){$('onlineMyRank').textContent=rank;$('onlineMyBest').textContent=text}
+async function refresh(){
+ if(!ready)return;
+ if(busy){queuedRefresh=true;return}
+ busy=true;const requested=view;
+ status('取得中');info('全国の記録を取得中…');
+ $('onlineAll').classList.toggle('selected',requested==='all');$('onlineWeek').classList.toggle('selected',requested==='week');
+ $('onlineAll').setAttribute('aria-pressed',String(requested==='all'));$('onlineWeek').setAttribute('aria-pressed',String(requested==='week'));
+ $('onlinePeriodTitle').textContent=requested==='all'?'歴代ベスト TOP100':'今週のベスト TOP100';
+ try{
+  const collectionPath=requested==='all'?cols.all:`weeks/${weekId()}/scores`;
+  const q=lib.query(lib.collection(db,collectionPath),lib.orderBy('scoreKey','desc'),lib.limit(100));
+  const snap=await lib.getDocs(q);
+  draw(snap.docs.map(d=>d.data()));status('ONLINE · 最新');
+  const own=await lib.getDoc(lib.doc(db,collectionPath,uid));
+  if(!own.exists()){ownDisplay('未登録','1回プレイすると全国ランキングに記録されます');}
+  else{
+   const ix=snap.docs.findIndex(d=>d.id===uid);
+   ownDisplay(ix>=0?`全国 ${ix+1}位`:'TOP100圏外',`自己ベスト：${fmt(own.data().energy)} J`);
+  }
+ }catch(e){console.warn('Ranking read',e);status('通信エラー');info(errorString(e));ownDisplay('取得できません','端末内の記録は残っています');}
+ finally{busy=false;if(queuedRefresh){queuedRefresh=false;refresh()}}
+}
+async function upload(r){if(!ready){pending=r;return}if(!isEnergy(r?.energy))return;try{const base={uid,name:safeName(r.name),energy:String(BigInt(r.energy)),scoreKey:key(BigInt(r.energy).toString()),reach:Number.isInteger(r.reach)?Math.max(-1,Math.min(7,r.reach)):-1,title:String(r.rank||'謝罪者').slice(0,40),updatedAt:lib.serverTimestamp()};for(const ref of [lib.doc(db,'bestScores',uid),lib.doc(db,'weeks',weekId(),'scores',uid)]){const existing=await lib.getDoc(ref);if(!existing.exists()||BigInt(base.energy)>BigInt(existing.data().energy)){await lib.setDoc(ref,base)}}status('記録を同期しました');await refresh()}catch(e){console.warn('Ranking write',e);status('保存失敗');ownDisplay('保存できません',errorString(e)+'。端末の記録は残っています。')}}
 $('onlineAll').addEventListener('click',()=>{view='all';refresh()});$('onlineWeek').addEventListener('click',()=>{view='week';refresh()});$('onlineReload').addEventListener('click',()=>refresh());
 window.addEventListener('asobeat:score',e=>{pending=e.detail;upload(e.detail)});
 try{
  const [app,aut,fire]=await Promise.all([import('https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js'),import('https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js'),import('https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js')]);
  const application=app.initializeApp(cfg);auth=aut.getAuth(application);db=fire.getFirestore(application);lib=fire;
  const credential=auth.currentUser|| (await aut.signInAnonymously(auth)).user;uid=credential.uid;ready=true;await refresh();const latest=pending||window.__latestOnlineScore;if(latest)await upload(latest);
-}catch(e){console.warn('Ranking init',e);status('設定・通信エラー');info(errorString(e));$('onlineMyRank').textContent='端末保存は引き続き利用できます。'}
+}catch(e){console.warn('Ranking init',e);status('設定・通信エラー');info(errorString(e));ownDisplay('接続できません','端末保存は引き続き利用できます。')}
 </script></body></html>
