@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedInAs(id) {
+      return request.auth != null && request.auth.uid == id;
+    }
+    function validScore(id) {
+      return signedInAs(id)
+        && request.resource.data.keys().hasAll(['uid', 'name', 'energy', 'scoreKey', 'reach', 'title', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['uid', 'name', 'energy', 'scoreKey', 'reach', 'title', 'updatedAt'])
+        && request.resource.data.uid == id
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 48
+        && request.resource.data.energy is string
+        && request.resource.data.energy.matches('^[0-9]{1,45}$')
+        && request.resource.data.scoreKey is string
+        && request.resource.data.scoreKey.matches('^[0-9]{48}$')
+        && request.resource.data.reach is int
+        && request.resource.data.reach >= -1
+        && request.resource.data.reach <= 7
+        && request.resource.data.title is string
+        && request.resource.data.title.size() <= 120
+        && request.resource.data.updatedAt == request.time;
+    }
+    function higherOrEqual() {
+      return request.resource.data.scoreKey >= resource.data.scoreKey;
+    }
+    match /bestScores/{userId} {
+      allow get: if request.auth != null;
+      allow list: if request.auth != null && request.query.limit <= 100;
+      allow create: if validScore(userId);
+      allow update: if validScore(userId) && higherOrEqual();
+      allow delete: if false;
+    }
+    match /weeks/{weekId}/scores/{userId} {
+      allow get: if request.auth != null;
+      allow list: if request.auth != null && request.query.limit <= 100;
+      allow create: if weekId.matches('^[0-9]{4}-W[0-9]{2}$') && validScore(userId);
+      allow update: if weekId.matches('^[0-9]{4}-W[0-9]{2}$') && validScore(userId) && higherOrEqual();
+      allow delete: if false;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
