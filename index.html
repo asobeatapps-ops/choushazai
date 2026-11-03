@@ -67,6 +67,12 @@
 #playerNameInput{width:100%;min-height:53px;display:block;padding:11px 15px;border-radius:12px;color:#14213d;background:#fff9e9;border:3px solid #f0c866;font-weight:1000;font-size:18px;outline-offset:3px;text-align:left;-webkit-user-select:text;user-select:text;touch-action:manipulation}
 .nameHelp{font-size:10px!important;line-height:1.65!important;color:#b6cce9!important;text-align:left;margin:13px 0 17px!important}.nameSubmit{font-size:17px;padding:13px 8px}.nameCancel{font-size:12px;color:#b6cbe8;background:transparent;border:0;min-height:41px;padding:8px 20px;margin-top:12px;font-weight:800}
 @media(max-height:595px){.namePanel{padding:13px 16px 10px}.nameIcon{font-size:26px}.namePanel h2{margin:4px 0 6px}.namePanel>p:not(.nameHelp){margin-bottom:9px}.nameHelp{margin:8px 0!important}.nameSubmit{padding:10px 8px}.nameCancel{margin-top:5px;min-height:31px}.playerProfile{margin-bottom:7px;padding:6px 9px}}
+
+/* Result-screen advertisement: inactive until an approved ad unit is configured. */
+.resultAdSlot{flex:none;width:100%;max-width:100%;margin:16px auto calc(env(safe-area-inset-bottom) + 12px);padding:12px 8px 8px;border-top:1px solid #8aa7d044;text-align:center;min-height:116px;overflow:hidden;contain:layout}
+.resultAdLabel{font-size:10px;font-weight:700;letter-spacing:.1em;color:#a8b8d1;margin-bottom:8px}
+.resultAdUnit{width:100%;min-height:90px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.resultAdUnit ins.adsbygoogle{display:block;width:100%}
 </style>
 <style>
 .onlineBoard{margin-top:12px;padding:12px;background:linear-gradient(145deg,#122148f5,#090e2bf7);border:1px solid #61c9ff65;border-radius:16px;box-shadow:0 0 20px #27baff18;position:relative;z-index:3}
@@ -182,6 +188,13 @@
  <div class="sectionCaption">惑星別 被害報告 <small>左から右へ衝撃波が進行</small></div><div id="planetResults" class="planetResults"></div>
  <div class="localLeaderboard"><div class="boardHead"><span>この端末のプレイヤー記録</span><small id="boardTag">ローカル記録</small></div><div class="tabs"><button id="allTab" class="tab selected">歴代TOP</button><button id="todayTab" class="tab">本日のTOP</button><button id="historyTab" class="tab">プレイ履歴</button></div><div id="boardRows" class="boardRows"></div><button type="button" id="moreHistoryBtn" class="historyMore hidden">さらに10件見る ▼</button><div id="myRank" class="myRank">今回の順位 —</div><div id="bestRank" class="bestRank">自己ベスト —</div><p class="boardNote">※ 名前とスコアはこのブラウザに保存されます。別の端末との共通ランキングではありません。以前の名前なし記録は「匿名」と表示します。</p></div>
  
+ <aside id="resultAdSlot" class="resultAdSlot hidden" aria-label="広告" data-ad-status="inactive">
+  <!-- AdSense審査・設定完了後に広告ユニットをここへ設置してください。
+       審査前はhiddenのままにし、承認後に広告コードと共に有効化してください。
+       実際の広告コード・publisher IDは未設定です。 -->
+  <div class="resultAdLabel">広告</div>
+  <div id="resultAdUnit" class="resultAdUnit"></div>
+ </aside>
 </section>
  <div id="nameDialog" class="nameDialog hidden" role="dialog" aria-modal="true" aria-labelledby="nameDialogTitle" aria-describedby="nameDialogInfo">
   <form id="nameForm" class="namePanel" autocomplete="off">
